@@ -1,0 +1,6 @@
+@ICPC_Tanta_Web_HostAddress = http://localhost:5053
+
+GET {{ICPC_Tanta_Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

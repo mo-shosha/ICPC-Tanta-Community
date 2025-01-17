@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "SxKRf/ctgfZ9hduR6wquLhpLRQeBFb2KAs3PtTGu8LY=",
+  "Source": "ICPC_Tanta_Web",
+  "BasePath": "_content/ICPC_Tanta_Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ICPC_Tanta_Web\\wwwroot",
+      "Source": "ICPC_Tanta_Web",
+      "ContentRoot": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\",
+      "BasePath": "_content/ICPC_Tanta_Web",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
