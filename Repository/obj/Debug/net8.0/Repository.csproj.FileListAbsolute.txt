@@ -15,3 +15,4 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\refint
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.pdb
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.genruntimeconfig.cache
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\ref\Repository.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.sourcelink.json

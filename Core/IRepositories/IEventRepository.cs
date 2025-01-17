@@ -11,7 +11,9 @@ namespace Core.IRepositories
     {
         Task<Events> GetEventByTitleAsync(string title);
         Task<IEnumerable<Events>> GetEventsWithSchedulesAsync();
+
+        Task<Events> GetEventWithSchedulesAsyncById(int id);
         Task<IEnumerable<Events>> GetEventsByDateAsync(DateTime date);
-        Task<IEnumerable<Events>> SearchAsync(string keyword);
+        //Task<IEnumerable<Events>> SearchAsync(string keyword);
     }
 }

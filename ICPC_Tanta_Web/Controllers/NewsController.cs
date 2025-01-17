@@ -56,6 +56,8 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<ActionResult>Update(int id, [FromForm] UpdateNewsDto updateNewsDto)
         {
             if (id <= 0) return BadRequest("Invalid ID.");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
             var item = await _newsService.GetByIdAsync(id);
             if (item == null)

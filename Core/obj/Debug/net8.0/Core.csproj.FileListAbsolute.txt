@@ -12,3 +12,4 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Core\obj\Debug\net8.0\refint\Core.
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Core\obj\Debug\net8.0\Core.pdb
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Core\obj\Debug\net8.0\Core.genruntimeconfig.cache
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Core\obj\Debug\net8.0\ref\Core.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Core\obj\Debug\net8.0\Core.sourcelink.json

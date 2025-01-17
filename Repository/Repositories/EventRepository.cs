@@ -36,5 +36,11 @@ namespace Repository.Repositories
                 .Include(e => e.DailyPlan)
                 .ToListAsync();
         }
+
+        public  async Task<Events> GetEventWithSchedulesAsyncById(int id)
+        {
+            return await _db.Set<Events>()
+               .Include(e => e.DailyPlan).Where(e => e.Id == id).FirstOrDefaultAsync();
+        }
     }
 }

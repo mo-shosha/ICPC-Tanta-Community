@@ -17,7 +17,6 @@ namespace Core.Entities
         public string Activity { get; set; } 
         [Required]
         public int EventId { get; set; }
-        [Required]
         public Events Event { get; set; }
     }
 }

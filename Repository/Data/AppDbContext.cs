@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,5 +26,17 @@ namespace Repository.Data
         DbSet<TrainingLevel> trainingLevels { get; set; }
         DbSet<TrainingContent> trainingContents {  get; set; }
         DbSet<Achievements> achievements { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Events>()
+             .HasMany(e => e.DailyPlan)
+             .WithOne(s => s.Event)
+             .HasForeignKey(s => s.EventId)
+             .OnDelete(DeleteBehavior.Cascade);
+        }
     }
+
+    
 }

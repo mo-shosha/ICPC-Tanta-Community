@@ -14,6 +14,7 @@ namespace Core.IServices
     {
         Task<EventWithSchedulesDto> GetByIdAsync(int id);
         Task<IEnumerable<EventWithSchedulesDto>> GetAllAsync();
+        //Task<EventDto> GetByIdAsync(int id);
         Task AddAsync(EventCreateDto createEventDto);
         Task UpdateAsync(EventUpdateDto updateEventDto);
         Task DeleteAsync(int id);

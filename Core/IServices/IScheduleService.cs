@@ -13,5 +13,6 @@ namespace Core.IServices
         Task AddAsync(ScheduleCreateDto createScheduleDto);
         Task UpdateAsync(ScheduleUpdateDto updateScheduleDto);
         Task DeleteAsync(int id);
+        Task <ScheduleDtoo> GetByIdAsync(int id);
     }
 }

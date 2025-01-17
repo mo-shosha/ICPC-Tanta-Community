@@ -2,6 +2,7 @@
 using Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace ICPC_Tanta_Web.Controllers
 {
@@ -28,18 +29,30 @@ namespace ICPC_Tanta_Web.Controllers
             return Ok(schedules);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ScheduleDtoo>>GetByIdAsync(int id)
+        {
+            var schedules = await _scheduleService.GetByIdAsync(id);
+            if (schedules == null)
+            {
+                return NotFound("No schedules found for this event.");
+            }
+            return Ok(schedules);
+        }
+
         // Create a new schedule
         [HttpPost]
         public async Task<ActionResult> CreateAsync([FromBody] ScheduleCreateDto createScheduleDto)
         {
             await _scheduleService.AddAsync(createScheduleDto);
-            return CreatedAtAction(nameof(GetSchedulesByEventIdAsync), new { eventId = createScheduleDto.EventId }, createScheduleDto);
+            return Ok();
         }
 
         // Update an existing schedule
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateAsync(int id, [FromBody] ScheduleUpdateDto updateScheduleDto)
         {
+            
             updateScheduleDto.Id = id;
             await _scheduleService.UpdateAsync(updateScheduleDto);
             return NoContent();

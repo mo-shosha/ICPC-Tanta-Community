@@ -17,6 +17,9 @@ namespace ICPC_Tanta_Web.Services
         }
         public async Task AddAsync(ScheduleCreateDto createScheduleDto)
         {
+            var eventExists = await _unitOfWork.EventRepository.GetByIdAsync(createScheduleDto.EventId);
+            if (eventExists==null)
+                throw new KeyNotFoundException($"Event with ID {createScheduleDto.EventId} not found.");
             var schedule = new Schedule
             {
                 Time = createScheduleDto.Time,
@@ -35,6 +38,21 @@ namespace ICPC_Tanta_Web.Services
             await _unitOfWork.SaveChangesAsync();
         }
 
+        public async Task<ScheduleDtoo> GetByIdAsync(int id)
+        {
+            var item = await _unitOfWork.ScheduleRepository.GetByIdAsync(id);
+            if (item == null)
+                throw new KeyNotFoundException("Schedule not found");
+
+            return new ScheduleDtoo
+            {
+                Id = item.Id,
+                Time = item.Time,
+                Activity = item.Activity,
+                EventId = item.EventId
+            };
+        }
+
         public async Task<IEnumerable<ScheduleDtoo>> GetSchedulesByEventIdAsync(int eventId)
         {
             var schedules = await _unitOfWork.ScheduleRepository.GetSchedulesByEventIdAsync(eventId);
@@ -49,6 +67,9 @@ namespace ICPC_Tanta_Web.Services
 
         public async Task UpdateAsync(ScheduleUpdateDto updateScheduleDto)
         {
+            var eventExists = await _unitOfWork.EventRepository.GetByIdAsync(updateScheduleDto.EventId);
+            if (eventExists == null)
+                throw new KeyNotFoundException($"Event with ID {updateScheduleDto.EventId} not found.");
             var schedule = await _unitOfWork.ScheduleRepository.GetByIdAsync(updateScheduleDto.Id);
             if (schedule == null) throw new KeyNotFoundException("Schedule not found");
 

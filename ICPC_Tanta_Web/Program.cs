@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Repositories;
 using Services;
-using NewsService = ICPC_Tanta_Web.Services.NewsService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +24,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 // Add UnitOfWork and Services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<INewsService, NewsService>();
+builder.Services.AddScoped<IFileProcessingService, FileProcessingService>();
+builder.Services.AddScoped<INewsService, Services.NewsService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
-builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IEventService, EventService>();
 
 // Add Swagger
 builder.Services.AddEndpointsApiExplorer();

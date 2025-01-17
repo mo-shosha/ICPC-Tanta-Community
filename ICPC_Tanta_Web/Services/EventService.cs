@@ -28,7 +28,7 @@ namespace ICPC_Tanta_Web.Services
                 DateTime = createEventDto.DateTime,
                 TicketUrl = createEventDto.TicketUrl
             };
-            _unitOfWork.EventRepository.AddAsync(eventItem);
+            await _unitOfWork.EventRepository.AddAsync(eventItem);
             if (createEventDto.Image != null)
             {
                 eventItem.ImgUrl = await _fileProcessingService.SaveFileAsync(createEventDto.Image);
@@ -48,16 +48,48 @@ namespace ICPC_Tanta_Web.Services
 
         public async Task<IEnumerable<EventWithSchedulesDto>> GetAllAsync()
         {
-            var events = await _unitOfWork.EventRepository.GetAllAsync();
-            return events.Select(MapToDto);
+            var events = await _unitOfWork.EventRepository.GetEventsWithSchedulesAsync();
+            return events.Select(eventItem => new EventWithSchedulesDto
+            {
+                Id = eventItem.Id,
+                Title = eventItem.Title,
+                Description = eventItem.Description,
+                Location = eventItem.Location,
+                DateTime = eventItem.DateTime,
+                TicketUrl = eventItem.TicketUrl,
+                ImgUrl = eventItem.ImgUrl,
+                DailyPlan = eventItem.DailyPlan?.Select(s => new ScheduleDtoo
+                {
+                    Id = s.Id,
+                    Time = s.Time,
+                    Activity = s.Activity,
+                    EventId = s.EventId
+                }).ToList() ?? new List<ScheduleDtoo>()
+            });
         }
 
         public async Task<EventWithSchedulesDto> GetByIdAsync(int id)
         {
-            var eventItem = await _unitOfWork.EventRepository.GetByIdAsync(id);
+            var eventItem = await _unitOfWork.EventRepository.GetEventWithSchedulesAsyncById(id);
             if (eventItem == null) throw new KeyNotFoundException("Event not found");
 
-            return MapToDto(eventItem);
+            return new EventWithSchedulesDto
+            {
+                Id = eventItem.Id,
+                Title = eventItem.Title,
+                Description = eventItem.Description,
+                Location = eventItem.Location,
+                DateTime = eventItem.DateTime,
+                TicketUrl = eventItem.TicketUrl,
+                ImgUrl = eventItem.ImgUrl,
+                DailyPlan = eventItem.DailyPlan?.Select(s => new ScheduleDtoo
+                {
+                    Id = s.Id,
+                    Time = s.Time,
+                    Activity = s.Activity,
+                    EventId = s.EventId
+                }).ToList() ?? new List<ScheduleDtoo>()
+            };
         }
 
         public async Task UpdateAsync(EventUpdateDto updateEventDto)
@@ -88,25 +120,25 @@ namespace ICPC_Tanta_Web.Services
         }
 
 
-        private EventWithSchedulesDto MapToDto(Events eventItem)
-        {
-            return new EventWithSchedulesDto
-            {
-                Id = eventItem.Id,
-                Title = eventItem.Title,
-                Description = eventItem.Description,
-                Location = eventItem.Location,
-                DateTime = eventItem.DateTime,
-                TicketUrl = eventItem.TicketUrl,
-                ImgUrl = eventItem.ImgUrl,
-                DailyPlan = eventItem.DailyPlan.Select(s => new ScheduleDtoo
-                {
-                    Id = s.Id,
-                    Time = s.Time,
-                    Activity = s.Activity,
-                    EventId = s.EventId
-                }).ToList()
-            };
-        }
+        //private EventWithSchedulesDto MapToDto(Events eventItem)
+        //{
+        //    return new EventWithSchedulesDto
+        //    {
+        //        Id = eventItem.Id,
+        //        Title = eventItem.Title,
+        //        Description = eventItem.Description,
+        //        Location = eventItem.Location,
+        //        DateTime = eventItem.DateTime,
+        //        TicketUrl = eventItem.TicketUrl,
+        //        ImgUrl = eventItem.ImgUrl,
+        //        DailyPlan = eventItem.DailyPlan.Select(s => new ScheduleDtoo
+        //        {
+        //            Id = s.Id,
+        //            Time = s.Time,
+        //            Activity = s.Activity,
+        //            EventId = s.EventId
+        //        }).ToList() ?? new List<ScheduleDtoo>()
+        //    };
+        //}
     }
 }
