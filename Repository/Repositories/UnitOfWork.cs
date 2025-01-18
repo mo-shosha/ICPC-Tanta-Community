@@ -14,6 +14,7 @@ namespace Repository.Repositories
         private INewsRepository _newsRepository;
         private IEventRepository _eventRepository;
         private IScheduleRepository _scheduleRepository;
+        private ITeamRepository _teamRepository;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -22,6 +23,7 @@ namespace Repository.Repositories
         public INewsRepository NewsRepository => _newsRepository ??= new NewsRepository(_context);
         public IEventRepository EventRepository=> _eventRepository ??= new EventRepository(_context);
         public IScheduleRepository ScheduleRepository => _scheduleRepository ??= new ScheduleRepository(_context);
+        public ITeamRepository TeamRepository => _teamRepository ??= new TeamRepository(_context);
 
         public async Task<int> SaveChangesAsync()
         {

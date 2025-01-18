@@ -1,0 +1,106 @@
+﻿using Core.DTO.TeamDTO;
+using Core.Entities;
+using Core.IRepositories;
+using Core.IServices;
+using ICPC_Tanta_Web.DTO.NewsDTO;
+
+namespace ICPC_Tanta_Web.Services
+{
+    public class TeamService : ITeamService
+    {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IFileProcessingService _fileProcessingService;
+
+        public TeamService(IUnitOfWork unitOfWork, IFileProcessingService fileProcessingService)
+        {
+            _unitOfWork = unitOfWork;
+            _fileProcessingService = fileProcessingService;
+        }
+        public async Task AddAsync(CreateTeamDTO createTeamDto)
+        {
+            var team = new Team
+            {
+                TeamName = createTeamDto.TeamName,
+                Description = createTeamDto.Description,
+
+            };
+            if (createTeamDto.LogoImg != null)
+            {
+                team.LogoURL = await _fileProcessingService.SaveFileAsync(createTeamDto.LogoImg);
+            }
+
+            await _unitOfWork.TeamRepository.AddAsync(team);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var team = await _unitOfWork.TeamRepository.GetByIdAsync(id);
+            if (team == null) throw new KeyNotFoundException("Team not found");
+
+            // Delete image if exists
+            if (!string.IsNullOrEmpty(team.LogoURL))
+            {
+                _fileProcessingService.DeleteFile(team.LogoURL);
+            }
+
+            _unitOfWork.TeamRepository.Delete(team);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<TeamDTO>> GetAllAsync()
+        {
+            var teams = await _unitOfWork.TeamRepository.GetAllAsync();
+
+            // Manual mapping
+            var teamDTOs = teams.Select(team => new TeamDTO
+            {
+                Id = team.Id,
+                TeamName = team.TeamName,
+                Description = team.Description,
+                LogoURL = team.LogoURL
+            });
+
+            return teamDTOs;
+        }
+
+        public async Task<TeamDTO> GetByIdAsync(int id)
+        {
+            var team = await _unitOfWork.TeamRepository.GetByIdAsync(id);
+            if (team == null) throw new KeyNotFoundException("Team not found");
+
+            // Manual mapping
+            return new TeamDTO
+            {
+                Id = team.Id,
+                TeamName = team.TeamName,
+                Description = team.Description,
+                LogoURL = team.LogoURL
+            };
+        }
+
+        public async Task UpdateAsync(UpdateTeamDto updateTeamsDto)
+        {
+            var team = await _unitOfWork.TeamRepository.GetByIdAsync(updateTeamsDto.Id);
+            if (team == null) throw new KeyNotFoundException("Team not found");
+
+            // Update  fields
+            team.TeamName = updateTeamsDto.TeamName;
+            team.Description = updateTeamsDto.Description;
+
+            // Update the logo if a new file is provided
+            if (updateTeamsDto.LogoImg != null)
+            {
+                if (!string.IsNullOrEmpty(team.LogoURL))
+                {
+                    _fileProcessingService.DeleteFile(team.LogoURL);
+                }
+
+                team.LogoURL = await _fileProcessingService.SaveFileAsync(updateTeamsDto.LogoImg);
+            }
+
+            _unitOfWork.TeamRepository.Update(team);
+            await _unitOfWork.SaveChangesAsync();
+        }
+    }
+}

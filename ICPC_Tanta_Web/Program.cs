@@ -28,6 +28,7 @@ builder.Services.AddScoped<IFileProcessingService, FileProcessingService>();
 builder.Services.AddScoped<INewsService, Services.NewsService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<ITeamService, TeamService>();
 
 // Add Swagger
 builder.Services.AddEndpointsApiExplorer();

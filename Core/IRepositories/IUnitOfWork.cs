@@ -12,6 +12,8 @@ namespace Core.IRepositories
         INewsRepository NewsRepository { get; }
         IEventRepository EventRepository { get; }
         IScheduleRepository ScheduleRepository { get; }
+
+        ITeamRepository TeamRepository { get; }
         Task<int> SaveChangesAsync();
     }
 }
