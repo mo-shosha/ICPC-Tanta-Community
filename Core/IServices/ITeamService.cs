@@ -1,4 +1,5 @@
 ﻿using Core.DTO.TeamDTO;
+using Core.Entities;
 using ICPC_Tanta_Web.DTO.NewsDTO;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace Core.IServices
         Task AddAsync(CreateTeamDTO createNewsDto);
         Task UpdateAsync(UpdateTeamDto updateNewsDto);
         Task DeleteAsync(int id);
+        Task<Team> GetAllByMember(int id);
     }
 }

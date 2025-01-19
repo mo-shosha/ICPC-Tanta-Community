@@ -9,6 +9,6 @@ namespace Core.IRepositories
 {
     public interface ITeamRepository: IBaseRepository<Team>
     {
-
+        public Task<IEnumerable<Team>> AllTeamWithMember();
     }
 }

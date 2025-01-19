@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,13 @@ namespace Repository.Repositories
     {
         public TeamRepository(AppDbContext db) : base(db)
         {
+        }
+
+        public async Task<IEnumerable<Team>> AllTeamWithMember()
+        {
+            return await _db.Set<Team>()
+                .Include(t => t.Members)
+                .ToListAsync();
         }
     }
 }

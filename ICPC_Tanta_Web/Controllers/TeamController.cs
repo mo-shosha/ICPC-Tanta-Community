@@ -1,4 +1,5 @@
 ﻿using Core.DTO.TeamDTO;
+using Core.Entities;
 using Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -84,5 +85,22 @@ namespace ICPC_Tanta_Web.Controllers
             return NoContent();  
         }
 
+
+        [HttpGet("{id}/members")]
+        public async Task<ActionResult<Team>> GetTeamWithMembers(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("Invalid ID.");
+            }
+
+            var teamWithMembers = await _teamService.GetAllByMember(id);
+            if (teamWithMembers == null)
+            {
+                return NotFound($"Team with ID {id} was not found.");
+            }
+
+            return Ok(teamWithMembers);
+        }
     }
 }

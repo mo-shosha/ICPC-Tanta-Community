@@ -13,6 +13,6 @@ namespace Core.DTO.TeamDTO
         public string TeamName { get; set; }
         public string Description { get; set; }
         public string LogoURL { get; set; }
-        public List<Member> Members { get; set; }
+       // public List<Member> Members { get; set; }
     }
 }

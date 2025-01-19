@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GByer1WNWCoVJuRu9VZOsD0iPPjSsTROlk3Ojxbu/nI=",
+  "Hash": "+Qa4ZEbpNSg941aW1qJRpaFltlZqQCtmcY/3AngaSFI=",
   "Source": "ICPC_Tanta_Web",
   "BasePath": "_content/ICPC_Tanta_Web",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg"
+    },
+    {
+      "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png",
+      "SourceId": "ICPC_Tanta_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\",
+      "BasePath": "_content/ICPC_Tanta_Web",
+      "RelativePath": "uploads/afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png"
     },
     {
       "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg",
