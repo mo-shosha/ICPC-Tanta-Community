@@ -158,3 +158,5 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Debug\net8.0\Se
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Debug\net8.0\Services.pdb
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Debug\net8.0\ICPC_Tanta_Web.staticwebassets.runtime.json
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Debug\net8.0\ICPC_Tanta_Web.sourcelink.json
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Debug\net8.0\Newtonsoft.Json.dll

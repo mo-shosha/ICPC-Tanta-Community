@@ -2,11 +2,14 @@ using Core.Entities.Identity;
 using Core.IRepositories;
 using Core.IServices;
 using ICPC_Tanta_Web.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Repository.Data;
 using Repository.Repositories;
 using Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +25,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+
 // Add UnitOfWork and Services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IFileProcessingService, FileProcessingService>();
@@ -29,6 +33,26 @@ builder.Services.AddScoped<INewsService, Services.NewsService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+//JWT
+builder.Services.AddScoped<ITokenServices, TokenServices>();
+builder.Services.AddScoped<ICodeforcesService, CodeforcesService>();
+builder.Services.AddHttpClient<ICodeforcesService, CodeforcesService>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["JWT:Issuer"],
+            ValidAudience = builder.Configuration["JWT:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+        }
+    );
 
 // Add Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -45,8 +69,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseAuthentication();
 
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
