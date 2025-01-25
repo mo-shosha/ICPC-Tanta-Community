@@ -42,11 +42,6 @@ A comprehensive and interactive platform designed to support the **ICPC Tanta Co
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **HTML5**, **CSS3**, **JavaScript**
-- **Bootstrap** for responsive design
-- **jQuery** for dynamic content
-
 ### Backend
 - **.NET 8** (ASP.NET Core)
 - **Entity Framework Core** for database management
