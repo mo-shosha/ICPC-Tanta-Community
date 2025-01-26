@@ -1,6 +1,7 @@
 ﻿using Core.DTO.AccountDTO;
 using Core.Entities.Identity;
 using Core.IServices;
+using ICPC_Tanta_Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +47,35 @@ namespace ICPC_Tanta_Web.Controllers
         {
             await _authService.LogoutAsync();
             return Ok("Logged out successfully.");
+        }
+
+        [HttpGet("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string gmail, string token)
+        {
+            if (string.IsNullOrEmpty(gmail) || string.IsNullOrEmpty(token))
+                return BadRequest("Invalid email confirmation request.");
+
+            var user = await _authService.GetUserByEmailAsync(gmail);
+            if (user == null)
+                return NotFound("User not found.");
+
+            var result = await _authService.ConfirmEmailAsync(user, token);
+            if (!result.Succeeded)
+                return BadRequest("Email confirmation failed.");
+
+            return Ok("Email confirmed successfully.");
+        }
+
+        [HttpGet("me")]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var userClaims = User;  
+            var userDto = await _authService.GetCurrentUserAsync(userClaims);
+
+            if (userDto == null)
+                return NotFound("User not found.");
+
+            return Ok(userDto);
         }
     }
 }

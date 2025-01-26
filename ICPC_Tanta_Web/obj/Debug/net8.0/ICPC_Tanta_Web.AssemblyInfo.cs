@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ICPC_Tanta_Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35f6ea73fb048259b43611521c6698c503d79a1c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3576489912cecc1347444163da32fbe4474a38ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("ICPC_Tanta_Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ICPC_Tanta_Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
