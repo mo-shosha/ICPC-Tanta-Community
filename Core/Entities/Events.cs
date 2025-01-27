@@ -22,5 +22,6 @@ namespace Core.Entities
 
         public string ImgUrl { get; set; }
         public List<Schedule> DailyPlan { get; set; }
+
     }
 }

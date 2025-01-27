@@ -35,6 +35,11 @@ namespace Repository.Data
              .WithOne(s => s.Event)
              .HasForeignKey(s => s.EventId)
              .OnDelete(DeleteBehavior.Cascade);
+
+            //builder.Entity<News>()
+            //   .HasOne(n => n.ApplicationUser)  // News has one ApplicationUser
+            //   .WithMany(u => u.NewsArticles)  // ApplicationUser can have many News articles
+            //   .HasForeignKey(n => n.ApplicationUserId);
         }
     }
 

@@ -15,5 +15,6 @@ namespace Core.IServices
         Task UpdateAsync(UpdateNewsDto updateNewsDto);
         Task DeleteAsync(int id);
         Task<IEnumerable<NewsDto>> SearchAsync(string keyword);
+
     }
 }

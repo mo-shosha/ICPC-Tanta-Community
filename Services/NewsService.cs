@@ -63,8 +63,6 @@ namespace Services
 
             news.Title = updateNewsDto.Title;
             news.Description = updateNewsDto.Description;
-            news.Status = updateNewsDto.Status;
-            news.Author = updateNewsDto.Author;
 
             if (updateNewsDto.Image != null)
             {
@@ -98,7 +96,6 @@ namespace Services
                 Id = news.Id,
                 Title = news.Title,
                 Description = news.Description,
-                Status = news.Status,
                 Author = news.Author,
                 ImageUrl = news.ImageUrl,
                 CreatedDate = news.CreatedDate,

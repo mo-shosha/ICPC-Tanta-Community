@@ -3,14 +3,6 @@
   "WorkspaceRootPath": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\iservices\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\iservices\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,8 +11,8 @@
       "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\services\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\services\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -38,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,85 +66,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Program.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Program.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Program.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Program.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAUwFAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "NewsService.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\NewsService.cs",
+              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Services\\NewsService.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\NewsService.cs",
+              "RelativeToolTip": "ICPC_Tanta_Web\\Services\\NewsService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T16:16:43.417Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EmailService.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\EmailService.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Services\\EmailService.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\EmailService.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Services\\EmailService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAuwCYAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T15:42:05.053Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\IAuthService.cs",
-              "RelativeDocumentMoniker": "Core\\IServices\\IAuthService.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\IAuthService.cs",
-              "RelativeToolTip": "Core\\IServices\\IAuthService.cs",
-              "ViewState": "AgIAAAIAAAAAMTMzMzMLwBUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T17:34:20.143Z",
+              "WhenOpened": "2025-01-27T11:04:39.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Services\\AuthService.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\AuthService.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Services\\AuthService.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAADwv4oAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T17:33:14.499Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\appsettings.json",
+              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\appsettings.json",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\appsettings.json",
+              "RelativeToolTip": "ICPC_Tanta_Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-27T10:24:52.018Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "AuthController.cs",
               "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Controllers\\AuthController.cs",
               "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\AuthController.cs",
               "RelativeToolTip": "ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAswFEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAABAk5mZmZkrwEUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-25T11:20:10.399Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\appsettings.json",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\appsettings.json",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\appsettings.json",
-              "RelativeToolTip": "ICPC_Tanta_Web\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-25T10:39:29.244Z",
+              "DocumentIndex": 1,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Services\\AuthService.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\AuthService.cs",
+              "RelativeToolTip": "ICPC_Tanta_Web\\Services\\AuthService.cs",
+              "ViewState": "AgIAAHAAAAAAQDMzMzPjv4gAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T17:33:14.499Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "IEmailService.cs",
               "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\IEmailService.cs",
               "RelativeDocumentMoniker": "Core\\IServices\\IEmailService.cs",
@@ -160,8 +126,7 @@
               "RelativeToolTip": "Core\\IServices\\IEmailService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T15:41:56.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-26T15:41:56.676Z"
             }
           ]
         }

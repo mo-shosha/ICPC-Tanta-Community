@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
+    "Method": "AssignRoleToUser",
+    "RelativePath": "api/Auth/assign-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Core.DTO.AccountDTO.AssignRoleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
     "Method": "ConfirmEmail",
     "RelativePath": "api/Auth/ConfirmEmail",
     "HttpMethod": "GET",
@@ -8,7 +24,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "gmail",
+        "Name": "userId",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -303,16 +319,6 @@
       },
       {
         "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Status",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Author",
         "Type": "System.String",
         "IsRequired": false
       },

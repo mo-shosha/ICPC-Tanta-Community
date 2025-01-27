@@ -18,6 +18,8 @@ namespace Core.IServices
         Task<ApplicationUser> GetUserByEmailAsync(string email);
         Task<ApplicationUser> GetUserByIdAsync(string userId);
         Task<IdentityResult> ConfirmEmailAsync(ApplicationUser user, string token);
-        Task<UserDto> GetCurrentUserAsync(ClaimsPrincipal user);
+        Task<UserDto> GetCurrentUserAsync(ClaimsPrincipal userClaims);
+        Task<IdentityResult> AssignRoleToUserAsync(string userId, string role);
+        Task<string>GetCurrentUserName(ClaimsPrincipal userClaims);
     }
 }

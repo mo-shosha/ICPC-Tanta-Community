@@ -47,7 +47,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("achievements");
+                    b.ToTable("achievements", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.Events", b =>
@@ -83,7 +83,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("events");
+                    b.ToTable("events", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.Identity.ApplicationUser", b =>
@@ -197,7 +197,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("members");
+                    b.ToTable("members", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.News", b =>
@@ -238,7 +238,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("news");
+                    b.ToTable("news", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.Schedule", b =>
@@ -263,7 +263,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("schedules");
+                    b.ToTable("schedules", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.Team", b =>
@@ -288,7 +288,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("teams");
+                    b.ToTable("teams", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.TrainingContent", b =>
@@ -318,7 +318,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("TrainingLevelId");
 
-                    b.ToTable("trainingContents");
+                    b.ToTable("trainingContents", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.TrainingLevel", b =>
@@ -339,7 +339,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("trainingLevels");
+                    b.ToTable("trainingLevels", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.info", b =>
@@ -376,7 +376,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("infos");
+                    b.ToTable("infos", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

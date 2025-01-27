@@ -38,7 +38,7 @@ namespace ICPC_Tanta_Web.Services
                     issuer: _configuration["JWT:Issuer"],
                     audience: _configuration["JWT:Audience"],
                     claims: AuthClaims,
-                    expires: DateTime.UtcNow.AddDays(double.Parse(_configuration["JWT:TokenValidityInDays"])),
+                    expires: DateTime.UtcNow.AddDays(double.TryParse(_configuration["JWT:TokenValidityInDays"], out var days)?days:7),
                     signingCredentials: new SigningCredentials(AuthKey, SecurityAlgorithms.HmacSha256Signature)
             );
             return new JwtSecurityTokenHandler().WriteToken(token);

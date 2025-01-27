@@ -2,6 +2,7 @@
 using Core.Entities.Identity;
 using Core.IServices;
 using ICPC_Tanta_Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,11 @@ namespace ICPC_Tanta_Web.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-
-        public AuthController(IAuthService authService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public AuthController(IAuthService authService, IHttpContextAccessor httpContextAccessor)
         {
             _authService = authService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // Register
@@ -42,6 +44,7 @@ namespace ICPC_Tanta_Web.Controllers
         }
 
         // Logout
+        //[Authorize]
         [HttpPost("Logout")]
         public async Task<IActionResult> Logout()
         {
@@ -50,12 +53,12 @@ namespace ICPC_Tanta_Web.Controllers
         }
 
         [HttpGet("ConfirmEmail")]
-        public async Task<IActionResult> ConfirmEmail(string gmail, string token)
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-            if (string.IsNullOrEmpty(gmail) || string.IsNullOrEmpty(token))
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
                 return BadRequest("Invalid email confirmation request.");
 
-            var user = await _authService.GetUserByEmailAsync(gmail);
+            var user = await _authService.GetUserByIdAsync(userId);
             if (user == null)
                 return NotFound("User not found.");
 
@@ -65,17 +68,31 @@ namespace ICPC_Tanta_Web.Controllers
 
             return Ok("Email confirmed successfully.");
         }
-
+        //[Authorize]
         [HttpGet("me")]
         public async Task<IActionResult> GetCurrentUser()
         {
-            var userClaims = User;  
+            var userClaims = _httpContextAccessor.HttpContext?.User;
             var userDto = await _authService.GetCurrentUserAsync(userClaims);
 
             if (userDto == null)
                 return NotFound("User not found.");
 
             return Ok(userDto);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost("assign-role")]
+        public async Task<IActionResult> AssignRoleToUser(AssignRoleDto model)
+        {
+            if (!User.IsInRole("Admin"))
+                return Unauthorized("You do not have permission to assign roles.");
+
+            var result = await _authService.AssignRoleToUserAsync(model.UserId, model.Role);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.FirstOrDefault()?.Description);
+
+            return Ok("Role assigned successfully.");
         }
     }
 }

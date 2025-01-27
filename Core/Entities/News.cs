@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,7 +25,14 @@ namespace Core.Entities
         public string Author { get; set; } // Name of the author or contributor of the news
 
         public string ImageUrl { get; set; }  
+        //public int Likes {  get; set; }
+
+        //public int Dislike {  get; set; }
 
         public DateTime? PublishedDate { get; set; }
+
+        //public string ApplicationUserId { get; set; }  
+
+        //public ApplicationUser ApplicationUser { get; set; }
     }
 }

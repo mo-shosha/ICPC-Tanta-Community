@@ -14,10 +14,13 @@ namespace ICPC_Tanta_Web.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IFileProcessingService _fileProcessingService;
 
-        public NewsService(IUnitOfWork unitOfWork, IFileProcessingService fileProcessingService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public NewsService(IUnitOfWork unitOfWork, IFileProcessingService fileProcessingService, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _fileProcessingService = fileProcessingService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<NewsDto> GetByIdAsync(int id)
@@ -34,12 +37,19 @@ namespace ICPC_Tanta_Web.Services
 
         public async Task AddAsync(CreateNewsDto createNewsDto)
         {
+            var user = _httpContextAccessor.HttpContext?.User;
+            if (user == null || !user.Identity.IsAuthenticated)
+            {
+                throw new UnauthorizedAccessException("User is not authenticated");
+            }
+
+            var userName = user.Identity.Name;
             var news = new News
             {
                 Title = createNewsDto.Title,
                 Description = createNewsDto.Description,
                 Status = createNewsDto.Status,
-                Author = createNewsDto.Author,
+                Author = userName,
                 CreatedDate = DateTime.Now
             };
 
@@ -59,8 +69,7 @@ namespace ICPC_Tanta_Web.Services
 
             news.Title = updateNewsDto.Title;
             news.Description = updateNewsDto.Description;
-            news.Status = updateNewsDto.Status;
-            news.Author = updateNewsDto.Author;
+             
 
             if (updateNewsDto.Image != null)
             {
@@ -106,7 +115,6 @@ namespace ICPC_Tanta_Web.Services
                 Id = news.Id,
                 Title = news.Title,
                 Description = news.Description,
-                Status = news.Status,
                 Author = news.Author,
                 ImageUrl = news.ImageUrl,
                 CreatedDate = news.CreatedDate,

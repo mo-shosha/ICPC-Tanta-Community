@@ -13,18 +13,21 @@ namespace ICPC_Tanta_Web.Services
         private readonly ITokenServices _tokenServices;
         private readonly ICodeforcesService _codeforcesService;
         private readonly IEmailService _emailService;
+        private readonly RoleManager<IdentityRole> _roleManager;
         public AuthService(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ITokenServices tokenServices,
             ICodeforcesService codeforcesService,
-            IEmailService emailService)
+            IEmailService emailService,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenServices = tokenServices;
             _codeforcesService = codeforcesService;
             _emailService = emailService;
+            _roleManager = roleManager;
         }
 
         public async Task<UserDto> RegisterAsync(RegisterDto model)
@@ -114,7 +117,7 @@ namespace ICPC_Tanta_Web.Services
             if (string.IsNullOrEmpty(userId))
                 return null;
 
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByNameAsync(userId);
             if (user == null)
                 return null;
 
@@ -133,6 +136,30 @@ namespace ICPC_Tanta_Web.Services
 
         }
 
-         
+        public async Task<IdentityResult> AssignRoleToUserAsync(string userId, string role)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return IdentityResult.Failed(new IdentityError { Description = "User not found" });
+
+            var roleExists = await _roleManager.RoleExistsAsync(role);
+            if (!roleExists)
+                return IdentityResult.Failed(new IdentityError { Description = "Role does not exist" });
+
+            return await _userManager.AddToRoleAsync(user, role);
+        }
+
+        public async Task<string> GetCurrentUserName(ClaimsPrincipal userClaims)
+        {
+            var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+                return null;
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return null;
+
+            return user.FullName;
+        }
     }
 }
