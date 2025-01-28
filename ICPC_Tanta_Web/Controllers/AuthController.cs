@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ICPC_Tanta_Web.Controllers
 {
@@ -44,7 +45,7 @@ namespace ICPC_Tanta_Web.Controllers
         }
 
         // Logout
-        //[Authorize]
+        [Authorize]
         [HttpPost("Logout")]
         public async Task<IActionResult> Logout()
         {
@@ -68,7 +69,8 @@ namespace ICPC_Tanta_Web.Controllers
 
             return Ok("Email confirmed successfully.");
         }
-        //[Authorize]
+        
+        [Authorize]
         [HttpGet("me")]
         public async Task<IActionResult> GetCurrentUser()
         {
@@ -93,6 +95,20 @@ namespace ICPC_Tanta_Web.Controllers
                 return BadRequest(result.Errors.FirstOrDefault()?.Description);
 
             return Ok("Role assigned successfully.");
+        }
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto model)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("User not authenticated.");
+
+            var result = await _authService.ChangePasswordAsync(userId, model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+                return Ok("Password changed successfully.");
+
+            return BadRequest("Password change failed.");
         }
     }
 }

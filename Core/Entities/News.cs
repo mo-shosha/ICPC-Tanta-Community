@@ -18,9 +18,9 @@ namespace Core.Entities
         [Required]
         public string Description { get; set; } 
         public DateTime CreatedDate { get; set; } = DateTime.Now; 
-        [Required]
-        [MaxLength(50)]
-        public string Status { get; set; } // Status of the news (Draft, Published, Archived)
+        //[Required]
+        //[MaxLength(50)]
+        // public string Status { get; set; } // Status of the news (Draft, Published, Archived)
 
         public string Author { get; set; } // Name of the author or contributor of the news
 

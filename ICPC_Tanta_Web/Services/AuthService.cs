@@ -50,9 +50,28 @@ namespace ICPC_Tanta_Web.Services
                 return null;
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
-            var confirmationLink = $"https://localhost:7006/api/Auth/ConfirmEmail?userId={newUser.Id}&token={Uri.EscapeDataString(token)}";
+            var confirmationLink = $"https://icpc-tanta.runasp.net/api/Auth/ConfirmEmail?userId={newUser.Id}&token={Uri.EscapeDataString(token)}";
 
-            await _emailService.SendEmailAsync(newUser.Email, "Confirm Your Email", $"Please confirm your email by clicking <a href='{confirmationLink}'>here</a>.");
+            await _emailService.SendEmailAsync(
+                newUser.Email,
+                "Confirm Your Email",
+                $@"
+                <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px;'>
+                    <h2 style='color: #007bff;'>Confirm Your Email Address</h2>
+                    <p>Hello {newUser.FullName},</p>
+                    <p>Thank you for registering! Please confirm your email address to activate your account.</p>
+                    <p style='text-align: center;'>
+                        <a href='{confirmationLink}' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold;'>
+                            Confirm Email
+                        </a>
+                    </p>
+                    <p>If you did not create an account, please ignore this email.</p>
+                    <p>Thank you,<br/>The Team</p>
+                    <hr style='margin-top: 20px; border: none; border-top: 1px solid #ddd;'/>
+                    <p style='font-size: 12px; color: #888;'>This email was sent to {newUser.Email}. If you have any questions, contact us at support@example.com.</p>
+                </div>"
+            );
+
 
             return new UserDto
             {
@@ -161,5 +180,17 @@ namespace ICPC_Tanta_Web.Services
 
             return user.FullName;
         }
+
+        public async Task<IdentityResult> ChangePasswordAsync(string userId, string oldPassword, string newPassword)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return IdentityResult.Failed(new IdentityError { Description = "User not found" });
+
+            var result = await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
+            return result;
+        }
+
+
     }
 }

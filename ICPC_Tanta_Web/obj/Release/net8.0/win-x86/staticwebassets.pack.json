@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg"
+    },
+    {
+      "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png",
+      "PackagePath": "staticwebassets\\uploads\\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png"
+    },
+    {
+      "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg",
+      "PackagePath": "staticwebassets\\uploads\\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\win-x86\\staticwebassets\\msbuild.ICPC_Tanta_Web.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\win-x86\\staticwebassets\\msbuild.build.ICPC_Tanta_Web.props",
+      "PackagePath": "build\\ICPC_Tanta_Web.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\win-x86\\staticwebassets\\msbuild.buildMultiTargeting.ICPC_Tanta_Web.props",
+      "PackagePath": "buildMultiTargeting\\ICPC_Tanta_Web.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\win-x86\\staticwebassets\\msbuild.buildTransitive.ICPC_Tanta_Web.props",
+      "PackagePath": "buildTransitive\\ICPC_Tanta_Web.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

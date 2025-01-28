@@ -4,6 +4,7 @@ using ICPC_Tanta_Web.DTO.NewsDTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ICPC_Tanta_Web.Controllers
 {
@@ -12,83 +13,99 @@ namespace ICPC_Tanta_Web.Controllers
     public class NewsController : ControllerBase
     {
         private readonly INewsService _newsService;
+
         public NewsController(INewsService newsService)
         {
             _newsService = newsService;
         }
 
-
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EventWithSchedulesDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<NewsDto>>> GetAll()
         {
             var data = await _newsService.GetAllAsync();
+            if (data == null || !data.Any())
+                return NoContent(); 
+
             return Ok(data);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<EventWithSchedulesDto>> GetById(int id)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<NewsDto>> GetById(int id)
         {
-            if (id <= 0)  
-            {
-                return BadRequest("Invalid ID.");
-            }
+            if (id <= 0)
+                return BadRequest(new { Message = "Invalid ID provided." });
 
             var item = await _newsService.GetByIdAsync(id);
             if (item == null)
-            {
-                return NotFound($"Item with ID {id} was not found.");
-            }
+                return NotFound(new { Message = $"News with ID {id} not found." });
 
             return Ok(item);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Add([FromForm] CreateNewsDto createNewsDto)
+        public async Task<IActionResult> Add([FromForm] CreateNewsDto createNewsDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await _newsService.AddAsync(createNewsDto);
-            return CreatedAtAction(nameof(GetById), new { id = createNewsDto.Title }, createNewsDto);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult>Update(int id, [FromForm] UpdateNewsDto updateNewsDto)
-        {
-            if (id <= 0) return BadRequest("Invalid ID.");
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var item = await _newsService.GetByIdAsync(id);
-            if (item == null)
+            try
             {
-                return NotFound($"Item with ID {id} was not found.");
+                await _newsService.AddAsync(createNewsDto);
+                return CreatedAtAction(nameof(GetById), new { id = createNewsDto.Title }, createNewsDto);
             }
-            updateNewsDto.Id = id;
-            await _newsService.UpdateAsync(updateNewsDto);
-            return Ok();
-
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { Message = ex.Message });
+            }
         }
 
-        [HttpDelete("{id}")]
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromForm] UpdateNewsDto updateNewsDto)
+        {
+            if (id <= 0)
+                return BadRequest(new { Message = "Invalid ID provided." });
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                await _newsService.UpdateAsync(updateNewsDto);
+                return Ok(new { Message = "News updated successfully." });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+        }
+
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id <= 0) return BadRequest("Invalid ID.");
-            var item = await _newsService.GetByIdAsync(id);
-            if (item == null)
+            if (id <= 0)
+                return BadRequest(new { Message = "Invalid ID provided." });
+
+            try
             {
-                return NotFound($"Item with ID {id} was not found.");
+                await _newsService.DeleteAsync(id);
+                return Ok(new { Message = "News deleted successfully." });
             }
-            await _newsService.DeleteAsync(id);
-            return Ok();
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
         }
 
-
-        // Search news
         [HttpGet("search")]
         public async Task<IActionResult> Search([FromQuery] string keyword)
         {
+            if (string.IsNullOrWhiteSpace(keyword))
+                return BadRequest(new { Message = "Search keyword cannot be empty." });
+
             var results = await _newsService.SearchAsync(keyword);
+            if (!results.Any())
+                return NotFound(new { Message = "No matching results found." });
+
             return Ok(results);
         }
     }

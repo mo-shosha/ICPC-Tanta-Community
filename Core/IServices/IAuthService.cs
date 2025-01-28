@@ -21,5 +21,6 @@ namespace Core.IServices
         Task<UserDto> GetCurrentUserAsync(ClaimsPrincipal userClaims);
         Task<IdentityResult> AssignRoleToUserAsync(string userId, string role);
         Task<string>GetCurrentUserName(ClaimsPrincipal userClaims);
+        Task<IdentityResult> ChangePasswordAsync(string userId, string oldPassword, string newPassword);
     }
 }

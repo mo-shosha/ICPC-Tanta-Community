@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\ICPC_Tanta_Web.props" />
+</Project>

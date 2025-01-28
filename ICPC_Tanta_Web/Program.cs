@@ -62,7 +62,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
-        //policy.WithOrigins("https://yourfrontend.com")   
+        //policy.WithOrigins("https://frontend.com")   
         policy.AllowAnyOrigin()
               .AllowAnyHeader()
               .AllowAnyMethod());

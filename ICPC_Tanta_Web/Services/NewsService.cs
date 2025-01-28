@@ -13,7 +13,6 @@ namespace ICPC_Tanta_Web.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IFileProcessingService _fileProcessingService;
-
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public NewsService(IUnitOfWork unitOfWork, IFileProcessingService fileProcessingService, IHttpContextAccessor httpContextAccessor)
@@ -32,31 +31,26 @@ namespace ICPC_Tanta_Web.Services
         public async Task<IEnumerable<NewsDto>> GetAllAsync()
         {
             var newsList = await _unitOfWork.NewsRepository.GetAllAsync();
-            return newsList.Select(MapToDto);
+            return newsList?.Select(MapToDto) ?? new List<NewsDto>();
         }
 
         public async Task AddAsync(CreateNewsDto createNewsDto)
         {
-            var user = _httpContextAccessor.HttpContext?.User;
-            if (user == null || !user.Identity.IsAuthenticated)
-            {
+            var userName = GetAuthenticatedUserName();
+            if (string.IsNullOrEmpty(userName))
                 throw new UnauthorizedAccessException("User is not authenticated");
-            }
 
-            var userName = user.Identity.Name;
             var news = new News
             {
                 Title = createNewsDto.Title,
                 Description = createNewsDto.Description,
-                Status = createNewsDto.Status,
+                //Status = createNewsDto.Status,
                 Author = userName,
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
+                ImageUrl = createNewsDto.Image != null
+                    ? await _fileProcessingService.SaveFileAsync(createNewsDto.Image)
+                    : null
             };
-
-            if (createNewsDto.Image != null)
-            {
-                news.ImageUrl = await _fileProcessingService.SaveFileAsync(createNewsDto.Image);
-            }
 
             await _unitOfWork.NewsRepository.AddAsync(news);
             await _unitOfWork.SaveChangesAsync();
@@ -65,21 +59,15 @@ namespace ICPC_Tanta_Web.Services
         public async Task UpdateAsync(UpdateNewsDto updateNewsDto)
         {
             var news = await _unitOfWork.NewsRepository.GetByIdAsync(updateNewsDto.Id);
-            if (news == null) throw new KeyNotFoundException("News not found");
+            if (news == null)
+                throw new KeyNotFoundException("News not found");
 
             news.Title = updateNewsDto.Title;
             news.Description = updateNewsDto.Description;
-             
 
             if (updateNewsDto.Image != null)
             {
-                // Delete old image if exists
-                if (!string.IsNullOrEmpty(news.ImageUrl))
-                {
-                    _fileProcessingService.DeleteFile(news.ImageUrl);
-                }
-
-                // Save new image
+                _fileProcessingService.DeleteFile(news.ImageUrl);
                 news.ImageUrl = await _fileProcessingService.SaveFileAsync(updateNewsDto.Image);
             }
 
@@ -90,13 +78,11 @@ namespace ICPC_Tanta_Web.Services
         public async Task DeleteAsync(int id)
         {
             var news = await _unitOfWork.NewsRepository.GetByIdAsync(id);
-            if (news == null) throw new KeyNotFoundException("News not found");
+            if (news == null)
+                throw new KeyNotFoundException("News not found");
 
-            // Delete image if exists
             if (!string.IsNullOrEmpty(news.ImageUrl))
-            {
                 _fileProcessingService.DeleteFile(news.ImageUrl);
-            }
 
             _unitOfWork.NewsRepository.Delete(news);
             await _unitOfWork.SaveChangesAsync();
@@ -105,7 +91,13 @@ namespace ICPC_Tanta_Web.Services
         public async Task<IEnumerable<NewsDto>> SearchAsync(string keyword)
         {
             var results = await _unitOfWork.NewsRepository.SearchAsync(keyword);
-            return results.Select(MapToDto);
+            return results?.Select(MapToDto) ?? Enumerable.Empty<NewsDto>();
+        }
+
+        private string GetAuthenticatedUserName()
+        {
+            var user = _httpContextAccessor.HttpContext?.User;
+            return user?.Identity.IsAuthenticated == true ? user.Identity.Name : null;
         }
 
         private NewsDto MapToDto(News news)

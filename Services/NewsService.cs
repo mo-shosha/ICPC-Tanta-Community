@@ -41,7 +41,7 @@ namespace Services
             {
                 Title = createNewsDto.Title,
                 Description = createNewsDto.Description,
-                Status = createNewsDto.Status,
+                //Status = createNewsDto.Status,
                 Author = createNewsDto.Author,
                 CreatedDate = DateTime.Now
             };

@@ -47,7 +47,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("achievements", (string)null);
+                    b.ToTable("achievements");
                 });
 
             modelBuilder.Entity("Core.Entities.Events", b =>
@@ -83,7 +83,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("events", (string)null);
+                    b.ToTable("events");
                 });
 
             modelBuilder.Entity("Core.Entities.Identity.ApplicationUser", b =>
@@ -197,7 +197,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("members", (string)null);
+                    b.ToTable("members");
                 });
 
             modelBuilder.Entity("Core.Entities.News", b =>
@@ -226,11 +226,6 @@ namespace Repository.Migrations
                     b.Property<DateTime?>("PublishedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -238,7 +233,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("news", (string)null);
+                    b.ToTable("news");
                 });
 
             modelBuilder.Entity("Core.Entities.Schedule", b =>
@@ -263,7 +258,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.ToTable("schedules", (string)null);
+                    b.ToTable("schedules");
                 });
 
             modelBuilder.Entity("Core.Entities.Team", b =>
@@ -288,7 +283,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("teams", (string)null);
+                    b.ToTable("teams");
                 });
 
             modelBuilder.Entity("Core.Entities.TrainingContent", b =>
@@ -318,7 +313,7 @@ namespace Repository.Migrations
 
                     b.HasIndex("TrainingLevelId");
 
-                    b.ToTable("trainingContents", (string)null);
+                    b.ToTable("trainingContents");
                 });
 
             modelBuilder.Entity("Core.Entities.TrainingLevel", b =>
@@ -339,7 +334,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("trainingLevels", (string)null);
+                    b.ToTable("trainingLevels");
                 });
 
             modelBuilder.Entity("Core.Entities.info", b =>
@@ -376,7 +371,7 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("infos", (string)null);
+                    b.ToTable("infos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
