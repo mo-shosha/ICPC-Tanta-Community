@@ -22,5 +22,14 @@ namespace Repository.Repositories
                 .Include(t => t.Members)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Team>> AllTeamWithMemberByYear(string year)
+        {
+            return await _db.Set<Team>()
+                .Include(t => t.Members)
+                .Where(t => t.Members.Any(m => m.YearJoin == year)) 
+                .ToListAsync();
+
+        }
     }
 }

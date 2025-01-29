@@ -86,7 +86,6 @@ namespace ICPC_Tanta_Web.Services
                     Id = m.Id,
                     FullName = m.FullName,
                     LinkedInUrl = m.LinkedInUrl,
-                    Email = m.Email,
                     FacebookUrl = m.FacebookUrl,
                     Role = m.Role,
                 }).ToList()

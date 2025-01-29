@@ -36,8 +36,10 @@ builder.Services.AddScoped<INewsService, Services.NewsService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddScoped<IMemeberServices, MemeberServices>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+
 //JWT
 builder.Services.AddScoped<ITokenServices, TokenServices>();
 builder.Services.AddScoped<ICodeforcesService, CodeforcesService>();

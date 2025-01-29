@@ -14,13 +14,15 @@ namespace Core.Entities
         public string FullName { get; set; }   
         [Required]
         public string Role { get; set; }  // Role of the member (Head, Member)
-        [Required]
-        public string Email { get; set; } 
+        //[Required]
+        //public string Email { get; set; } 
         [Required]
         public string FacebookUrl { get; set; }
         [Required]
         public string LinkedInUrl { get; set; }
-        public DateTime YearJoin { get; set; }
+        [Required]
+        public string YearJoin { get; set; }
+        public string? ImgUrl {  get; set; }
         public int TeamId { get; set; }
         public Team Team { get; set; }
     }
