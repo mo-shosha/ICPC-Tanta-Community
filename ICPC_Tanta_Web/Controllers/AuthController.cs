@@ -26,22 +26,30 @@ namespace ICPC_Tanta_Web.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto model)
         {
-            var result = await _authService.RegisterAsync(model);
-            if (result == null)
-                return BadRequest("Registration failed. Please check your details and try again.");
-
-            return Ok(result);
+            try
+            {
+                var result = await _authService.RegisterAsync(model);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
         }
 
         // Login
         [HttpPost("Login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto model)
         {
-            var result = await _authService.LoginAsync(model);
-            if (result == null)
-                return Unauthorized("Invalid email or password.");
-
-            return Ok(result);
+            try
+            {
+                var result = await _authService.LoginAsync(model);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized($"Error: {ex.Message}");
+            }
         }
 
         // Logout
@@ -49,28 +57,42 @@ namespace ICPC_Tanta_Web.Controllers
         [HttpPost("Logout")]
         public async Task<IActionResult> Logout()
         {
-            await _authService.LogoutAsync();
-            return Ok("Logged out successfully.");
+            try
+            {
+                await _authService.LogoutAsync();
+                return Ok("Logged out successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
         }
 
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
-                return BadRequest("Invalid email confirmation request.");
+            try
+            {
+                if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
+                    return BadRequest("Invalid email confirmation request.");
 
-            var user = await _authService.GetUserByIdAsync(userId);
-            if (user == null)
-                return NotFound("User not found.");
+                var user = await _authService.GetUserByIdAsync(userId);
+                if (user == null)
+                    return NotFound("User not found.");
 
-            var result = await _authService.ConfirmEmailAsync(user, token);
-            if (!result.Succeeded)
-                return BadRequest("Email confirmation failed.");
+                var result = await _authService.ConfirmEmailAsync(user, token);
+                if (!result.Succeeded)
+                    return BadRequest("Email confirmation failed.");
 
-            return Ok("Email confirmed successfully.");
+                return Ok("Email confirmed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
         }
-        
-        [Authorize]
+
+        //[Authorize]
         [HttpGet("me")]
         public async Task<IActionResult> GetCurrentUser()
         {
