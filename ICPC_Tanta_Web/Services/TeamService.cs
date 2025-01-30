@@ -92,6 +92,36 @@ namespace ICPC_Tanta_Web.Services
             };
         }
 
+        public async Task<Team> GetAllByMemberByYear(int teamId, string year)
+        {
+            var team = await _unitOfWork.TeamRepository.AllTeamWithMember();
+            var selectedTeam = team.FirstOrDefault(t => t.Id == teamId);
+            if (selectedTeam == null)
+            {
+                return null;
+            }
+
+            return new Team
+            {
+                Id = selectedTeam.Id,
+                TeamName = selectedTeam.TeamName,
+                Description = selectedTeam.Description,
+                LogoURL = selectedTeam.LogoURL,
+                Members = selectedTeam.Members?
+                    .Where(m => m.YearJoin == year)  
+                    .Select(m => new Member
+                    {
+                        Id = m.Id,
+                        FullName = m.FullName,
+                        LinkedInUrl = m.LinkedInUrl,
+                        FacebookUrl = m.FacebookUrl,
+                        Role = m.Role,
+                        YearJoin = m.YearJoin
+                    }).ToList()
+            };
+        }
+
+
 
         public async Task<TeamDTO> GetByIdAsync(int id)
         {

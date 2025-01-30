@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ICPC_Tanta_Web.Controllers
 {
@@ -42,16 +43,19 @@ namespace ICPC_Tanta_Web.Controllers
             return Ok(item);
         }
 
+
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Add([FromForm] CreateNewsDto createNewsDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
+            var user = User;
+            string auther =user?.Identity.IsAuthenticated == true ? user.Identity.Name : "ICPC Tanta Team";
             try
             {
-                await _newsService.AddAsync(createNewsDto);
-                return CreatedAtAction(nameof(GetById), new { id = createNewsDto.Title }, createNewsDto);
+                await _newsService.AddAsync(createNewsDto, auther);
+                return Ok();
             }
             catch (UnauthorizedAccessException ex)
             {
@@ -59,6 +63,8 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, [FromForm] UpdateNewsDto updateNewsDto)
         {
@@ -79,6 +85,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

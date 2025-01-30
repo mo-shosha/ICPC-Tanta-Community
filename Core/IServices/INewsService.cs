@@ -11,7 +11,7 @@ namespace Core.IServices
     {
         Task<NewsDto> GetByIdAsync(int id);
         Task<IEnumerable<NewsDto>> GetAllAsync();
-        Task AddAsync(CreateNewsDto createNewsDto);
+        Task AddAsync(CreateNewsDto createNewsDto,string  auther);
         Task UpdateAsync(UpdateNewsDto updateNewsDto);
         Task DeleteAsync(int id);
         Task<IEnumerable<NewsDto>> SearchAsync(string keyword);

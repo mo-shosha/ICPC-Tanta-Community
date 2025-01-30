@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static MediaBrowser.Common.Updates.GithubUpdater;
 
 namespace ICPC_Tanta_Web.Services
 {
@@ -34,10 +35,10 @@ namespace ICPC_Tanta_Web.Services
             return newsList?.Select(MapToDto) ?? new List<NewsDto>();
         }
 
-        public async Task AddAsync(CreateNewsDto createNewsDto)
+        public async Task AddAsync(CreateNewsDto createNewsDto,string  auther)
         {
-            var userName = GetAuthenticatedUserName();
-            if (string.IsNullOrEmpty(userName))
+            //var userName = GetAuthenticatedUserName();
+            if (string.IsNullOrEmpty(auther))
                 throw new UnauthorizedAccessException("User is not authenticated");
 
             var news = new News
@@ -45,7 +46,7 @@ namespace ICPC_Tanta_Web.Services
                 Title = createNewsDto.Title,
                 Description = createNewsDto.Description,
                 //Status = createNewsDto.Status,
-                Author = userName,
+                Author = auther,
                 CreatedDate = DateTime.Now,
                 ImageUrl = createNewsDto.Image != null
                     ? await _fileProcessingService.SaveFileAsync(createNewsDto.Image)
@@ -94,11 +95,6 @@ namespace ICPC_Tanta_Web.Services
             return results?.Select(MapToDto) ?? Enumerable.Empty<NewsDto>();
         }
 
-        private string GetAuthenticatedUserName()
-        {
-            var user = _httpContextAccessor.HttpContext?.User;
-            return user?.Identity.IsAuthenticated == true ? user.Identity.Name : null;
-        }
 
         private NewsDto MapToDto(News news)
         {
@@ -110,7 +106,6 @@ namespace ICPC_Tanta_Web.Services
                 Author = news.Author,
                 ImageUrl = news.ImageUrl,
                 CreatedDate = news.CreatedDate,
-                PublishedDate = news.PublishedDate
             };
         }
     }

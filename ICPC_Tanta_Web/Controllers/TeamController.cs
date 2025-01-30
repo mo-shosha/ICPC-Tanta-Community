@@ -102,5 +102,18 @@ namespace ICPC_Tanta_Web.Controllers
 
             return Ok(teamWithMembers);
         }
+
+
+        [HttpGet("{teamId}/members/{year}")]
+        public async Task<IActionResult> GetTeamByYear(int teamId, string year)
+        {
+            var team = await _teamService.GetAllByMemberByYear(teamId, year);
+
+            if (team == null)
+                return NotFound(new { Message = "Team not found" });
+
+            return Ok(team);
+        }
+
     }
 }

@@ -12,6 +12,7 @@ namespace Core.IServices
         Task AddAsync(CreatMemberDto member);
         Task<IEnumerable<memberDto>> GetAllMemberAsync();
         Task<memberDto> GetMemberByIdAsync(int id);
-        
+        Task UpdateAsync(memberUpdateDto member);
+        Task DeleteAsync(int id);
     }
 }

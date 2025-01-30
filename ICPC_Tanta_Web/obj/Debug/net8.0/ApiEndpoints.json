@@ -321,6 +321,53 @@
     ]
   },
   {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.MemberController",
+    "Method": "Update",
+    "RelativePath": "api/Member/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.MemberController",
+    "Method": "Delete",
+    "RelativePath": "api/Member/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.NewsController",
     "Method": "GetAll",
     "RelativePath": "api/News",
@@ -355,11 +402,6 @@
       },
       {
         "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Author",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -719,6 +761,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TeamController",
+    "Method": "GetTeamByYear",
+    "RelativePath": "api/Team/{teamId}/members/{year}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "teamId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "year",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.WeatherForecastController",

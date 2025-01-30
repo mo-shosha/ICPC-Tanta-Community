@@ -38,6 +38,7 @@ namespace ICPC_Tanta_Web.Services
             
         }
 
+
         public async Task<IEnumerable<memberDto>> GetAllMemberAsync()
         {
             var member = _unitOfWork.MemberRepository.GetAll();
@@ -65,6 +66,38 @@ namespace ICPC_Tanta_Web.Services
                 ImgUrl = member.ImgUrl ?? null
             };
             return memberdto;
+        }
+
+        public async Task UpdateAsync(memberUpdateDto memberUpdate)
+        {
+            var member = await _unitOfWork.MemberRepository.GetByIdAsync(memberUpdate.Id);
+            if (member == null) throw new KeyNotFoundException("Member not found");
+            member.Role = memberUpdate.Role;
+            if (memberUpdate.Img != null)
+            {
+                if (!string.IsNullOrEmpty(member.ImgUrl))
+                {
+                    _fileProcessingService.DeleteFile(member.ImgUrl);
+                }
+
+                member.ImgUrl = await _fileProcessingService.SaveFileAsync(memberUpdate.Img);
+            }
+            _unitOfWork.MemberRepository.Update(member);
+            await _unitOfWork.SaveChangesAsync();
+
+        }
+        
+        public async Task DeleteAsync(int id)
+        {
+            var member = await _unitOfWork.MemberRepository.GetByIdAsync(id);
+            if (member == null) throw new KeyNotFoundException("Member not found");
+
+            if (member.ImgUrl != null)
+            {
+                _fileProcessingService.DeleteFile(member.ImgUrl);
+            }
+            _unitOfWork.MemberRepository.Delete(member);
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }

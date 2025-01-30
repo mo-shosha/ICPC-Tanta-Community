@@ -23,6 +23,7 @@ namespace ICPC_Tanta_Web.Controllers
             await _memeberServices.AddAsync(memberDto);
             return Ok();
         }
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<memberDto>>> GetAll()
         {
@@ -43,6 +44,44 @@ namespace ICPC_Tanta_Web.Controllers
                 return NoContent();
             }
             return Ok(members);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromForm] memberUpdateDto memberUpdate,int id)
+        {
+
+            if (id <= 0 || id != memberUpdate.Id)
+            {
+                return BadRequest("Invalid or mismatched member ID.");
+            }
+
+            var existingMember = await _memeberServices.GetMemberByIdAsync(id);
+            if (existingMember == null)
+            {
+                return NotFound($"Member with ID {id} not found.");
+            }
+
+            await _memeberServices.UpdateAsync(memberUpdate);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult>Delete(int id)
+        {
+            if (id <= 0 )
+            {
+                return BadRequest("Invalid or mismatched member ID.");
+            }
+
+            var existingMember = await _memeberServices.GetMemberByIdAsync(id);
+            if (existingMember == null)
+            {
+                return NotFound($"Member with ID {id} not found.");
+            }
+
+            await _memeberServices.DeleteAsync(id);
+            return NoContent();
         }
     }
 }

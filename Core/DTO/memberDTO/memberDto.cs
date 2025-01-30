@@ -11,13 +11,10 @@ namespace Core.DTO.memberDTO
     {
         public string FullName { get; set; }
         public string Role { get; set; }
-
-        public string Name { get; set; }
         public string FacebookUrl { get; set; }
         public string LinkedInUrl { get; set; }
 
         public string ImgUrl { get; set; }
-
 
     }
 }

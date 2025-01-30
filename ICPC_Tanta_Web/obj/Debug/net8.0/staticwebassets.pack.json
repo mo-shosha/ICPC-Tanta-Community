@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\uploads\\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg"
     },
     {
+      "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\2f3ad460-6230-4b3d-801d-e0d0ef050737_arrival-5.png",
+      "PackagePath": "staticwebassets\\uploads\\2f3ad460-6230-4b3d-801d-e0d0ef050737_arrival-5.png"
+    },
+    {
       "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\428d7cf9-9de3-4925-96de-84e1af97a261_images.jpg",
       "PackagePath": "staticwebassets\\uploads\\428d7cf9-9de3-4925-96de-84e1af97a261_images.jpg"
     },
@@ -27,6 +31,10 @@
     {
       "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg",
       "PackagePath": "staticwebassets\\uploads\\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg"
+    },
+    {
+      "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg",
+      "PackagePath": "staticwebassets\\uploads\\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ICPC_Tanta_Web.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Repository.Data;
 using Repository.Repositories;
-using Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,7 +31,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 // Add UnitOfWork and Services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IFileProcessingService, FileProcessingService>();
-builder.Services.AddScoped<INewsService, Services.NewsService>();
+builder.Services.AddScoped<INewsService, NewsService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
