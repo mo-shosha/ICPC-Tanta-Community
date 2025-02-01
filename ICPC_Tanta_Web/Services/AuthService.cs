@@ -113,7 +113,7 @@ namespace ICPC_Tanta_Web.Services
                     Rating = codeforcesUserInfo?.Rating ?? 0,
                     Rank = codeforcesUserInfo?.Rank ?? "Unknown",
                     Avatar = codeforcesUserInfo?.Avatar ?? "default-avatar.png",
-                    Handle = codeforcesUserInfo.Handle
+                    Handle = codeforcesUserInfo.Handle?? "Unknown",
                 };
             }
             catch (Exception ex)
@@ -199,19 +199,6 @@ namespace ICPC_Tanta_Web.Services
 
         }
 
-        public async Task<IdentityResult> AssignRoleToUserAsync(string userId, string role)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-                return IdentityResult.Failed(new IdentityError { Description = "User not found" });
-
-            var roleExists = await _roleManager.RoleExistsAsync(role);
-            if (!roleExists)
-                return IdentityResult.Failed(new IdentityError { Description = "Role does not exist" });
-
-            return await _userManager.AddToRoleAsync(user, role);
-        }
-
         public async Task<string> GetCurrentUserName(ClaimsPrincipal userClaims)
         {
             var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -235,6 +222,67 @@ namespace ICPC_Tanta_Web.Services
             return result;
         }
 
+        public async Task<IdentityResult> ForgotPasswordAsync(string email)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+                if (user == null)
+                {
+                    throw new Exception("User not found.");
+                }
 
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var resetLink = $"https://icpc-tanta.runasp.net/api/Auth/ResetPassword?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+                await _emailService.SendEmailAsync(
+                    user.Email,
+                    "Reset Your Password",
+                    $@"
+                    <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px;'>
+                        <h2 style='color: #007bff;'>Reset Your Password</h2>
+                        <p>Hello {user.FullName},</p>
+                        <p>We received a request to reset your password. Please click the link below to reset your password:</p>
+                        <p style='text-align: center;'>
+                            <a href='{resetLink}' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold;'>
+                                Reset Password
+                            </a>
+                        </p>
+                        <p>If you did not request a password reset, please ignore this email.</p>
+                        <p>Thank you,<br/>The Team</p>
+                    </div>"
+                );
+
+                return IdentityResult.Success;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in ForgotPasswordAsync: {ex.Message}");
+            }
+        }
+
+        public async Task<IdentityResult> ResetPasswordAsync(string email, string token, string newPassword)
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+                if (user == null)
+                {
+                    return IdentityResult.Failed(new IdentityError { Description = "User not found." });
+                }
+
+                var result = await _userManager.ResetPasswordAsync(user, token, newPassword);
+                if (!result.Succeeded)
+                {
+                    throw new Exception("Password reset failed.");
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in ResetPasswordAsync: {ex.Message}");
+            }
+        }
     }
 }

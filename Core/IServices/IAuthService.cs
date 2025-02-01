@@ -19,8 +19,9 @@ namespace Core.IServices
         Task<ApplicationUser> GetUserByIdAsync(string userId);
         Task<IdentityResult> ConfirmEmailAsync(ApplicationUser user, string token);
         Task<UserDto> GetCurrentUserAsync(ClaimsPrincipal userClaims);
-        Task<IdentityResult> AssignRoleToUserAsync(string userId, string role);
         Task<string>GetCurrentUserName(ClaimsPrincipal userClaims);
         Task<IdentityResult> ChangePasswordAsync(string userId, string oldPassword, string newPassword);
+        Task<IdentityResult> ForgotPasswordAsync(string email);
+        Task<IdentityResult> ResetPasswordAsync(string email, string token, string newPassword);
     }
 }

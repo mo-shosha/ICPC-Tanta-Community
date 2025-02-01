@@ -105,20 +105,7 @@ namespace ICPC_Tanta_Web.Controllers
             return Ok(userDto);
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost("assign-role")]
-        public async Task<IActionResult> AssignRoleToUser(AssignRoleDto model)
-        {
-            if (!User.IsInRole("Admin"))
-                return Unauthorized("You do not have permission to assign roles.");
-
-            var result = await _authService.AssignRoleToUserAsync(model.UserId, model.Role);
-            if (!result.Succeeded)
-                return BadRequest(result.Errors.FirstOrDefault()?.Description);
-
-            return Ok("Role assigned successfully.");
-        }
-
+        
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto model)
         {
@@ -131,6 +118,29 @@ namespace ICPC_Tanta_Web.Controllers
                 return Ok("Password changed successfully.");
 
             return BadRequest("Password change failed.");
+        }
+
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto model)
+        {
+            var result = await _authService.ForgotPasswordAsync(model.Email);
+            if (result.Succeeded)
+            {
+                return Ok("Password reset link sent to your email.");
+            }
+            return BadRequest("Error occurred while sending the reset link.");
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto model)
+        {
+            var result = await _authService.ResetPasswordAsync(model.Email, model.Token, model.NewPassword);
+            if (result.Succeeded)
+            {
+                return Ok("Password has been reset successfully.");
+            }
+            return BadRequest("Error occurred while resetting the password.");
         }
     }
 }
