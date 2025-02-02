@@ -56,6 +56,3 @@ A comprehensive and interactive platform designed to support the **ICPC Tanta Co
   - User data, training content, events, and donations are stored and managed.
 
 ---
-## Links
-**Schema**
-   https://drawsql.app/teams/open-source-project/diagrams/community
