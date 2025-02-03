@@ -10,6 +10,9 @@ using Microsoft.IdentityModel.Tokens;
 using Repository.Data;
 using Repository.Repositories;
 using System.Text;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,8 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Configure Identity with ApplicationUser and IdentityRole
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
-    options.SignIn.RequireConfirmedEmail = true; // Requires email confirmation to sign in
-    
+    options.SignIn.RequireConfirmedEmail = true;
 })
 .AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
@@ -41,12 +43,10 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 
-
-//JWT
+// JWT Authentication
 builder.Services.AddScoped<ITokenServices, TokenServices>();
 builder.Services.AddScoped<ICodeforcesService, CodeforcesService>();
 builder.Services.AddHttpClient<ICodeforcesService, CodeforcesService>();
-
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -57,6 +57,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(options =>
+{
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuer = true,
@@ -66,24 +67,25 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = builder.Configuration["JWT:Issuer"],
         ValidAudience = builder.Configuration["JWT:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
-    }
-);
+    };
+});
 
-
-// CORS Configuration: Allowing requests from specific origins (e.g., your frontend URL)
+// CORS Configuration
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
-        //policy.WithOrigins("https://frontend.com")   
         policy.AllowAnyOrigin()
               .AllowAnyHeader()
               .AllowAnyMethod());
 });
+
 // Add Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
@@ -104,8 +106,13 @@ app.UseStaticFiles(new StaticFileOptions
 
 app.UseCors("AllowSpecificOrigin");
 
-app.UseAuthentication();
+app.Use(async (context, next) =>
+{
+    context.Response.ContentType = "application/json";
+    await next();
+});
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

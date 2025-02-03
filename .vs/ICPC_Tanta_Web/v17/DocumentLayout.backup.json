@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\iservices\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\iservices\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\dto\\accountdto\\forgotpassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\dto\\accountdto\\forgotpassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\dto\\accountdto\\resetpassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\dto\\accountdto\\resetpassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Controllers\\AuthController.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ICPC_Tanta_Web\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABUAAABAyMzMzMwmwCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-03T11:30:42.155Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -63,71 +60,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ResetPasswordDto.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\DTO\\AccountDTO\\ResetPasswordDto.cs",
-              "RelativeDocumentMoniker": "Core\\DTO\\AccountDTO\\ResetPasswordDto.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\DTO\\AccountDTO\\ResetPasswordDto.cs",
-              "RelativeToolTip": "Core\\DTO\\AccountDTO\\ResetPasswordDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T08:42:10.127Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ForgotPasswordDto.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\DTO\\AccountDTO\\ForgotPasswordDto.cs",
-              "RelativeDocumentMoniker": "Core\\DTO\\AccountDTO\\ForgotPasswordDto.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\DTO\\AccountDTO\\ForgotPasswordDto.cs",
-              "RelativeToolTip": "Core\\DTO\\AccountDTO\\ForgotPasswordDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T08:41:43.835Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\IAuthService.cs",
-              "RelativeDocumentMoniker": "Core\\IServices\\IAuthService.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\IAuthService.cs",
-              "RelativeToolTip": "Core\\IServices\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T08:32:04.559Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Services\\AuthService.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\AuthService.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Services\\AuthService.cs",
-              "ViewState": "AgIAAOYAAAAAKDMzMzPzv/8AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T07:09:25.355Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAEUAAADAzMzMzMwowIcAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T06:57:52.103Z",
-              "EditorCaption": ""
             }
           ]
         }

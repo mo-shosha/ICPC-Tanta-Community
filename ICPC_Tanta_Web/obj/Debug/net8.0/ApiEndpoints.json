@@ -141,6 +141,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
+    "Method": "V2Register",
+    "RelativePath": "api/Auth/V2/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Core.DTO.AccountDTO.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Core.DTO.AccountDTO.UserDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.EventController",
     "Method": "GetAll",
     "RelativePath": "api/Event",
