@@ -14,6 +14,8 @@ namespace Core.IRepositories
         IScheduleRepository ScheduleRepository { get; }
         IMemberRepository MemberRepository { get; }
         ITeamRepository TeamRepository { get; }
+        ITrainingLevelRepository TrainingLevelRepository { get; }
+        ITrainingContentRepository TrainingContentRepository { get; }
         Task<int> SaveChangesAsync();
     }
 }

@@ -14,8 +14,8 @@ namespace Core.Entities
         [Required]
         public string Title { get; set; }   
 
-        public string Description { get; set; }   
-
+        public string Auther { get; set; }
+        public DateTime CreatedAt { get; set; }
         public string ContentUrl { get; set; }   
         public int TrainingLevelId { get; set; }
 

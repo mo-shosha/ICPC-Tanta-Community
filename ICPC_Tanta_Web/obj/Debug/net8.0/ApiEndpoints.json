@@ -141,32 +141,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
-    "Method": "V2Register",
-    "RelativePath": "api/Auth/V2/Register",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "model",
-        "Type": "Core.DTO.AccountDTO.RegisterDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Core.DTO.AccountDTO.UserDto",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.EventController",
     "Method": "GetAll",
     "RelativePath": "api/Event",
@@ -887,6 +861,138 @@
     "Parameters": [
       {
         "Name": "teamId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "year",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TrainingContentController",
+    "Method": "Create",
+    "RelativePath": "api/TrainingContent",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contentCreateDto",
+        "Type": "Core.DTO.ContentDTO.ContentCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TrainingLevelController",
+    "Method": "GetAllLevels",
+    "RelativePath": "api/TrainingLevel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TrainingLevelController",
+    "Method": "CreateLevel",
+    "RelativePath": "api/TrainingLevel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "levelCreateDto",
+        "Type": "Core.DTO.LevelDTO.LevelCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TrainingLevelController",
+    "Method": "GetLevelById",
+    "RelativePath": "api/TrainingLevel/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TrainingLevelController",
+    "Method": "UpdateLevel",
+    "RelativePath": "api/TrainingLevel/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "levelUpdateDto",
+        "Type": "Core.DTO.LevelDTO.LevelUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TrainingLevelController",
+    "Method": "DeleteLevel",
+    "RelativePath": "api/TrainingLevel/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TrainingLevelController",
+    "Method": "GetLevelsWithContent",
+    "RelativePath": "api/TrainingLevel/content/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.TrainingLevelController",
+    "Method": "GetLevelWithContentByYear",
+    "RelativePath": "api/TrainingLevel/content/{id}/{year}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
       },

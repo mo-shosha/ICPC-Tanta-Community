@@ -3,8 +3,36 @@
   "WorkspaceRootPath": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\iservices\\itrainingcontentservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\iservices\\itrainingcontentservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\dto\\contentdto\\contentcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\dto\\contentdto\\contentcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\entities\\trainingcontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\entities\\trainingcontent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\services\\trainingcontentservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\services\\trainingcontentservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\controllers\\trainingcontentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\controllers\\trainingcontentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\iservices\\itraininglevelservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\iservices\\itraininglevelservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\core\\irepositories\\itraininglevelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F077E70C-0CE5-4D09-A9FC-E2CCD565840D}|Core\\Core.csproj|solutionrelative:core\\irepositories\\itraininglevelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,24 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAABUAAABAyMzMzMwmwCgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-03T11:30:42.155Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -60,6 +75,110 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TrainingContentServices.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\TrainingContentServices.cs",
+              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Services\\TrainingContentServices.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Services\\TrainingContentServices.cs",
+              "RelativeToolTip": "ICPC_Tanta_Web\\Services\\TrainingContentServices.cs",
+              "ViewState": "AgIAAA0AAACA//////8lwCEAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T19:59:16.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TrainingContent.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\Entities\\TrainingContent.cs",
+              "RelativeDocumentMoniker": "Core\\Entities\\TrainingContent.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\Entities\\TrainingContent.cs",
+              "RelativeToolTip": "Core\\Entities\\TrainingContent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T19:43:20.531Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ITrainingContentServices.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\ITrainingContentServices.cs",
+              "RelativeDocumentMoniker": "Core\\IServices\\ITrainingContentServices.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\ITrainingContentServices.cs",
+              "RelativeToolTip": "Core\\IServices\\ITrainingContentServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T19:58:47.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ContentCreateDto.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\DTO\\ContentDTO\\ContentCreateDto.cs",
+              "RelativeDocumentMoniker": "Core\\DTO\\ContentDTO\\ContentCreateDto.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\DTO\\ContentDTO\\ContentCreateDto.cs",
+              "RelativeToolTip": "Core\\DTO\\ContentDTO\\ContentCreateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T19:44:42.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TrainingContentController.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\TrainingContentController.cs",
+              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Controllers\\TrainingContentController.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Controllers\\TrainingContentController.cs",
+              "RelativeToolTip": "ICPC_Tanta_Web\\Controllers\\TrainingContentController.cs",
+              "ViewState": "AgIAAAwAAABgxMzMzMwYwB0AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T20:11:52.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Program.cs",
+              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Program.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Program.cs",
+              "RelativeToolTip": "ICPC_Tanta_Web\\Program.cs",
+              "ViewState": "AgIAACsAAADAZmZmZmYkwGcAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T17:58:48.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ITrainingLevelServices.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\ITrainingLevelServices.cs",
+              "RelativeDocumentMoniker": "Core\\IServices\\ITrainingLevelServices.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IServices\\ITrainingLevelServices.cs",
+              "RelativeToolTip": "Core\\IServices\\ITrainingLevelServices.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T16:17:49.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ITrainingLevelRepository.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IRepositories\\ITrainingLevelRepository.cs",
+              "RelativeDocumentMoniker": "Core\\IRepositories\\ITrainingLevelRepository.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Core\\IRepositories\\ITrainingLevelRepository.cs",
+              "RelativeToolTip": "Core\\IRepositories\\ITrainingLevelRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T15:44:03.591Z",
+              "EditorCaption": ""
             }
           ]
         }
