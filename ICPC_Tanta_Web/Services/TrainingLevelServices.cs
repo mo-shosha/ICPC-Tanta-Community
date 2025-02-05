@@ -2,6 +2,7 @@
 using Core.Entities;
 using Core.IRepositories;
 using Core.IServices;
+using System.Linq;
 
 namespace ICPC_Tanta_Web.Services
 {
@@ -118,24 +119,69 @@ namespace ICPC_Tanta_Web.Services
             }
         }
 
-        public async Task<IEnumerable<TrainingLevel>> GetLevelsWithContentAsync(int id )
+        
+        public async Task<TrainingLevel> GetLevelsWithContentAsync(int id)
         {
             try
             {
-                return await _unitOfWork.TrainingLevelRepository.LevelWithContentsAync(id);
+                var levelwithcontent = await _unitOfWork.TrainingLevelRepository.LevelWithContentsAync();
+                var selectedLevel = levelwithcontent.FirstOrDefault(l => l.Id == id);
+
+                if (selectedLevel == null)
+                {
+                    return null;  
+                }
+
+                return new TrainingLevel
+                {
+                    Id = selectedLevel.Id,
+                    Name = selectedLevel.Name,
+                    Description = selectedLevel.Description,
+                    Contents = selectedLevel.Contents.Select(c => new TrainingContent
+                    {
+                        Id = c.Id,
+                        Title = c.Title,
+                        ContentUrl = c.ContentUrl,
+                        Auther = c.Auther,
+                        CreatedAt = c.CreatedAt,
+                    }).ToList()
+                };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("An error occurred while retrieving levels with content.");
+                // Include the exception details in the thrown exception for better debugging
+                throw new Exception("An error occurred while retrieving levels with content.", ex);
             }
         }
 
-        public async Task<IEnumerable<TrainingLevel>> GetLevelWithContentByYearAsync(int id,string year)
+
+        public async Task<TrainingLevel> GetLevelWithContentByYearAsync(int id,string year)
         {
             try
             {
 
-                return await _unitOfWork.TrainingLevelRepository.LevelWithContentByYearAync(id,year);
+                var levelwithcontent= await _unitOfWork.TrainingLevelRepository.LevelWithContentByYearAync(year);
+                var selectedLevel = levelwithcontent.FirstOrDefault(l => l.Id == id);
+
+                if (selectedLevel == null)
+                {
+                    return null;
+                }
+
+                return new TrainingLevel
+                {
+                    Id = selectedLevel.Id,
+                    Name = selectedLevel.Name,
+                    Description = selectedLevel.Description,
+                    Contents = selectedLevel.Contents.Select(c => new TrainingContent
+                    {
+                        Id = c.Id,
+                        Title = c.Title,
+                        ContentUrl = c.ContentUrl,
+                        Auther = c.Auther,
+                        CreatedAt = c.CreatedAt,
+                    }).ToList()
+                };
             }
             catch (Exception)
             {

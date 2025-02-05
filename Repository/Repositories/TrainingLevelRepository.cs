@@ -17,20 +17,18 @@ namespace Repository.Repositories
 
         
 
-        public async Task<IEnumerable<TrainingLevel>> LevelWithContentByYearAync(int id, string year)
+        public async Task<IEnumerable<TrainingLevel>> LevelWithContentByYearAync( string year)
         {
             return await _db.Set<TrainingLevel>()
              .Include(t => t.Contents)
-             .Where(t => t.Id == id)
              .Where(t => t.Contents.Any(m => m.CreatedAt.Year.ToString() == year))
              .ToListAsync();   
         }
 
-        public async Task<IEnumerable<TrainingLevel>> LevelWithContentsAync(int id)
+        public async Task<IEnumerable<TrainingLevel>> LevelWithContentsAync()
         {
             return await _db.Set<TrainingLevel>()
                .Include(t => t.Contents)
-               .Where(t=>t.Id==id)
                .ToListAsync();
         }
     }

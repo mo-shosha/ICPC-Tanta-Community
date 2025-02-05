@@ -15,8 +15,8 @@ namespace Core.IServices
         Task CreateLevelAsync(LevelCreateDto levelCreateDto);
         Task UpdateLevelAsync(LevelUpdateDto levelUpdateDto);
         Task DeleteLevelAsync(int id);
-        Task<IEnumerable<TrainingLevel>> GetLevelsWithContentAsync(int id);
-        Task<IEnumerable<TrainingLevel>> GetLevelWithContentByYearAsync(int id,string year);
+        Task<TrainingLevel> GetLevelsWithContentAsync(int id);
+        Task<TrainingLevel> GetLevelWithContentByYearAsync(int id,string year);
 
 
     }

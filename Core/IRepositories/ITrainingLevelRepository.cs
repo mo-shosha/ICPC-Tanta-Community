@@ -9,7 +9,7 @@ namespace Core.IRepositories
 {
     public interface ITrainingLevelRepository:IBaseRepository<TrainingLevel>
     {
-        public Task<IEnumerable<TrainingLevel>> LevelWithContentsAync(int id);
-        public Task<IEnumerable<TrainingLevel>> LevelWithContentByYearAync(int id,string year);
+        public Task<IEnumerable<TrainingLevel>> LevelWithContentsAync();
+        public Task<IEnumerable<TrainingLevel>> LevelWithContentByYearAync(string year);
     }
 }
