@@ -11,6 +11,6 @@ namespace Core.DTO.AccountDTO
         public string Handle { get; set; }
         public string Rank { get; set; }
         public int Rating { get; set; }
-        public string Avatar { get; set; }
+        public string TitlePhoto { get; set; }
     }
 }

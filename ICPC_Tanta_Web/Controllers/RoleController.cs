@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ICPC_Tanta_Web.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class RoleController : ControllerBase

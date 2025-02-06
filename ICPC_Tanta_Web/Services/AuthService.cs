@@ -48,8 +48,11 @@ namespace ICPC_Tanta_Web.Services
                     throw new Exception("Invalid Codeforces handle.");
 
                 var result = await _userManager.CreateAsync(newUser, model.Password);
+
                 if (!result.Succeeded)
                     throw new Exception("User creation failed: " + string.Join(", ", result.Errors.Select(e => e.Description)));
+
+                await _userManager.AddToRoleAsync(newUser, "User");
 
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
                 var confirmationLink = $"https://icpc-tanta.runasp.net/api/Auth/ConfirmEmail?userId={newUser.Id}&token={Uri.EscapeDataString(token)}";
@@ -81,7 +84,7 @@ namespace ICPC_Tanta_Web.Services
                     Token = await _tokenServices.CreateTokenAsync(newUser, _userManager),
                     Rating = codeforcesUserInfo?.Rating ?? 0,
                     Rank = codeforcesUserInfo?.Rank ?? "Unknown",
-                    Avatar = codeforcesUserInfo?.Avatar ?? "default-avatar.png",
+                    TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
                     Handle = codeforcesUserInfo.Handle
                 };
             }
@@ -112,7 +115,7 @@ namespace ICPC_Tanta_Web.Services
                     Token = await _tokenServices.CreateTokenAsync(user, _userManager),
                     Rating = codeforcesUserInfo?.Rating ?? 0,
                     Rank = codeforcesUserInfo?.Rank ?? "Unknown",
-                    Avatar = codeforcesUserInfo?.Avatar ?? "default-avatar.png",
+                    TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
                     Handle = codeforcesUserInfo.Handle?? "Unknown",
                 };
             }
@@ -193,7 +196,7 @@ namespace ICPC_Tanta_Web.Services
                 Token = await _tokenServices.CreateTokenAsync(user, _userManager),
                 Rating = codeforcesUserInfo?.Rating ?? 0,
                 Rank = codeforcesUserInfo?.Rank ?? "Unknown",
-                Avatar = codeforcesUserInfo?.Avatar ?? "default-avatar.png",
+                TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
                 Handle = codeforcesUserInfo.Handle
             };
 

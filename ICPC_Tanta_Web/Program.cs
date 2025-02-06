@@ -41,6 +41,7 @@ builder.Services.AddScoped<ITeamService, TeamService>();
 builder.Services.AddScoped<IMemeberServices, MemeberServices>();
 builder.Services.AddScoped<ITrainingLevelServices, TrainingLevelServices>();
 builder.Services.AddScoped<ITrainingContentServices, TrainingContentServices>();
+builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IRoleService, RoleService>();

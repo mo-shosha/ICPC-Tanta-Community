@@ -21,9 +21,8 @@ namespace Core.Entities
         //[Required]
         //[MaxLength(50)]
         // public string Status { get; set; } // Status of the news (Draft, Published, Archived)
-
         public string Author { get; set; } // Name of the author or contributor of the news
-
+        public string AutherId {  get; set; }
         public string ImageUrl { get; set; }  
         //public int Likes {  get; set; }
 
