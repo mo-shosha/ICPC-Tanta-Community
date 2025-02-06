@@ -18,6 +18,7 @@ namespace Repository.Repositories
         private IMemberRepository _memberRepository;
         private ITrainingLevelRepository _traningLevelRepository;
         private ITrainingContentRepository _trainingContentRepository;
+        private IChatRepository _chatRepository;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -33,6 +34,8 @@ namespace Repository.Repositories
         public ITrainingLevelRepository TrainingLevelRepository => _traningLevelRepository ??= new TrainingLevelRepository(_context);
 
         public ITrainingContentRepository TrainingContentRepository => _trainingContentRepository ??= new TrainingContentRepository(_context);
+
+        public IChatRepository ChatRepository =>_chatRepository= new ChatRepository(_context);
 
         public async Task<int> SaveChangesAsync()
         {

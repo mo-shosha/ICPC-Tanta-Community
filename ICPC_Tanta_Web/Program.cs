@@ -13,6 +13,7 @@ using System.Text;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
+using ICPC_Tanta_Web.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,8 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<ITokenServices, TokenServices>();
 builder.Services.AddScoped<ICodeforcesService, CodeforcesService>();
 builder.Services.AddHttpClient<ICodeforcesService, CodeforcesService>();
+
+builder.Services.AddSignalR();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -117,6 +120,9 @@ app.Use(async (context, next) =>
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHub<ChatHub>("/chatHub");
+
 
 app.MapControllers();
 

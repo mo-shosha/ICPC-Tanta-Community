@@ -85,7 +85,8 @@ namespace ICPC_Tanta_Web.Services
                     Rating = codeforcesUserInfo?.Rating ?? 0,
                     Rank = codeforcesUserInfo?.Rank ?? "Unknown",
                     TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
-                    Handle = codeforcesUserInfo.Handle
+                    Handle = codeforcesUserInfo.Handle,
+                    Id=newUser.Id,
                 };
             }
             catch (Exception ex)
@@ -117,6 +118,7 @@ namespace ICPC_Tanta_Web.Services
                     Rank = codeforcesUserInfo?.Rank ?? "Unknown",
                     TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
                     Handle = codeforcesUserInfo.Handle?? "Unknown",
+                    Id = user.Id,
                 };
             }
             catch (Exception ex)

@@ -70,6 +70,7 @@ namespace ICPC_Tanta_Web.Services
                 {
                     SelectedUsers.Add(new UserRatingDto
                     {
+                        Id=user.Id,
                         Name = user.UserName,
                         Rating=codeforcesUserInfo.Rating,
                         ImgURL=codeforcesUserInfo.TitlePhoto,
@@ -79,5 +80,17 @@ namespace ICPC_Tanta_Web.Services
 
             return SelectedUsers.OrderByDescending(u => u.Rating).ToList();
         }
+
+        public int GetUserRanking(string userId, IEnumerable<UserRatingDto> sortedUsers)
+        {
+            var userRanking = sortedUsers.ToList().FindIndex(u => u.Id == userId) + 1;
+            if (userRanking == 0)
+            {
+                return -1;  
+            }
+
+            return userRanking;
+        }
+
     }
 }

@@ -22,11 +22,11 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var instructors = await _userServices.GetAllInstructors();
-                return Ok(instructors); 
+                return Ok(instructors);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message }); 
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -36,11 +36,11 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var users = await _userServices.GetAllUsers();
-                return Ok(users);  
+                return Ok(users);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });  
+                return BadRequest(new { message = ex.Message });
             }
         }
 
@@ -50,11 +50,39 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var usersWithRating = await _userServices.GetAllUsersWithRating();
-                return Ok(usersWithRating);  
+                return Ok(usersWithRating);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });  
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
+        [HttpGet("user/with-ranking")]
+        public async Task<IActionResult> GetUserRanking([FromQuery] string userId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return BadRequest(new { message = "UserId is required." });
+                }
+
+                var sortedUsers = await _userServices.GetAllUsersWithRating();
+
+                int ranking =  _userServices.GetUserRanking(userId, sortedUsers);
+
+                if (ranking == -1)
+                {
+                    return NotFound(new { message = "User not found." });
+                }
+
+                return Ok(new { userId, ranking });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
         }
     }

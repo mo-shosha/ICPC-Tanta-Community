@@ -1089,6 +1089,22 @@
   },
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.UserController",
+    "Method": "GetUserRanking",
+    "RelativePath": "api/User/user/with-ranking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.UserController",
     "Method": "GetAllUsers",
     "RelativePath": "api/User/users",
     "HttpMethod": "GET",
