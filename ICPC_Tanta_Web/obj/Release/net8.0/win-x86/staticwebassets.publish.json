@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qPTHvIJAyOox8ayREocBn1mIFb8SieS/sBuZSaWZVcU=",
+  "Hash": "hX9tYqIZNWDqgK8ZfTQRAbXXPOv5FhbCcGXtKnX3H5k=",
   "Source": "ICPC_Tanta_Web",
   "BasePath": "_content/ICPC_Tanta_Web",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg"
+    },
+    {
+      "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\24674aab-e52f-46ef-89ec-2f4d5d47ecda_images.jpg",
+      "SourceId": "ICPC_Tanta_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\",
+      "BasePath": "_content/ICPC_Tanta_Web",
+      "RelativePath": "uploads/24674aab-e52f-46ef-89ec-2f4d5d47ecda_images.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\24674aab-e52f-46ef-89ec-2f4d5d47ecda_images.jpg"
     },
     {
       "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\2f3ad460-6230-4b3d-801d-e0d0ef050737_arrival-5.png",
@@ -112,6 +131,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg"
     },
     {
+      "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg",
+      "SourceId": "ICPC_Tanta_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\",
+      "BasePath": "_content/ICPC_Tanta_Web",
+      "RelativePath": "uploads/656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg"
+    },
+    {
       "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg",
       "SourceId": "ICPC_Tanta_Web",
       "SourceType": "Discovered",
@@ -129,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg"
+    },
+    {
+      "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg",
+      "SourceId": "ICPC_Tanta_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\",
+      "BasePath": "_content/ICPC_Tanta_Web",
+      "RelativePath": "uploads/99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg"
     },
     {
       "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png",

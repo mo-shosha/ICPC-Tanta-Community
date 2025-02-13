@@ -29,7 +29,7 @@ namespace ICPC_Tanta_Web.Services
                     instructors.Add(new Userinfo
                     {
                         Id = user.Id,
-                        Name = user.UserName,
+                        Name = user.FullName,
                         Email = user.Email,
                         Handle = user.CodeForcesHandel,
                         PhoneNumber = user.PhoneNumber
@@ -40,13 +40,38 @@ namespace ICPC_Tanta_Web.Services
             return instructors;
         }
 
+        public async Task<IEnumerable<UserRatingDto>> GetAllInstructorWithRating()
+        {
+            var users = await _userManager.Users.ToListAsync();
+            var SelectedInstructors = new List<UserRatingDto>();
+
+            foreach (var user in users)
+            {
+                var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
+                var roles = await _userManager.GetRolesAsync(user);
+
+                if (roles.Contains("Instructor"))
+                {
+                    SelectedInstructors.Add(new UserRatingDto
+                    {
+                        Id = user.Id,
+                        Name = user.FullName,
+                        Rating = codeforcesUserInfo.Rating,
+                        ImgURL = codeforcesUserInfo.TitlePhoto,
+                    });
+                }
+            }
+
+            return SelectedInstructors.OrderByDescending(u => u.Rating).ToList();
+        }
+
         public async Task<IEnumerable<Userinfo>> GetAllUsers()
         {
             var users = await _userManager.Users
                 .Select(user => new Userinfo
                 {
                     Id = user.Id,
-                    Name = user.UserName,
+                    Name = user.FullName,
                     Email = user.Email,
                     Handle = user.CodeForcesHandel,
                     PhoneNumber = user.PhoneNumber
@@ -66,12 +91,12 @@ namespace ICPC_Tanta_Web.Services
                 var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
                 var roles = await _userManager.GetRolesAsync(user);
                 
-                if (roles.Contains("User"))
+                if (roles.Contains("User")&&roles.Count()==1)
                 {
                     SelectedUsers.Add(new UserRatingDto
                     {
                         Id=user.Id,
-                        Name = user.UserName,
+                        Name = user.FullName,
                         Rating=codeforcesUserInfo.Rating,
                         ImgURL=codeforcesUserInfo.TitlePhoto,
                     });

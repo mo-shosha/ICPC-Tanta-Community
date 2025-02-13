@@ -58,6 +58,19 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [HttpGet("Instructors/with-rating")]
+        public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetAllInstructorsWithRating()
+        {
+            try
+            {
+                var usersWithRating = await _userServices.GetAllInstructorWithRating();
+                return Ok(usersWithRating);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
         [HttpGet("user/with-ranking")]
         public async Task<IActionResult> GetUserRanking([FromQuery] string userId)
@@ -85,5 +98,6 @@ namespace ICPC_Tanta_Web.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+   
     }
 }

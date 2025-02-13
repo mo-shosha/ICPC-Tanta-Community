@@ -49,7 +49,7 @@ namespace ICPC_Tanta_Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateLevel([FromBody] LevelCreateDto levelCreateDto)
+        public async Task<IActionResult> CreateLevel([FromForm] LevelCreateDto levelCreateDto)
         {
             if (levelCreateDto == null)
             {
@@ -71,7 +71,7 @@ namespace ICPC_Tanta_Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateLevel(int id, [FromBody] LevelUpdateDto levelUpdateDto)
+        public async Task<IActionResult> UpdateLevel(int id, [FromForm] LevelUpdateDto levelUpdateDto)
         {
             if (levelUpdateDto == null)
             {

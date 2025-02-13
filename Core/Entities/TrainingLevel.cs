@@ -13,9 +13,8 @@ namespace Core.Entities
 
         [Required]
         public string Name { get; set; }  
-
-        public string Description { get; set; }  
-
+        public string Description { get; set; }
+        public string LevelImg {  get; set; }
         public List<TrainingContent> Contents { get; set; }
     }
 }

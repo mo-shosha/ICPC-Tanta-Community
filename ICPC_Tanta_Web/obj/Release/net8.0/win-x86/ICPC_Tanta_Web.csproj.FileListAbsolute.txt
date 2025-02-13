@@ -149,3 +149,6 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\ICPC_Tanta_Web.pdb
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\ICPC_Tanta_Web.genruntimeconfig.cache
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\ref\ICPC_Tanta_Web.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Release\net8.0\win-x86\Microsoft.AspNetCore.Connections.Abstractions.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Release\net8.0\win-x86\Microsoft.AspNetCore.SignalR.Common.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Release\net8.0\win-x86\Microsoft.Extensions.Features.dll

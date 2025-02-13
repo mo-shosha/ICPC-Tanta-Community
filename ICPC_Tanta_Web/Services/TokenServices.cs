@@ -1,10 +1,12 @@
-﻿using Core.Entities.Identity;
+﻿using Core.Entities;
+using Core.Entities.Identity;
 using Core.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace ICPC_Tanta_Web.Services
 {
@@ -38,10 +40,27 @@ namespace ICPC_Tanta_Web.Services
                     issuer: _configuration["JWT:Issuer"],
                     audience: _configuration["JWT:Audience"],
                     claims: AuthClaims,
-                    expires: DateTime.UtcNow.AddDays(double.TryParse(_configuration["JWT:TokenValidityInDays"], out var days)?days:7),
+                    expires: DateTime.UtcNow.AddMinutes(double.TryParse(_configuration["JWT:TokenValidityInMinutes"], out var Minutes) ? Minutes : 15),
                     signingCredentials: new SigningCredentials(AuthKey, SecurityAlgorithms.HmacSha256Signature)
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+
+        public RefreshToken GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+
+            using var generator = new RNGCryptoServiceProvider();
+
+            generator.GetBytes(randomNumber);
+
+            return new RefreshToken
+            {
+                Token = Convert.ToBase64String(randomNumber),
+                ExpiresOn = DateTime.UtcNow.AddDays(7),
+                CreatedOn = DateTime.UtcNow
+            };
         }
     }
 }

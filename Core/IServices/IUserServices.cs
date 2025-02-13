@@ -11,6 +11,7 @@ namespace Core.IServices
     {
         Task<IEnumerable<Userinfo>> GetAllUsers();
         Task<IEnumerable<UserRatingDto>> GetAllUsersWithRating();
+        Task<IEnumerable<UserRatingDto>> GetAllInstructorWithRating();
         Task<IEnumerable<Userinfo>> GetAllInstructors();
         int GetUserRanking(string userId, IEnumerable<UserRatingDto> sortedusers);
     }

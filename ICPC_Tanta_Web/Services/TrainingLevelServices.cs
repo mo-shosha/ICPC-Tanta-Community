@@ -2,6 +2,7 @@
 using Core.Entities;
 using Core.IRepositories;
 using Core.IServices;
+using ICPC_Tanta_Web.DTO.NewsDTO;
 using System.Linq;
 
 namespace ICPC_Tanta_Web.Services
@@ -9,9 +10,11 @@ namespace ICPC_Tanta_Web.Services
     public class TrainingLevelServices: ITrainingLevelServices
     {
         private readonly IUnitOfWork _unitOfWork;
-        public TrainingLevelServices(IUnitOfWork unitOfWork)
+        private readonly IFileProcessingService _fileProcessingService;
+        public TrainingLevelServices(IUnitOfWork unitOfWork,IFileProcessingService fileProcessingService)
         {
             _unitOfWork = unitOfWork;
+            _fileProcessingService = fileProcessingService;
         }
 
         public async Task<IEnumerable<Leveldto>> GetAllLevels()
@@ -23,6 +26,8 @@ namespace ICPC_Tanta_Web.Services
                 {
                     Id = level.Id,
                     LevelName = level.Name,
+                    //LevelImg = level.LevelImg,
+                    //LevelDescription = level.Description
                 }).ToList();
             }
             catch (Exception)
@@ -44,7 +49,9 @@ namespace ICPC_Tanta_Web.Services
                 return new Leveldto
                 {
                     Id = level.Id,
-                    LevelName = level.Name,                    
+                    LevelName = level.Name,    
+                    //LevelImg=level.LevelImg,
+                    //LevelDescription=level.Description
                 };
             }
             catch (Exception)
@@ -65,7 +72,10 @@ namespace ICPC_Tanta_Web.Services
                 var newLevel = new TrainingLevel
                 {
                     Name = levelCreateDto.LevelName,
-                    Description = levelCreateDto.Description
+                    Description = levelCreateDto.Description,
+                    LevelImg = levelCreateDto.Image != null
+                        ? await _fileProcessingService.SaveFileAsync(levelCreateDto.Image)
+                        : null
                 };
                 
 
@@ -90,7 +100,14 @@ namespace ICPC_Tanta_Web.Services
 
                 existingLevel.Name = levelUpdateDto.LevelName ?? existingLevel.Name;
                 existingLevel.Description = levelUpdateDto.Description ?? existingLevel.Description;
-
+                if (levelUpdateDto.Image != null)
+                {
+                    if (existingLevel.LevelImg != null)
+                    {
+                        _fileProcessingService.DeleteFile(existingLevel.LevelImg);
+                    }
+                    existingLevel.LevelImg = await _fileProcessingService.SaveFileAsync(levelUpdateDto.Image);
+                }
                 _unitOfWork.TrainingLevelRepository.Update(existingLevel);
                 await _unitOfWork.SaveChangesAsync();
             }
@@ -137,6 +154,7 @@ namespace ICPC_Tanta_Web.Services
                     Id = selectedLevel.Id,
                     Name = selectedLevel.Name,
                     Description = selectedLevel.Description,
+                    LevelImg=selectedLevel.LevelImg,
                     Contents = selectedLevel.Contents.Select(c => new TrainingContent
                     {
                         Id = c.Id,
@@ -173,6 +191,7 @@ namespace ICPC_Tanta_Web.Services
                     Id = selectedLevel.Id,
                     Name = selectedLevel.Name,
                     Description = selectedLevel.Description,
+                    LevelImg = selectedLevel.LevelImg,
                     Contents = selectedLevel.Contents.Select(c => new TrainingContent
                     {
                         Id = c.Id,

@@ -1,4 +1,5 @@
 ﻿using Core.Validation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,5 +19,7 @@ namespace Core.DTO.LevelDTO
 
         [SafeText]
         public string? Description { get; set; }
+
+        public IFormFile? Image { get; set; }
     }
 }

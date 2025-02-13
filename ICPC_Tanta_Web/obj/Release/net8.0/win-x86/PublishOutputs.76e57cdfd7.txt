@@ -11,9 +11,11 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\MediaBrowser.Common.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\MediaBrowser.Model.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Connections.Abstractions.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.SignalR.Common.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Data.SqlClient.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
@@ -23,6 +25,7 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Extensions.Caching.Memory.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Extensions.Features.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Extensions.Identity.Core.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Extensions.Identity.Stores.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Extensions.Logging.dll

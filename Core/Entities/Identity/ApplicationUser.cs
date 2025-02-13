@@ -14,7 +14,8 @@ namespace Core.Entities.Identity
         public string CodeForcesHandel {  get; set; }
 
         public string FullName {  get; set; }
-        
-        //public ICollection<News> NewsArticles { get; set; }
+
+        public List<RefreshToken>? RefreshTokens { get; set; }
+
     }
 }

@@ -10,5 +10,7 @@ namespace Core.DTO.LevelDTO
     {
         public int Id {  get; set; }
         public string LevelName {  get; set; }
+       // public string LevelDescription { get; set; }
+        //public string LevelImg {  get; set; }
     }
 }

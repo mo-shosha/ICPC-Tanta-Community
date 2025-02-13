@@ -1,4 +1,5 @@
-﻿using Core.Entities.Identity;
+﻿using Core.Entities;
+using Core.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,6 @@ namespace Core.IServices
     public interface ITokenServices
     {
         Task<string> CreateTokenAsync(ApplicationUser user, UserManager<ApplicationUser> userManager);
+        RefreshToken GenerateRefreshToken();
     }
 }

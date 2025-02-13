@@ -1,4 +1,5 @@
-﻿using Core.DTO.AccountDTO;
+﻿using Core.DTO;
+using Core.DTO.AccountDTO;
 using Core.Entities.Identity;
 using Core.IServices;
 using ICPC_Tanta_Web.Services;
@@ -70,6 +71,35 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (string.IsNullOrEmpty(refreshToken))
+                return Unauthorized("Refresh token is missing.");
+
+            var userDto = await _authService.RefreshTokenAsync(refreshToken);
+            return Ok(userDto);
+        }
+
+        [HttpPost("revoketoken")]
+        public async Task<IActionResult> RevokeToken([FromBody] RevokeToken model)
+        {
+            var token = model.Token ?? Request.Cookies["refreshToken"];
+
+            if (string.IsNullOrEmpty(token))
+                return BadRequest("Token is required!");
+
+            var result = await _authService.RevokeTokenAsync(token);
+
+            if (!result)
+                return BadRequest("Token is invalid!");
+
+            return Ok();
+        }
+
+
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
@@ -107,20 +137,30 @@ namespace ICPC_Tanta_Web.Controllers
             return Ok(userDto);
         }
 
-        
+
         [HttpPost("change-password")]
-        public async Task<IActionResult> ChangePassword(ChangePasswordDto model)
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto model)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  
-            if (string.IsNullOrEmpty(userId))
-                return Unauthorized("User not authenticated.");
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized(new { Message = "User not authenticated." });
 
-            var result = await _authService.ChangePasswordAsync(userId, model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-                return Ok("Password changed successfully.");
+                var result = await _authService.ChangePasswordAsync(userId, model.OldPassword, model.NewPassword);
 
-            return BadRequest("Password change failed.");
+                if (result.Succeeded)
+                    return Ok(new { Message = "Password changed successfully. Please log in again." });
+
+                var errors = result.Errors.Select(e => e.Description).ToList();
+                return BadRequest(new { Message = "Password change failed.", Errors = errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while changing the password.", Error = ex.Message });
+            }
         }
+
 
 
         [HttpPost("forgot-password")]
@@ -144,5 +184,24 @@ namespace ICPC_Tanta_Web.Controllers
             }
             return BadRequest("Error occurred while resetting the password.");
         }
+
+        [HttpPut("update-profile")]
+        public async Task<IActionResult> UpdateProfile([FromBody] ChangInfoDto model)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized("User not authenticated.");
+
+                var updatedUser = await _authService.UpdateProfileAsync(userId, model);
+                return Ok(updatedUser);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
     }
 }

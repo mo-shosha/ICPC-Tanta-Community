@@ -100,6 +100,16 @@
   },
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/Auth/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
     "Method": "Register",
     "RelativePath": "api/Auth/Register",
     "HttpMethod": "POST",
@@ -135,6 +145,38 @@
       {
         "Name": "model",
         "Type": "Core.DTO.AccountDTO.ResetPasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
+    "Method": "RevokeToken",
+    "RelativePath": "api/Auth/revoketoken",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Core.DTO.AccountDTO.RevokeToken",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Auth/update-profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Core.DTO.ChangInfoDto",
         "IsRequired": true
       }
     ],
@@ -970,9 +1012,19 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "levelCreateDto",
-        "Type": "Core.DTO.LevelDTO.LevelCreateDto",
-        "IsRequired": true
+        "Name": "LevelName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -1007,9 +1059,24 @@
         "IsRequired": true
       },
       {
-        "Name": "levelUpdateDto",
-        "Type": "Core.DTO.LevelDTO.LevelUpdateDto",
-        "IsRequired": true
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "LevelName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -1078,6 +1145,26 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[Core.DTO.AccountDTO.Userinfo, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.UserController",
+    "Method": "GetAllInstructorsWithRating",
+    "RelativePath": "api/User/Instructors/with-rating",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Core.DTO.AccountDTO.UserRatingDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

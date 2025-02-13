@@ -76,7 +76,7 @@ namespace ICPC_Tanta_Web.Controllers
                 string authorId = user?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
 
                 await _newsService.AddAsync(createNewsDto, author, authorId);
-                return CreatedAtAction(nameof(GetById), new { id = createNewsDto.Title }, new { Message = "News added successfully." });
+                return Ok( new { Message = "News added successfully." });
             }
             catch (UnauthorizedAccessException ex)
             {

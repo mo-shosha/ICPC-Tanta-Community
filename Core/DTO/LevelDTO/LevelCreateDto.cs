@@ -1,4 +1,5 @@
 ﻿using Core.Validation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,10 +14,13 @@ namespace Core.DTO.LevelDTO
         [Required(ErrorMessage = "Level name is required.")]
         [StringLength(10, MinimumLength = 3, ErrorMessage = "Level name must be between 3 and 10 characters.")]
         [SafeText]
-
         public string LevelName { get; set; }
         [Required(ErrorMessage = "Level Description is required.")]
         [SafeText]
         public string Description { get; set; }
+
+        [Required]
+        public IFormFile Image { get; set; }
+
     }
 }
