@@ -335,6 +335,11 @@ namespace ICPC_Tanta_Web.Services
                 if (user == null)
                     return IdentityResult.Failed(new IdentityError { Description = "User not found" });
 
+                var resultoldpassword = await _signInManager.CheckPasswordSignInAsync(user,oldPassword, false);
+
+                //if (!resultoldpassword.Succeeded)
+                    //throw new UnauthorizedAccessException("OldPassword isn`t correct");
+
                 var passwordCheck = await _userManager.CheckPasswordAsync(user, newPassword);
                 if (passwordCheck)
                     return IdentityResult.Failed(new IdentityError { Description = "New password cannot be the same as the old password" });

@@ -2,7 +2,7 @@
 using Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Core.DTO;
 namespace ICPC_Tanta_Web.Controllers
 {
     [Route("api/[controller]")]
@@ -22,13 +22,14 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var instructors = await _userServices.GetAllInstructors();
-                return Ok(instructors);
+                return Ok(ApiResponse<IEnumerable<Userinfo>>.SuccessResponse("Instructors retrieved successfully.", instructors));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
+
 
         [HttpGet("users")]
         public async Task<ActionResult<IEnumerable<Userinfo>>> GetAllUsers()
@@ -36,13 +37,14 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var users = await _userServices.GetAllUsers();
-                return Ok(users);
+                return Ok(ApiResponse<IEnumerable<Userinfo>>.SuccessResponse("Users retrieved successfully.", users));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
+
 
         [HttpGet("users/with-rating")]
         public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetAllUsersWithRating()
@@ -50,52 +52,49 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var usersWithRating = await _userServices.GetAllUsersWithRating();
-                return Ok(usersWithRating);
+                return Ok(ApiResponse<IEnumerable<UserRatingDto>>.SuccessResponse("Users with rating retrieved successfully.", usersWithRating));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
+
 
         [HttpGet("Instructors/with-rating")]
         public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetAllInstructorsWithRating()
         {
             try
             {
-                var usersWithRating = await _userServices.GetAllInstructorWithRating();
-                return Ok(usersWithRating);
+                var instructorsWithRating = await _userServices.GetAllInstructorWithRating();
+                return Ok(ApiResponse<IEnumerable<UserRatingDto>>.SuccessResponse("Instructors with rating retrieved successfully.", instructorsWithRating));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
+
 
         [HttpGet("user/with-ranking")]
         public async Task<IActionResult> GetUserRanking([FromQuery] string userId)
         {
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest(ApiResponse<string>.ErrorResponse("UserId is required."));
+
             try
             {
-                if (string.IsNullOrEmpty(userId))
-                {
-                    return BadRequest(new { message = "UserId is required." });
-                }
-
                 var sortedUsers = await _userServices.GetAllUsersWithRating();
-
-                int ranking =  _userServices.GetUserRanking(userId, sortedUsers);
+                int ranking = _userServices.GetUserRanking(userId, sortedUsers);
 
                 if (ranking == -1)
-                {
-                    return NotFound(new { message = "User not found." });
-                }
+                    return NotFound(ApiResponse<string>.ErrorResponse("User not found."));
 
-                return Ok(new { userId, ranking });
+                return Ok(ApiResponse<object>.SuccessResponse("User ranking retrieved successfully.", new { userId, ranking }));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
    

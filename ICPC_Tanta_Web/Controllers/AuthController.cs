@@ -31,11 +31,11 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var result = await _authService.RegisterAsync(model);
-                return Ok(result);
+                return Ok(ApiResponse<UserDto>.SuccessResponse(result));
             }
             catch (Exception ex)
             {
-                return BadRequest($"Error: {ex.Message}");
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
         
@@ -47,27 +47,27 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var result = await _authService.LoginAsync(model);
-                return Ok(result);
+                return Ok(ApiResponse<UserDto>.SuccessResponse("Login successful.", result));
             }
             catch (Exception ex)
             {
-                return Unauthorized($"Error: {ex.Message}");
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
         // Logout
         [Authorize]
-        [HttpPost("Logout")]
+        [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
             try
             {
                 await _authService.LogoutAsync();
-                return Ok("Logged out successfully.");
+                return Ok(ApiResponse<string>.SuccessResponse("Logged out successfully."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error: {ex.Message}");
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -75,28 +75,40 @@ namespace ICPC_Tanta_Web.Controllers
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken()
         {
-            var refreshToken = Request.Cookies["refreshToken"];
-            if (string.IsNullOrEmpty(refreshToken))
-                return Unauthorized("Refresh token is missing.");
+            try
+            {
+                var refreshToken = Request.Cookies["refreshToken"];
+                if (string.IsNullOrEmpty(refreshToken))
+                    return Unauthorized(ApiResponse<string>.ErrorResponse("Refresh token is missing."));
 
-            var userDto = await _authService.RefreshTokenAsync(refreshToken);
-            return Ok(userDto);
+                var userDto = await _authService.RefreshTokenAsync(refreshToken);
+                return Ok(ApiResponse<UserDto>.SuccessResponse("Token refreshed successfully.", userDto));
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpPost("revoketoken")]
         public async Task<IActionResult> RevokeToken([FromBody] RevokeToken model)
         {
-            var token = model.Token ?? Request.Cookies["refreshToken"];
+            try
+            {
+                var token = model.Token ?? Request.Cookies["refreshToken"];
+                if (string.IsNullOrEmpty(token))
+                    return BadRequest(ApiResponse<string>.ErrorResponse("Token is required!"));
 
-            if (string.IsNullOrEmpty(token))
-                return BadRequest("Token is required!");
+                var result = await _authService.RevokeTokenAsync(token);
+                if (!result)
+                    return BadRequest(ApiResponse<string>.ErrorResponse("Invalid token!"));
 
-            var result = await _authService.RevokeTokenAsync(token);
-
-            if (!result)
-                return BadRequest("Token is invalid!");
-
-            return Ok();
+                return Ok(ApiResponse<string>.SuccessResponse("Token revoked successfully."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
 
@@ -106,35 +118,40 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
-                    return BadRequest("Invalid email confirmation request.");
+                    return BadRequest(ApiResponse<string>.ErrorResponse("Invalid email confirmation request."));
 
                 var user = await _authService.GetUserByIdAsync(userId);
                 if (user == null)
-                    return NotFound("User not found.");
+                    return NotFound(ApiResponse<string>.ErrorResponse("User not found."));
 
                 var result = await _authService.ConfirmEmailAsync(user, token);
                 if (!result.Succeeded)
-                    return BadRequest("Email confirmation failed.");
+                    return BadRequest(ApiResponse<string>.ErrorResponse("Email confirmation failed."));
 
-                return Ok("Email confirmed successfully.");
+                return Ok(ApiResponse<string>.SuccessResponse("Email confirmed successfully."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error: {ex.Message}");
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("me")]
         public async Task<IActionResult> GetCurrentUser()
         {
-            var userClaims = _httpContextAccessor.HttpContext?.User;
-            var userDto = await _authService.GetCurrentUserAsync(userClaims);
+            try
+            {
+                var userDto = await _authService.GetCurrentUserAsync(User);
+                if (userDto == null)
+                    return NotFound(ApiResponse<string>.ErrorResponse("User not found."));
 
-            if (userDto == null)
-                return NotFound("User not found.");
-
-            return Ok(userDto);
+                return Ok(ApiResponse<UserDto>.SuccessResponse("User retrieved successfully.", userDto));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
 
@@ -144,20 +161,16 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (string.IsNullOrEmpty(userId))
-                    return Unauthorized(new { Message = "User not authenticated." });
-
                 var result = await _authService.ChangePasswordAsync(userId, model.OldPassword, model.NewPassword);
 
                 if (result.Succeeded)
-                    return Ok(new { Message = "Password changed successfully. Please log in again." });
+                    return Ok(ApiResponse<string>.SuccessResponse("Password changed successfully. Please log in again."));
 
-                var errors = result.Errors.Select(e => e.Description).ToList();
-                return BadRequest(new { Message = "Password change failed.", Errors = errors });
+                return BadRequest(ApiResponse<string>.ErrorResponse("Password change failed."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { Message = "An error occurred while changing the password.", Error = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -166,23 +179,37 @@ namespace ICPC_Tanta_Web.Controllers
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto model)
         {
-            var result = await _authService.ForgotPasswordAsync(model.Email);
-            if (result.Succeeded)
+            try
             {
-                return Ok("Password reset link sent to your email.");
+                var result = await _authService.ForgotPasswordAsync(model.Email);
+                if (result.Succeeded)
+                {
+                    return Ok(ApiResponse<UserDto>.SuccessResponse("Password reset link sent to your email."));
+                }
+                return BadRequest(ApiResponse<string>.ErrorResponse("Error occurred while sending the reset link."));
             }
-            return BadRequest("Error occurred while sending the reset link.");
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto model)
         {
-            var result = await _authService.ResetPasswordAsync(model.Email, model.Token, model.NewPassword);
-            if (result.Succeeded)
+            try
             {
-                return Ok("Password has been reset successfully.");
+                var result = await _authService.ResetPasswordAsync(model.Email, model.Token, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    return Ok(ApiResponse<UserDto>.SuccessResponse("Password has been reset successfully."));
+                }
+                return BadRequest(ApiResponse<string>.ErrorResponse("Error occurred while resetting the password."));
             }
-            return BadRequest("Error occurred while resetting the password.");
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpPut("update-profile")]
@@ -191,15 +218,12 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (string.IsNullOrEmpty(userId))
-                    return Unauthorized("User not authenticated.");
-
                 var updatedUser = await _authService.UpdateProfileAsync(userId, model);
-                return Ok(updatedUser);
+                return Ok(ApiResponse<UserDto>.SuccessResponse("Profile updated successfully.", updatedUser));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 

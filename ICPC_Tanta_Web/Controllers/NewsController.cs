@@ -28,14 +28,13 @@ namespace ICPC_Tanta_Web.Controllers
             {
                 var data = await _newsService.GetAllAsync();
                 if (data == null || !data.Any())
-                    return NoContent();
+                    return Ok(ApiResponse<IEnumerable<NewsDto>>.SuccessResponse("No news available.", data));
 
-                return Ok(data);
+                return Ok(ApiResponse<IEnumerable<NewsDto>>.SuccessResponse("News retrieved successfully.", data));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new { Message = "An error occurred while fetching news.", Details = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -43,20 +42,19 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<ActionResult<NewsDto>> GetById(int id)
         {
             if (id <= 0)
-                return BadRequest(new { Message = "Invalid ID provided." });
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid ID provided."));
 
             try
             {
                 var item = await _newsService.GetByIdAsync(id);
                 if (item == null)
-                    return NotFound(new { Message = $"News with ID {id} not found." });
+                    return NotFound(ApiResponse<string>.ErrorResponse($"News with ID {id} not found."));
 
-                return Ok(item);
+                return Ok(ApiResponse<NewsDto>.SuccessResponse("News retrieved successfully.", item));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new { Message = "An error occurred while retrieving the news item.", Details = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -64,7 +62,7 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<IActionResult> Add([FromForm] CreateNewsDto createNewsDto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(ApiResponse<string>.ErrorResponse($"Invalid data { ModelState}"));
 
             try
             {
@@ -76,16 +74,15 @@ namespace ICPC_Tanta_Web.Controllers
                 string authorId = user?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "System";
 
                 await _newsService.AddAsync(createNewsDto, author, authorId);
-                return Ok( new { Message = "News added successfully." });
+                return Ok(ApiResponse<string>.SuccessResponse("News added successfully."));
             }
             catch (UnauthorizedAccessException ex)
             {
-                return Unauthorized(new { Message = ex.Message });
+                return Unauthorized(ApiResponse<string>.ErrorResponse(ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new { Message = "An error occurred while adding news.", Details = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse( ex.Message));
             }
         }
 
@@ -93,24 +90,23 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<IActionResult> Update(int id, [FromForm] UpdateNewsDto updateNewsDto)
         {
             if (id <= 0)
-                return BadRequest(new { Message = "Invalid ID provided." });
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid ID provided."));
 
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(ApiResponse<string>.ErrorResponse($"Invalid data {ModelState}"));
 
             try
             {
                 await _newsService.UpdateAsync(updateNewsDto);
-                return Ok(new { Message = "News updated successfully." });
+                return Ok(ApiResponse<string>.SuccessResponse("News updated successfully."));
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(new { Message = ex.Message });
+                return NotFound(ApiResponse<string>.ErrorResponse(ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new { Message = "An error occurred while updating the news item.", Details = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -118,21 +114,20 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0)
-                return BadRequest(new { Message = "Invalid ID provided." });
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid ID provided."));
 
             try
             {
                 await _newsService.DeleteAsync(id);
-                return Ok(new { Message = "News deleted successfully." });
+                return Ok(ApiResponse<string>.SuccessResponse("News deleted successfully."));
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(new { Message = ex.Message });
+                return NotFound(ApiResponse<string>.ErrorResponse(ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new { Message = "An error occurred while deleting the news item.", Details = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -140,20 +135,19 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<IActionResult> Search([FromQuery] string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
-                return BadRequest(new { Message = "Search keyword cannot be empty." });
+                return BadRequest(ApiResponse<string>.ErrorResponse("Search keyword cannot be empty."));
 
             try
             {
                 var results = await _newsService.SearchAsync(keyword);
                 if (!results.Any())
-                    return NotFound(new { Message = "No matching results found." });
+                    return NotFound(ApiResponse<IEnumerable<NewsDto>>.SuccessResponse("No matching results found.", results));
 
-                return Ok(results);
+                return Ok(ApiResponse<IEnumerable<NewsDto>>.SuccessResponse("Search results retrieved successfully.", results));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new { Message = "An error occurred while searching for news.", Details = ex.Message });
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
     }

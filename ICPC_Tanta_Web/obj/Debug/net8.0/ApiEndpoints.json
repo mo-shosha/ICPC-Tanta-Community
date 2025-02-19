@@ -81,7 +81,7 @@
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
     "Method": "Logout",
-    "RelativePath": "api/Auth/Logout",
+    "RelativePath": "api/Auth/logout",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
