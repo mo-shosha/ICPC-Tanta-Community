@@ -1,4 +1,6 @@
-﻿using Core.IServices;
+﻿using Core.DTO;
+using Core.DTO.AccountDTO;
+using Core.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -25,22 +27,19 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<IActionResult> AddRole([FromBody] string roleName)
         {
             if (string.IsNullOrWhiteSpace(roleName))
-                return BadRequest(new { message = "Role name cannot be empty." });
+                return BadRequest(ApiResponse<string>.ErrorResponse("Role name cannot be empty."));
 
             try
             {
                 var result = await _roleService.AddRoleAsync(roleName);
-               
-                if (result.Succeeded)
-                    return Ok(new { message = $"Role '{roleName}' created successfully." });
-
-                return BadRequest(new { message = "Failed to add role.", errors = result.Errors });
+                return result.Succeeded
+                    ? Ok(ApiResponse<string>.SuccessResponse($"Role '{roleName}' created successfully."))
+                    : BadRequest(ApiResponse<string>.ErrorResponse("Failed to add role."));
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-            
         }
 
 
@@ -48,21 +47,20 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<IActionResult> AssignRoleToUser([FromQuery] string userId, [FromQuery] string roleName)
         {
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(roleName))
-                return BadRequest(new { message = "User ID and Role name cannot be empty." });
+                return BadRequest(ApiResponse<string>.ErrorResponse("User ID and Role name cannot be empty."));
 
             try
             {
                 var result = await _roleService.AssignRoleToUserAsync(userId, roleName);
-                if (result.Succeeded)
-                    return Ok(new { message = $"Role '{roleName}' assigned to user with ID '{userId}' successfully." });
-
-                return BadRequest(new { message = "Failed to assign role.", errors = result.Errors });
+                return result.Succeeded
+                    ? Ok(ApiResponse<string>.SuccessResponse($"Role '{roleName}' assigned to user '{userId}' successfully."))
+                    : BadRequest(ApiResponse<string>.ErrorResponse("Failed to assign role."));
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-            
+
         }
 
 
@@ -70,52 +68,51 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<IActionResult> DeleteRole([FromQuery] string roleName)
         {
             if (string.IsNullOrWhiteSpace(roleName))
-                return BadRequest(new { message = "Role name cannot be empty." });
+                return BadRequest(ApiResponse<string>.ErrorResponse("Role name cannot be empty."));
 
             try
             {
                 var result = await _roleService.DeleteRoleAsync(roleName);
-                if(result.Succeeded)
-                    return Ok(new { message = $"Role '{roleName}' deleted successfully." });
-                return BadRequest(new { message = "Failed to remove role.", errors = result.Errors });
+                return result.Succeeded
+                    ? Ok(ApiResponse<string>.SuccessResponse($"Role '{roleName}' deleted successfully."))
+                    : BadRequest(ApiResponse<string>.ErrorResponse("Failed to remove role."));
             }
-            catch (InvalidOperationException ex)
+            catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-            
+
         }
 
-
         [HttpGet("all")]
-        public IActionResult GetAllRoles()
+        public async Task<IActionResult> GetAllRoles()
         {
             try
             {
                 var roles = _roleService.GetAllRoles();
-                return Ok(new { roles });
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-            
-        }
-
-
-        [HttpGet("users")]
-        public async Task<IActionResult> GetAllUsers()
-        {
-            try
-            {
-                var users = await _roleService.GetAllUser();
-                return Ok(new { users });
+                return Ok(ApiResponse<IEnumerable<IdentityRole>>.SuccessResponse("Roles retrieved successfully.", roles));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while retrieving users.", error = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
+
+
+
+        //[HttpGet("users")]
+        //public async Task<IActionResult> GetAllUsers()
+        //{
+        //    try
+        //    {
+        //        var users = await _roleService.GetAllUser();
+        //        return Ok(ApiResponse<IEnumerable<Userinfo>>.SuccessResponse("Users retrieved successfully.", users));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while retrieving users.", error = ex.Message });
+        //    }
+        //}
 
     }
 }

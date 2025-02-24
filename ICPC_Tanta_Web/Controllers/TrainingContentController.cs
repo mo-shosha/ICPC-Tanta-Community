@@ -1,4 +1,6 @@
-﻿using Core.DTO.ContentDTO;
+﻿using Core.DTO;
+using Core.DTO.ContentDTO;
+using Core.Entities;
 using Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,18 +23,15 @@ namespace ICPC_Tanta_Web.Controllers
         {
             try
             {
-                string author = User.Identity?.Name ?? "ICPC Tanta ";
-                if (contentCreateDto.Auther == null)
-                {
-                    contentCreateDto.Auther = author;
-                }
+                string author = User.Identity?.Name ?? "ICPC Tanta";
+                contentCreateDto.Auther ??= author;
 
                 await _trainingContentServices.CreateContentAsync(contentCreateDto);
-                return Ok(new { message = "Content created successfully" });
+                return Ok(ApiResponse<string>.SuccessResponse("Content created successfully."));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -42,16 +41,13 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var content = await _trainingContentServices.GetContentAsyncById(id);
-                if (content == null)
-                {
-                    return NotFound(new { error = "Content not found" });
-                }
-
-                return Ok(content);
+                return content != null
+                    ? Ok(ApiResponse<TrainingContent>.SuccessResponse("Content retrieve successfully", content))
+                    : NotFound(ApiResponse<string>.ErrorResponse("Content not found."));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -61,11 +57,11 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var contents = await _trainingContentServices.GetAllContentAsync();
-                return Ok(contents);
+                return Ok(ApiResponse<IEnumerable<TrainingContent>>.SuccessResponse("Content retrieve successfully", contents));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -76,16 +72,14 @@ namespace ICPC_Tanta_Web.Controllers
             {
                 var existingContent = await _trainingContentServices.GetContentAsyncById(id);
                 if (existingContent == null)
-                {
-                    return NotFound(new { error = "Content not found" });
-                }
+                    return NotFound(ApiResponse<string>.ErrorResponse("Content not found."));
 
                 await _trainingContentServices.UpdateContentAsync(contentUpdateDto);
-                return Ok(new { message = "Content updated successfully" });
+                return Ok(ApiResponse<string>.SuccessResponse("Content updated successfully."));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -96,16 +90,14 @@ namespace ICPC_Tanta_Web.Controllers
             {
                 var existingContent = await _trainingContentServices.GetContentAsyncById(id);
                 if (existingContent == null)
-                {
-                    return NotFound(new { error = "Content not found" });
-                }
+                    return NotFound(ApiResponse<string>.ErrorResponse("Content not found."));
 
                 await _trainingContentServices.DeleteContentAsync(id);
-                return Ok(new { message = "Content deleted successfully" });
+                return Ok(ApiResponse<string>.SuccessResponse("Content deleted successfully."));
             }
             catch (Exception ex)
             {
-                return BadRequest(new { error = ex.Message });
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
     }

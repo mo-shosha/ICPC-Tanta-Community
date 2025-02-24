@@ -1,4 +1,6 @@
-﻿using Core.DTO.EventDTO;
+﻿using Azure;
+using Core.DTO;
+using Core.DTO.EventDTO;
 using Core.IServices;
 using ICPC_Tanta_Web.DTO.NewsDTO;
 using Microsoft.AspNetCore.Http;
@@ -19,66 +21,101 @@ namespace ICPC_Tanta_Web.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            if (id <= 0)
+            try
             {
-                return BadRequest("Invalid ID.");
+                if (id <= 0)
+                {
+                    return BadRequest(ApiResponse<string>.ErrorResponse("Invalid ID provided."));
+                }
+                var item = await _eventService.GetByIdAsync(id);
+                if (item == null)
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Event with ID {id} not found."));
+                }
+                return Ok(ApiResponse<EventWithSchedulesDto>.SuccessResponse("Event retrieved successfully.", item));
             }
-            var item= await _eventService.GetByIdAsync(id);
-            if (item == null) 
+            catch (Exception ex)
             {
-                return NotFound($"Item with ID {id} was not found.");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-            return Ok(item);
 
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var data = await _eventService.GetAllAsync();
-            return Ok(data);
+            try
+            {
+                var data = await _eventService.GetAllAsync();
+                return Ok(ApiResponse<IEnumerable<EventWithSchedulesDto>>.SuccessResponse("Events retrieved successfully.", data));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Add([FromForm] EventCreateDto createEventDto)
         {
-            await _eventService.AddAsync(createEventDto);
-            return CreatedAtAction(nameof(GetById), new { id = createEventDto.Title }, createEventDto);
+            try
+            {
+                await _eventService.AddAsync(createEventDto);
+                return Ok(ApiResponse<EventCreateDto>.SuccessResponse("Event created successfully."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id,[FromBody]EventUpdateDto updateEventDto)
         {
 
-            if (id <= 0)
+            try
             {
-                return BadRequest("Invalid ID.");
-            }
-            var item = await _eventService.GetByIdAsync(id);
-            if (item == null)
-            {
-                return NotFound($"Item with ID {id} was not found.");
-            }
+                if (id <= 0)
+                {
+                    return BadRequest(ApiResponse<string>.ErrorResponse("Invalid ID."));
+                }
+                var item = await _eventService.GetByIdAsync(id);
+                if (item == null)
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Event with ID {id} not found."));
+                }
 
-            updateEventDto.Id = id;
-            await _eventService.UpdateAsync(updateEventDto);
-            return Ok();
+                updateEventDto.Id = id;
+                await _eventService.UpdateAsync(updateEventDto);
+                return Ok(ApiResponse<string>.SuccessResponse("Event updated successfully."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult>Delete(int id)
         {
-            if (id <= 0)
+            try
             {
-                return BadRequest("Invalid ID.");
+                if (id <= 0)
+                {
+                    return BadRequest(ApiResponse<string>.ErrorResponse("Invalid ID."));
+                }
+                var item = await _eventService.GetByIdAsync(id);
+                if (item == null)
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Event with ID {id} not found."));
+                }
+                await _eventService.DeleteAsync(id);
+                return Ok(ApiResponse<string>.SuccessResponse("Event deleted successfully."));
             }
-            var item = await _eventService.GetByIdAsync(id);
-            if (item == null)
+            catch (Exception ex)
             {
-                return NotFound($"Item with ID {id} was not found.");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-            await _eventService.DeleteAsync(id);
-            return Ok();
         }
     }
 }

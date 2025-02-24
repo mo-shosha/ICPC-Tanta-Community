@@ -1,5 +1,7 @@
-﻿using Core.DTO.memberDTO;
+﻿using Core.DTO;
+using Core.DTO.memberDTO;
 using Core.DTO.TeamDTO;
+using Core.Entities;
 using Core.IServices;
 using ICPC_Tanta_Web.Services;
 using Microsoft.AspNetCore.Http;
@@ -20,30 +22,51 @@ namespace ICPC_Tanta_Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreatMemberDto memberDto)
         {
-            await _memeberServices.AddAsync(memberDto);
-            return Ok();
+            try
+            {
+                await _memeberServices.AddAsync(memberDto);
+                return Ok(ApiResponse<string>.SuccessResponse("Member created successfully."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
         
         [HttpGet]
         public async Task<ActionResult<IEnumerable<memberDto>>> GetAll()
         {
-            var members= await _memeberServices.GetAllMemberAsync();
-            if (members == null)
+            try
             {
-                return NoContent();
+                var members = await _memeberServices.GetAllMemberAsync();
+                if (members == null)
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse($"No Members found"));
+                }
+                return Ok(ApiResponse<IEnumerable<memberDto>>.SuccessResponse("Members retrieved successfully.", members));
             }
-            return Ok(members);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<memberDto>> GetById(int id)
         {
-            var members = await _memeberServices.GetMemberByIdAsync(id);
-            if (members == null)
+            try
             {
-                return NoContent();
+                var member = await _memeberServices.GetMemberByIdAsync(id);
+                if (member == null)
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Member with ID {id} not found."));
+                }
+                return Ok(ApiResponse<memberDto>.SuccessResponse("Member retrieved successfully.", member));
             }
-            return Ok(members);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpPut("{id}")]
@@ -52,36 +75,49 @@ namespace ICPC_Tanta_Web.Controllers
 
             if (id <= 0 || id != memberUpdate.Id)
             {
-                return BadRequest("Invalid or mismatched member ID.");
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid or mismatched member ID."));
             }
 
-            var existingMember = await _memeberServices.GetMemberByIdAsync(id);
-            if (existingMember == null)
+            try
             {
-                return NotFound($"Member with ID {id} not found.");
+                var existingMember = await _memeberServices.GetMemberByIdAsync(id);
+                if (existingMember == null)
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Member with ID {id} not found."));
+                }
+
+                await _memeberServices.UpdateAsync(memberUpdate);
+                return Ok(ApiResponse<string>.SuccessResponse("Member updated successfully."));
             }
-
-            await _memeberServices.UpdateAsync(memberUpdate);
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult>Delete(int id)
         {
-            if (id <= 0 )
+            if (id <= 0)
             {
-                return BadRequest("Invalid or mismatched member ID.");
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid or mismatched member ID."));
             }
 
-            var existingMember = await _memeberServices.GetMemberByIdAsync(id);
-            if (existingMember == null)
+            try
             {
-                return NotFound($"Member with ID {id} not found.");
-            }
+                var existingMember = await _memeberServices.GetMemberByIdAsync(id);
+                if (existingMember == null)
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Member with ID {id} not found."));
+                }
 
-            await _memeberServices.DeleteAsync(id);
-            return NoContent();
+                await _memeberServices.DeleteAsync(id);
+                return Ok(ApiResponse<string>.SuccessResponse("Member deleted successfully."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
     }
 }

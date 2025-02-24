@@ -10,9 +10,6 @@ using Microsoft.IdentityModel.Tokens;
 using Repository.Data;
 using Repository.Repositories;
 using System.Text;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using System.Text.Json;
 using ICPC_Tanta_Web.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -103,6 +100,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || app.Enviro
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(

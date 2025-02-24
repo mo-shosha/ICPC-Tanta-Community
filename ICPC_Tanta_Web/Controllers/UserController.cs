@@ -26,7 +26,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -41,7 +41,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -56,7 +56,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -71,7 +71,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -94,7 +94,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
    

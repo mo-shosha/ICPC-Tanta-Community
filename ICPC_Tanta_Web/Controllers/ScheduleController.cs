@@ -1,4 +1,5 @@
-﻿using Core.DTO.ScheduleDto;
+﻿using Core.DTO;
+using Core.DTO.ScheduleDto;
 using Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,51 +20,89 @@ namespace ICPC_Tanta_Web.Controllers
 
         // Get all schedules for an event
         [HttpGet("event/{eventId}")]
-        public async Task<ActionResult<IEnumerable<ScheduleDtoo>>> GetSchedulesByEventIdAsync(int eventId)
+        public async Task<IActionResult> GetSchedulesByEventIdAsync(int eventId)
         {
-            var schedules = await _scheduleService.GetSchedulesByEventIdAsync(eventId);
-            if (schedules == null)
+            try
             {
-                return NotFound("No schedules found for this event.");
+                var schedules = await _scheduleService.GetSchedulesByEventIdAsync(eventId);
+                if (schedules == null || !schedules.Any())
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse("No schedules found for this event."));
+                }
+                return Ok(ApiResponse<IEnumerable<ScheduleDtoo>>.SuccessResponse("Schedules retrieved successfully.", schedules));
             }
-            return Ok(schedules);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
+
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ScheduleDtoo>>GetByIdAsync(int id)
         {
-            var schedules = await _scheduleService.GetByIdAsync(id);
-            if (schedules == null)
+            try
             {
-                return NotFound("No schedules found for this event.");
+                var schedule = await _scheduleService.GetByIdAsync(id);
+                if (schedule == null)
+                {
+                    return NotFound(ApiResponse<string>.ErrorResponse("Schedule not found."));
+                }
+                return Ok(ApiResponse<ScheduleDtoo>.SuccessResponse("Schedule retrieved successfully.", schedule));
             }
-            return Ok(schedules);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         // Create a new schedule
         [HttpPost]
         public async Task<ActionResult> CreateAsync([FromBody] ScheduleCreateDto createScheduleDto)
         {
-            await _scheduleService.AddAsync(createScheduleDto);
-            return Ok();
+            try
+            {
+                await _scheduleService.AddAsync(createScheduleDto);
+                return Ok(ApiResponse<string>.SuccessResponse("Schedule created successfully."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
+
 
         // Update an existing schedule
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateAsync(int id, [FromBody] ScheduleUpdateDto updateScheduleDto)
         {
-            
-            updateScheduleDto.Id = id;
-            await _scheduleService.UpdateAsync(updateScheduleDto);
-            return NoContent();
+            try
+            {
+                updateScheduleDto.Id = id;
+                await _scheduleService.UpdateAsync(updateScheduleDto);
+                return Ok(ApiResponse<string>.SuccessResponse("Schedule updated successfully."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
+
 
         // Delete a schedule
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(int id)
         {
-            await _scheduleService.DeleteAsync(id);
-            return NoContent();
+            try
+            {
+                await _scheduleService.DeleteAsync(id);
+                return Ok(ApiResponse<string>.SuccessResponse("Schedule deleted successfully."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
     }
 }

@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\uploads\\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg"
     },
     {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ICPC_Tanta_Web.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ICPC_Tanta_Web.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

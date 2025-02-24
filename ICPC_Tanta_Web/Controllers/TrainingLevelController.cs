@@ -1,4 +1,6 @@
-﻿using Core.DTO.LevelDTO;
+﻿using Core.DTO;
+using Core.DTO.LevelDTO;
+using Core.Entities;
 using Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,11 +24,11 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var levels = await _trainingLevelServices.GetAllLevels();
-                return Ok(levels);
+                return Ok(ApiResponse<IEnumerable<Leveldto>>.SuccessResponse("Levels retrieved successfully.", levels));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -36,15 +38,15 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var level = await _trainingLevelServices.GetLevelByIdAsync(id);
-                return Ok(level);
+                return Ok(ApiResponse<Leveldto>.SuccessResponse("Level retrieved successfully.", level));
             }
             catch (KeyNotFoundException)
             {
-                return NotFound($"Level with ID {id} not found.");
+                return NotFound(ApiResponse<string>.ErrorResponse($"Level with ID {id} not found."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -53,20 +55,20 @@ namespace ICPC_Tanta_Web.Controllers
         {
             if (levelCreateDto == null)
             {
-                return BadRequest("Level data is null.");
+                return BadRequest(ApiResponse<string>.ErrorResponse("Level data is null."));
             }
             try
             {
                 await _trainingLevelServices.CreateLevelAsync(levelCreateDto);
-                return Ok(new { message = "Level created successfully" });
+                return Ok(ApiResponse<string>.SuccessResponse("Level created successfully."));
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -75,26 +77,26 @@ namespace ICPC_Tanta_Web.Controllers
         {
             if (levelUpdateDto == null)
             {
-                return BadRequest("Level data is null.");
+                return BadRequest(ApiResponse<string>.ErrorResponse("Level data is null."));
             }
 
             if (id != levelUpdateDto.Id)
             {
-                return BadRequest("ID mismatch.");
+                return BadRequest(ApiResponse<string>.ErrorResponse("ID mismatch."));
             }
 
             try
             {
                 await _trainingLevelServices.UpdateLevelAsync(levelUpdateDto);
-                return NoContent();
+                return Ok(ApiResponse<string>.SuccessResponse("Level updated successfully."));
             }
             catch (KeyNotFoundException)
             {
-                return NotFound($"Level with ID {id} not found.");
+                return NotFound(ApiResponse<string>.ErrorResponse($"Level with ID {id} not found."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -104,15 +106,15 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 await _trainingLevelServices.DeleteLevelAsync(id);
-                return NoContent();
+                return Ok(ApiResponse<string>.SuccessResponse("Level deleted successfully."));
             }
             catch (KeyNotFoundException)
             {
-                return NotFound($"Level with ID {id} not found.");
+                return NotFound(ApiResponse<string>.ErrorResponse($"Level with ID {id} not found."));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
 
@@ -122,11 +124,11 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var level = await _trainingLevelServices.GetLevelsWithContentAsync(id);
-                return Ok(level);   
+                return Ok(ApiResponse<TrainingLevel>.SuccessResponse("Level content retrieved successfully.", level));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
 
         }
@@ -136,12 +138,12 @@ namespace ICPC_Tanta_Web.Controllers
         {
             try
             {
-                var level = await _trainingLevelServices.GetLevelWithContentByYearAsync(id,year);
-                return Ok(level);
+                var level = await _trainingLevelServices.GetLevelWithContentByYearAsync(id, year);
+                return Ok(ApiResponse<TrainingLevel>.SuccessResponse("Level content for specified year retrieved successfully.", level));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
 
         }

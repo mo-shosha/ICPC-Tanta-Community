@@ -1,4 +1,5 @@
-﻿using Core.DTO.TeamDTO;
+﻿using Core.DTO;
+using Core.DTO.TeamDTO;
 using Core.Entities;
 using Core.IServices;
 using Microsoft.AspNetCore.Http;
@@ -20,69 +21,91 @@ namespace ICPC_Tanta_Web.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TeamDTO>>> GetAll()
         {
-            var teams = await _teamService.GetAllAsync();
-            return Ok(teams);
+            try
+            {
+                var teams = await _teamService.GetAllAsync();
+                return Ok(ApiResponse<IEnumerable<TeamDTO>>.SuccessResponse("Teams retrieved successfully.", teams));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TeamDTO>> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             if (id <= 0)
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid team ID."));
+
+            try
             {
-                return BadRequest("Invalid ID.");
+                var team = await _teamService.GetByIdAsync(id);
+                if (team == null)
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Team with ID {id} was not found."));
+
+                return Ok(ApiResponse<TeamDTO>.SuccessResponse("Team retrieved successfully.", team));
             }
-            var team = await _teamService.GetByIdAsync(id);
-            if (team == null)
+            catch (Exception ex)
             {
-                return NotFound($"Item with ID {id} was not found.");
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-            return Ok(team);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreateTeamDTO createTeamDTO)
         {
-           await _teamService.AddAsync(createTeamDTO);
-           return CreatedAtAction(nameof(GetById), new { id = createTeamDTO.TeamName }, createTeamDTO);
+            try
+            {
+                await _teamService.AddAsync(createTeamDTO);
+                return Ok(ApiResponse<string>.SuccessResponse("Team created successfully."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] UpdateTeamDto updateTeamDTO)
         {
             if (id <= 0 || id != updateTeamDTO.Id)
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid or mismatched team ID."));
+
+            try
             {
-                return BadRequest("Invalid or mismatched team ID.");  
-            }
+                var existingTeam = await _teamService.GetByIdAsync(id);
+                if (existingTeam == null)
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Team with ID {id} not found."));
 
-            var existingTeam = await _teamService.GetByIdAsync(id);
-            if (existingTeam == null)
+                await _teamService.UpdateAsync(updateTeamDTO);
+                return Ok(ApiResponse<string>.SuccessResponse("Team updated successfully."));
+            }
+            catch (Exception ex)
             {
-                return NotFound($"Team with ID {id} not found.");  
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-
-            await _teamService.UpdateAsync(updateTeamDTO);
-
-            return NoContent();  
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0)
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid team ID."));
+
+            try
             {
-                return BadRequest("Invalid team ID.");  
-            }
+                var team = await _teamService.GetByIdAsync(id);
+                if (team == null)
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Team with ID {id} not found."));
 
-            var team = await _teamService.GetByIdAsync(id);
-            if (team == null)
+                await _teamService.DeleteAsync(id);
+                return Ok(ApiResponse<string>.SuccessResponse("Team deleted successfully."));
+            }
+            catch (Exception ex)
             {
-                return NotFound($"Team with ID {id} not found.");  
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-
-            await _teamService.DeleteAsync(id);
-            
-
-            return NoContent();  
         }
 
 
@@ -90,29 +113,41 @@ namespace ICPC_Tanta_Web.Controllers
         public async Task<ActionResult<Team>> GetTeamWithMembers(int id)
         {
             if (id <= 0)
-            {
-                return BadRequest("Invalid ID.");
-            }
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid team ID."));
 
-            var teamWithMembers = await _teamService.GetAllByMember(id);
-            if (teamWithMembers == null)
+            try
             {
-                return NotFound($"Team with ID {id} was not found.");
-            }
+                var teamWithMembers = await _teamService.GetAllByMember(id);
+                if (teamWithMembers == null)
+                    return NotFound(ApiResponse<string>.ErrorResponse($"Team with ID {id} was not found."));
 
-            return Ok(teamWithMembers);
+                return Ok(ApiResponse<Team>.SuccessResponse("Team with members retrieved successfully.", teamWithMembers));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
 
         [HttpGet("{teamId}/members/{year}")]
         public async Task<IActionResult> GetTeamByYear(int teamId, string year)
         {
-            var team = await _teamService.GetAllByMemberByYear(teamId, year);
+            if (teamId <= 0 || string.IsNullOrWhiteSpace(year))
+                return BadRequest(ApiResponse<string>.ErrorResponse("Invalid team ID or year."));
 
-            if (team == null)
-                return NotFound(new { Message = "Team not found" });
+            try
+            {
+                var team = await _teamService.GetAllByMemberByYear(teamId, year);
+                if (team == null)
+                    return NotFound(ApiResponse<string>.ErrorResponse("Team not found."));
 
-            return Ok(team);
+                return Ok(ApiResponse<Team>.SuccessResponse("Team for the specified year retrieved successfully.", team));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
         }
 
     }
