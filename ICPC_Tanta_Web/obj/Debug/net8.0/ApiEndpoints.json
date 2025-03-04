@@ -287,6 +287,103 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.InfoController",
+    "Method": "GetInfo",
+    "RelativePath": "api/Info",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.InfoController",
+    "Method": "AddInfo",
+    "RelativePath": "api/Info",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FacebookUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "YoutubeUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TwitterUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InstagramUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "LinkedInUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.InfoController",
+    "Method": "UpdateInfo",
+    "RelativePath": "api/Info",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacebookUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "YoutubeUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TwitterUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InstagramUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "LinkedInUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.MemberController",
     "Method": "Create",
     "RelativePath": "api/Member",

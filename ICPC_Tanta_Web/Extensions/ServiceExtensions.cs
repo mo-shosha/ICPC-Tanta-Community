@@ -42,6 +42,7 @@ namespace ICPC_Tanta_Web.Extensions
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<ITokenServices, TokenServices>();
             services.AddScoped<ICodeforcesService, CodeforcesService>();
+            services.AddScoped<IInfoService, InfoService>();
             services.AddHttpClient<ICodeforcesService, CodeforcesService>();
 
             services.AddSignalR();
@@ -57,8 +58,8 @@ namespace ICPC_Tanta_Web.Extensions
                 options.AddPolicy("AllowSpecificOrigin", policy =>
                     policy.AllowAnyOrigin()
                           .AllowAnyHeader()
-                          .AllowAnyMethod()
-                          .AllowCredentials());
+                          .AllowAnyMethod());
+                          //.AllowCredentials());
             });
         }
 

@@ -152,3 +152,7 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Release\net8.0\win-x86\Microsoft.AspNetCore.Connections.Abstractions.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Release\net8.0\win-x86\Microsoft.AspNetCore.SignalR.Common.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Release\net8.0\win-x86\Microsoft.Extensions.Features.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\bin\Release\net8.0\win-x86\ICPC_Tanta_Web.staticwebassets.endpoints.json
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\staticwebassets.build.endpoints.json
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\staticwebassets\msbuild.ICPC_Tanta_Web.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\staticwebassets.upToDateCheck.txt

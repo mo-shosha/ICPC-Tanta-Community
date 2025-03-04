@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\uploads\\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg"
     },
     {
+      "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png",
+      "PackagePath": "staticwebassets\\uploads\\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png"
+    },
+    {
       "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg",
       "PackagePath": "staticwebassets\\uploads\\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg"
     },
@@ -51,6 +55,10 @@
     {
       "Id": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg",
       "PackagePath": "staticwebassets\\uploads\\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.ICPC_Tanta_Web.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.ICPC_Tanta_Web.Microsoft.AspNetCore.StaticWebAssets.props",

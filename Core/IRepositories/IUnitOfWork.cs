@@ -18,6 +18,7 @@ namespace Core.IRepositories
         ITrainingContentRepository TrainingContentRepository { get; }
 
         IChatRepository ChatRepository { get; }
+        IInfoRepository infoRepository { get; }
         Task<int> SaveChangesAsync();
     }
 }

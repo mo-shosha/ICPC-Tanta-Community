@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "ICPC_Tanta_Web",
-    "version": "1.0"
+    "title": "ICPC API",
+    "version": "v1"
   },
   "paths": {
     "/api/Auth/Register": {
@@ -467,6 +467,154 @@
                   "style": "form"
                 },
                 "TicketUrl": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Info": {
+      "get": {
+        "tags": [
+          "Info"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Info"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "FacebookUrl",
+                  "Image",
+                  "LinkedInUrl",
+                  "YoutubeUrl"
+                ],
+                "type": "object",
+                "properties": {
+                  "FacebookUrl": {
+                    "type": "string"
+                  },
+                  "YoutubeUrl": {
+                    "type": "string"
+                  },
+                  "TwitterUrl": {
+                    "type": "string"
+                  },
+                  "InstagramUrl": {
+                    "type": "string"
+                  },
+                  "LinkedInUrl": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "FacebookUrl": {
+                  "style": "form"
+                },
+                "YoutubeUrl": {
+                  "style": "form"
+                },
+                "TwitterUrl": {
+                  "style": "form"
+                },
+                "InstagramUrl": {
+                  "style": "form"
+                },
+                "LinkedInUrl": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Info"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Id"
+                ],
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "FacebookUrl": {
+                    "type": "string"
+                  },
+                  "YoutubeUrl": {
+                    "type": "string"
+                  },
+                  "TwitterUrl": {
+                    "type": "string"
+                  },
+                  "InstagramUrl": {
+                    "type": "string"
+                  },
+                  "LinkedInUrl": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "FacebookUrl": {
+                  "style": "form"
+                },
+                "YoutubeUrl": {
+                  "style": "form"
+                },
+                "TwitterUrl": {
+                  "style": "form"
+                },
+                "InstagramUrl": {
+                  "style": "form"
+                },
+                "LinkedInUrl": {
                   "style": "form"
                 },
                 "Image": {

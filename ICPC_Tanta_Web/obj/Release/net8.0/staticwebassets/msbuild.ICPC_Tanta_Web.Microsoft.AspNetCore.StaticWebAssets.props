@@ -1,6 +1,6 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0b5bbe9d-9315-4e7b-85e7-95265c094926_images.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0b5bbe9d-9315-4e7b-85e7-95265c094926_images.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -12,11 +12,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>88dcd7jo4r</Fingerprint>
+      <Integrity>+KZEnnqanYAuWEqrNFjlohAxYgXqczpCei2g86Sm0ac=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\0b5bbe9d-9315-4e7b-85e7-95265c094926_images.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\0b5bbe9d-9315-4e7b-85e7-95265c094926_images.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -28,11 +30,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>1c6vuu4y7u</Fingerprint>
+      <Integrity>0Qem/tB3O8UMJmextggzwi1l1y5jsWMxds8OXerxxyQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\192a1600-1d38-4a82-9c21-f1b34157f6b1_home-slider-2.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\24674aab-e52f-46ef-89ec-2f4d5d47ecda_images.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\24674aab-e52f-46ef-89ec-2f4d5d47ecda_images.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -44,11 +48,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>88dcd7jo4r</Fingerprint>
+      <Integrity>+KZEnnqanYAuWEqrNFjlohAxYgXqczpCei2g86Sm0ac=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\24674aab-e52f-46ef-89ec-2f4d5d47ecda_images.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\24674aab-e52f-46ef-89ec-2f4d5d47ecda_images.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\2f3ad460-6230-4b3d-801d-e0d0ef050737_arrival-5.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2f3ad460-6230-4b3d-801d-e0d0ef050737_arrival-5.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -60,11 +66,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>edgljzgwb5</Fingerprint>
+      <Integrity>3lp9A2cLdZWsNS1W1WUuLTLR/aR9qC5XVh36PXBYDTQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\2f3ad460-6230-4b3d-801d-e0d0ef050737_arrival-5.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\2f3ad460-6230-4b3d-801d-e0d0ef050737_arrival-5.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\428d7cf9-9de3-4925-96de-84e1af97a261_images.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\428d7cf9-9de3-4925-96de-84e1af97a261_images.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -76,11 +84,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>88dcd7jo4r</Fingerprint>
+      <Integrity>+KZEnnqanYAuWEqrNFjlohAxYgXqczpCei2g86Sm0ac=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\428d7cf9-9de3-4925-96de-84e1af97a261_images.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\428d7cf9-9de3-4925-96de-84e1af97a261_images.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -92,11 +102,31 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>88dcd7jo4r</Fingerprint>
+      <Integrity>+KZEnnqanYAuWEqrNFjlohAxYgXqczpCei2g86Sm0ac=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>ICPC_Tanta_Web</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/ICPC_Tanta_Web</BasePath>
+      <RelativePath>uploads/5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>2nmkpvonl9</Fingerprint>
+      <Integrity>noSzTPbp4+IoFViXnrATrsTJMTrv6iIuOEESfn4n6VA=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -108,11 +138,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>mbvwj1fc52</Fingerprint>
+      <Integrity>ku1ixtXHJpNptCJM3zxZFveqQrnqmZa2HGfVwCaxpsg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -124,11 +156,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5pdztcc8i1</Fingerprint>
+      <Integrity>5yJjXE48/ZG6h5wc7IkqVkZfP7XcvumqEpfl+FaYuG4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -140,11 +174,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>xd45cod6a6</Fingerprint>
+      <Integrity>deHhV/jGcaEGrhaqjcfdAN4EaT8/maIY5suggrovdDc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -156,11 +192,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>edgljzgwb5</Fingerprint>
+      <Integrity>3lp9A2cLdZWsNS1W1WUuLTLR/aR9qC5XVh36PXBYDTQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\bf90b1f8-2afc-4e8a-8a47-65e1f3df7a2c_images.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\bf90b1f8-2afc-4e8a-8a47-65e1f3df7a2c_images.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -172,11 +210,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>88dcd7jo4r</Fingerprint>
+      <Integrity>+KZEnnqanYAuWEqrNFjlohAxYgXqczpCei2g86Sm0ac=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\bf90b1f8-2afc-4e8a-8a47-65e1f3df7a2c_images.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\bf90b1f8-2afc-4e8a-8a47-65e1f3df7a2c_images.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -188,11 +228,13 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>yl187td3lp</Fingerprint>
+      <Integrity>JkX1Go3V/RxBlTj5ENa4c9OETGMx+ZhbJh3+4AtMWNk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\da70579a-451f-4e13-8e40-692fc91f808d_product-1.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>ICPC_Tanta_Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
@@ -204,9 +246,11 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>88dcd7jo4r</Fingerprint>
+      <Integrity>+KZEnnqanYAuWEqrNFjlohAxYgXqczpCei2g86Sm0ac=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\df6d3191-0b81-4cb0-ab03-c78ba2d3630d_images.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\extensions\\middlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\extensions\\middlewareextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\extensions\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\extensions\\serviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\extensions\\authextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\extensions\\authextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\icpc_tanta_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{996C01DC-8C30-4797-B093-925CE1B677DD}|ICPC_Tanta_Web\\ICPC_Tanta_Web.csproj|solutionrelative:icpc_tanta_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4DBAA187-8518-4FBE-A4E8-6EBDC4694922}|Repository\\Repository.csproj|e:\\projects in back\\icpc_tanta\\icpc_tanta_web\\repository\\migrations\\20250303214354_updateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DBAA187-8518-4FBE-A4E8-6EBDC4694922}|Repository\\Repository.csproj|solutionrelative:repository\\migrations\\20250303214354_updateinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,41 +22,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AuthExtensions.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Extensions\\AuthExtensions.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Extensions\\AuthExtensions.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Extensions\\AuthExtensions.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Extensions\\AuthExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T20:44:28.199Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ServiceExtensions.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Extensions\\ServiceExtensions.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Extensions\\ServiceExtensions.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Extensions\\ServiceExtensions.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Extensions\\ServiceExtensions.cs",
-              "ViewState": "AgIAACwAAAAAKDMzMzPzv0MAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T20:42:04.906Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MiddlewareExtensions.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Extensions\\MiddlewareExtensions.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Extensions\\MiddlewareExtensions.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Extensions\\MiddlewareExtensions.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Extensions\\MiddlewareExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAHAAAAAAAAAA==",
+              "Title": "20250303214354_updateinfo.cs",
+              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Repository\\Migrations\\20250303214354_updateinfo.cs",
+              "RelativeDocumentMoniker": "Repository\\Migrations\\20250303214354_updateinfo.cs",
+              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\Repository\\Migrations\\20250303214354_updateinfo.cs",
+              "RelativeToolTip": "Repository\\Migrations\\20250303214354_updateinfo.cs",
+              "ViewState": "AgIAAAAAAAAAMzMzMzMrwA0AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T20:45:04.324Z",
+              "WhenOpened": "2025-03-03T21:43:57.212Z",
               "EditorCaption": ""
             },
             {
@@ -98,19 +60,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Program.cs",
-              "RelativeDocumentMoniker": "ICPC_Tanta_Web\\Program.cs",
-              "ToolTip": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\Program.cs",
-              "RelativeToolTip": "ICPC_Tanta_Web\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T20:23:02.201Z",
-              "EditorCaption": ""
             }
           ]
         }
