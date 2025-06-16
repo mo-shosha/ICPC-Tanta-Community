@@ -1,7 +1,9 @@
 ﻿using Core.Entities.Identity;
+using Core.helper;
 using Core.IRepositories;
 using Core.IServices;
 using ICPC_Tanta_Web.Services;
+using ICPC_Tanta_Web.Services.BackServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -25,6 +27,18 @@ namespace ICPC_Tanta_Web.Extensions
             })
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
+
+            services.AddScoped<ISocialMediaSyncService, SocialMediaSyncService>();
+            // YouTubeSetting 
+            services.Configure<YouTubeSettings>(
+                    configuration.GetSection("YouTube"));
+            services.AddScoped<YoutubeService>();
+            services.AddHostedService<YoutubeSyncBackgroundService>();
+
+
+
+            // FacebookSetting
+
 
             // تسجيل الـ Services و Repositories
             services.AddScoped<IUnitOfWork, UnitOfWork>();

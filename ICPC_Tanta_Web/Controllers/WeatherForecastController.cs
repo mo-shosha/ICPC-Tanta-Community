@@ -1,3 +1,4 @@
+using ICPC_Tanta_Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ICPC_Tanta_Web.Controllers
@@ -6,28 +7,18 @@ namespace ICPC_Tanta_Web.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly YoutubeService _youtubeService;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(YoutubeService youtubeService)
         {
-            _logger = logger;
+            _youtubeService = youtubeService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("videos")]
+        public async Task<IActionResult> GetVideos()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var videos = await _youtubeService.GetLatestVideosAsync();
+            return Ok(videos); 
         }
     }
 }

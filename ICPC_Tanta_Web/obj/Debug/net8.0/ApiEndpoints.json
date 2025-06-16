@@ -821,6 +821,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.SocialMediaController",
+    "Method": "SyncTrainingVideos",
+    "RelativePath": "api/SocialMedia/sync-training",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.TeamController",
     "Method": "GetAll",
     "RelativePath": "api/Team",
@@ -1299,23 +1309,12 @@
   },
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "Method": "GetVideos",
+    "RelativePath": "WeatherForecast/videos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ICPC_Tanta_Web.WeatherForecast, ICPC_Tanta_Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
   }
 ]
