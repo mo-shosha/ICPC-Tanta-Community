@@ -20,5 +20,8 @@ namespace Core.Entities
         public int TrainingLevelId { get; set; }
 
         public TrainingLevel TrainingLevel { get; set; }
+
+        public int? ContentCategoryId { get; set; }
+        public ContentCategory ContentCategory { get; set; }
     }
 }

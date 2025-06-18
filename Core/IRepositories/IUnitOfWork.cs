@@ -16,7 +16,7 @@ namespace Core.IRepositories
         ITeamRepository TeamRepository { get; }
         ITrainingLevelRepository TrainingLevelRepository { get; }
         ITrainingContentRepository TrainingContentRepository { get; }
-
+        IContentCategoryRepository ContentCategoryRepository { get; }
         IChatRepository ChatRepository { get; }
         IInfoRepository infoRepository { get; }
         Task<int> SaveChangesAsync();

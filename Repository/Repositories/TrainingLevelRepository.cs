@@ -21,6 +21,7 @@ namespace Repository.Repositories
         {
             return await _db.Set<TrainingLevel>()
              .Include(t => t.Contents)
+             .ThenInclude(c => c.ContentCategory)
              .Where(t => t.Contents.Any(m => m.CreatedAt.Year.ToString() == year))
              .ToListAsync();   
         }
@@ -29,6 +30,7 @@ namespace Repository.Repositories
         {
             return await _db.Set<TrainingLevel>()
                .Include(t => t.Contents)
+               .ThenInclude(c => c.ContentCategory)
                .ToListAsync();
         }
     }

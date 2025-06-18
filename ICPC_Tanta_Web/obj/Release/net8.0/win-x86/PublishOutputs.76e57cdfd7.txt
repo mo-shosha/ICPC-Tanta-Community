@@ -6,6 +6,10 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\ICPC_Tanta_Web.pdb
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Azure.Core.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Azure.Identity.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Google.Apis.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Google.Apis.Auth.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Google.Apis.Core.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Google.Apis.YouTube.v3.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Emby.Media.Model.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Emby.Web.GenericEdit.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\MediaBrowser.Common.dll
@@ -47,9 +51,11 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.ClientModel.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.CodeDom.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.Drawing.Common.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.Management.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.Memory.Data.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.Runtime.Caching.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll

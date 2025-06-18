@@ -309,7 +309,9 @@ namespace ICPC_Tanta_Web.Services
                 Rating = codeforcesUserInfo?.Rating ?? 0,
                 Rank = codeforcesUserInfo?.Rank ?? "Unknown",
                 TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
-                Handle = codeforcesUserInfo.Handle
+                Handle = codeforcesUserInfo.Handle,
+                Id=user.Id,
+                PhoneNumber=user.PhoneNumber
             };
 
         }

@@ -78,6 +78,23 @@ namespace Repository.Migrations
                     b.ToTable("ChatMessages");
                 });
 
+            modelBuilder.Entity("Core.Entities.ContentCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("contentCategories");
+                });
+
             modelBuilder.Entity("Core.Entities.Events", b =>
                 {
                     b.Property<int>("Id")
@@ -330,6 +347,9 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ContentCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ContentUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -345,6 +365,8 @@ namespace Repository.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ContentCategoryId");
 
                     b.HasIndex("TrainingLevelId");
 
@@ -605,11 +627,17 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Core.Entities.TrainingContent", b =>
                 {
+                    b.HasOne("Core.Entities.ContentCategory", "ContentCategory")
+                        .WithMany("TrainingContents")
+                        .HasForeignKey("ContentCategoryId");
+
                     b.HasOne("Core.Entities.TrainingLevel", "TrainingLevel")
                         .WithMany("Contents")
                         .HasForeignKey("TrainingLevelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ContentCategory");
 
                     b.Navigation("TrainingLevel");
                 });
@@ -663,6 +691,11 @@ namespace Repository.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Entities.ContentCategory", b =>
+                {
+                    b.Navigation("TrainingContents");
                 });
 
             modelBuilder.Entity("Core.Entities.Events", b =>

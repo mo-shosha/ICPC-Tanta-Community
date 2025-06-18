@@ -14,14 +14,19 @@ namespace Core.DTO.ContentDTO
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Content Title must be between 3 and 50 characters.")]
         [SafeText]
         public string Title { get; set; }
+
         [Required(ErrorMessage = "Content Title is required.")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Content Content must be between 3 and 100 characters.")]
         [SafeText]
         public string ContentUrl {  get; set; }
 
         public string? Auther {  get; set; }
+
         [Required]
         public int LevelId { get; set; }
+
+        [Required]
+        public int CategoryId { get; set; }
 
     }
 }

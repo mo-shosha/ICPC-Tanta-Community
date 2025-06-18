@@ -27,13 +27,28 @@ namespace ICPC_Tanta_Web.Services
                     throw new ArgumentException("Content Title cannot be empty.");
                 }
 
+
+                var level = await _unitOfWork.TrainingLevelRepository.GetByIdAsync(contentCreateDto.LevelId);
+                if (level == null)
+                {
+                    throw new KeyNotFoundException($"Training level with ID {contentCreateDto.LevelId} not found.");
+                }
+
+
+                var category = await _unitOfWork.ContentCategoryRepository.GetByIdAsync(contentCreateDto.CategoryId);
+                if (category == null)
+                {
+                    throw new KeyNotFoundException($"Content category with ID {contentCreateDto.CategoryId} not found.");
+                }
+
                 var newContent = new TrainingContent()
                 {
                     Title = contentCreateDto.Title,
                     CreatedAt = DateTime.Now,
                     ContentUrl = contentCreateDto.ContentUrl,
                     Auther = contentCreateDto.Auther,
-                    TrainingLevelId = contentCreateDto.LevelId
+                    TrainingLevelId = contentCreateDto.LevelId,
+                    ContentCategoryId = contentCreateDto.CategoryId
                 };
 
                 await _unitOfWork.TrainingContentRepository.AddAsync(newContent);
@@ -44,6 +59,7 @@ namespace ICPC_Tanta_Web.Services
                 throw new Exception("An error occurred while creating the content.", ex);
             }
         }
+
 
         public async Task DeleteContentAsync(int id)
         {

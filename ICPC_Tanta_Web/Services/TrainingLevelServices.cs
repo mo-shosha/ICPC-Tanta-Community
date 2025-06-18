@@ -162,6 +162,19 @@ namespace ICPC_Tanta_Web.Services
                         ContentUrl = c.ContentUrl,
                         Auther = c.Auther,
                         CreatedAt = c.CreatedAt,
+                        ContentCategoryId = c.ContentCategoryId,
+                        ContentCategory = c.ContentCategory != null
+                        ? new ContentCategory
+                        {
+                            Id = c.ContentCategory.Id,
+                            CategoryName = c.ContentCategory.CategoryName 
+                        }
+                        : new ContentCategory
+                        {
+                            Id = 0,
+                            CategoryName = "UNKnow"
+                        },
+                        TrainingLevelId=id,
                     }).ToList()
                 };
             }
@@ -199,6 +212,18 @@ namespace ICPC_Tanta_Web.Services
                         ContentUrl = c.ContentUrl,
                         Auther = c.Auther,
                         CreatedAt = c.CreatedAt,
+                        ContentCategoryId = c.ContentCategoryId,
+                        ContentCategory = c.ContentCategory != null
+                        ? new ContentCategory
+                        {
+                            Id = c.ContentCategory.Id,
+                            CategoryName = c.ContentCategory.CategoryName 
+                        }
+                        : new ContentCategory
+                        {
+                            Id = 0,
+                            CategoryName = "UNKnow"
+                        },
                     }).ToList()
                 };
             }
