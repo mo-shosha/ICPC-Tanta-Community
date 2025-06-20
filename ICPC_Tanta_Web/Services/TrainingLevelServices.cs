@@ -4,6 +4,7 @@ using Core.IRepositories;
 using Core.IServices;
 using ICPC_Tanta_Web.DTO.NewsDTO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ICPC_Tanta_Web.Services
 {
@@ -136,103 +137,115 @@ namespace ICPC_Tanta_Web.Services
             }
         }
 
-        
-        public async Task<TrainingLevel> GetLevelsWithContentAsync(int id)
+
+        public async Task<TrainingLevelWithWeeklyContent> GetLevelsWithContentAsync(int id)
         {
             try
             {
-                var levelwithcontent = await _unitOfWork.TrainingLevelRepository.LevelWithContentsAync();
-                var selectedLevel = levelwithcontent.FirstOrDefault(l => l.Id == id);
+                var levels = await _unitOfWork.TrainingLevelRepository.LevelWithContentsAync();
+                var selectedLevel = levels.FirstOrDefault(l => l.Id == id);
 
                 if (selectedLevel == null)
-                {
-                    return null;  
-                }
-
-                return new TrainingLevel
-                {
-                    Id = selectedLevel.Id,
-                    Name = selectedLevel.Name,
-                    Description = selectedLevel.Description,
-                    LevelImg=selectedLevel.LevelImg,
-                    Contents = selectedLevel.Contents.Select(c => new TrainingContent
-                    {
-                        Id = c.Id,
-                        Title = c.Title,
-                        ContentUrl = c.ContentUrl,
-                        Auther = c.Auther,
-                        CreatedAt = c.CreatedAt,
-                        ContentCategoryId = c.ContentCategoryId,
-                        ContentCategory = c.ContentCategory != null
-                        ? new ContentCategory
-                        {
-                            Id = c.ContentCategory.Id,
-                            CategoryName = c.ContentCategory.CategoryName 
-                        }
-                        : new ContentCategory
-                        {
-                            Id = 0,
-                            CategoryName = "UNKnow"
-                        },
-                        TrainingLevelId=id,
-                    }).ToList()
-                };
-            }
-            catch (Exception ex)
-            {
-                // Include the exception details in the thrown exception for better debugging
-                throw new Exception("An error occurred while retrieving levels with content.", ex);
-            }
-        }
-
-
-        public async Task<TrainingLevel> GetLevelWithContentByYearAsync(int id,string year)
-        {
-            try
-            {
-
-                var levelwithcontent= await _unitOfWork.TrainingLevelRepository.LevelWithContentByYearAync(year);
-                var selectedLevel = levelwithcontent.FirstOrDefault(l => l.Id == id);
-
-                if (selectedLevel == null)
-                {
                     return null;
-                }
 
-                return new TrainingLevel
+                var grouped = GroupContentsByWeek(selectedLevel.Contents);
+
+                return new TrainingLevelWithWeeklyContent
                 {
                     Id = selectedLevel.Id,
                     Name = selectedLevel.Name,
                     Description = selectedLevel.Description,
                     LevelImg = selectedLevel.LevelImg,
-                    Contents = selectedLevel.Contents.Select(c => new TrainingContent
-                    {
-                        Id = c.Id,
-                        Title = c.Title,
-                        ContentUrl = c.ContentUrl,
-                        Auther = c.Auther,
-                        CreatedAt = c.CreatedAt,
-                        ContentCategoryId = c.ContentCategoryId,
-                        ContentCategory = c.ContentCategory != null
-                        ? new ContentCategory
-                        {
-                            Id = c.ContentCategory.Id,
-                            CategoryName = c.ContentCategory.CategoryName 
-                        }
-                        : new ContentCategory
-                        {
-                            Id = 0,
-                            CategoryName = "UNKnow"
-                        },
-                    }).ToList()
+                    WeeklyContents = grouped
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception($"An error occurred while retrieving levels for the year {year}.");
+                throw new Exception("An error occurred while retrieving levels with content.", ex);
             }
         }
 
-         
+
+        public async Task<TrainingLevelWithWeeklyContent> GetLevelWithContentByYearAsync(int id, string year)
+        {
+            try
+            {
+                var levels = await _unitOfWork.TrainingLevelRepository.LevelWithContentByYearAync(year);
+                var selectedLevel = levels.FirstOrDefault(l => l.Id == id);
+
+                if (selectedLevel == null)
+                    return null;
+
+                var grouped = GroupContentsByWeek(selectedLevel.Contents);
+
+                return new TrainingLevelWithWeeklyContent
+                {
+                    Id = selectedLevel.Id,
+                    Name = selectedLevel.Name,
+                    Description = selectedLevel.Description,
+                    LevelImg = selectedLevel.LevelImg,
+                    WeeklyContents = grouped
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred while retrieving levels for the year {year}.", ex);
+            }
+        }
+
+        private List<WeeklyGroupedContent> GroupContentsByWeek(IEnumerable<TrainingContent> contents)
+        {
+            string GetType(TrainingContent c)
+            {
+                var name = c.ContentCategory?.CategoryName?.ToLower() ?? "";
+                if (name.Contains("explanation")) return "explanation";
+                if (name.Contains("sheet")) return "sheet";
+                if (name.Contains("upsolve")) return "upsolve";
+                return "unknown";
+            }
+
+            int ExtractWeek(string title)
+            {
+                var match = Regex.Match(title.ToLower(), @"week\s*(\d+)");
+                return match.Success ? int.Parse(match.Groups[1].Value) : -1;
+            }
+
+            return contents
+                .GroupBy(c => ExtractWeek(c.Title))
+                .Where(g => g.Key != -1)
+                .Select(g => new WeeklyGroupedContent
+                {
+                    WeekNumber = g.Key,
+                    Explanation = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "explanation")),
+                    Sheet = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "sheet")),
+                    Upsolve = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "upsolve"))
+                })
+                .OrderBy(w => w.WeekNumber)
+                .ToList();
+        }
+
+        private TrainingContent ProjectContentWithoutLevel(TrainingContent c)
+        {
+            if (c == null) return null;
+
+            return new TrainingContent
+            {
+                Id = c.Id,
+                Title = c.Title,
+                ContentUrl = c.ContentUrl,
+                Auther = c.Auther,
+                CreatedAt = c.CreatedAt,
+                ContentCategoryId = c.ContentCategoryId,
+                ContentCategory = c.ContentCategory != null
+                    ? new ContentCategory
+                    {
+                        Id = c.ContentCategory.Id,
+                        CategoryName = c.ContentCategory.CategoryName
+                    }
+                    : null,
+            };
+        }
+
+
     }
 }

@@ -58,6 +58,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPost]
         public async Task<IActionResult> Add([FromForm] CreateNewsDto createNewsDto)
         {
@@ -86,6 +87,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, [FromForm] UpdateNewsDto updateNewsDto)
         {
@@ -110,6 +112,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

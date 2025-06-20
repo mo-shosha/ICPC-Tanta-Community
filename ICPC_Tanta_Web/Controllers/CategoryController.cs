@@ -1,13 +1,15 @@
 ﻿using Core.DTO;
 using Core.Entities;
 using Core.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Repository.Repositories;
 
 namespace ICPC_Tanta_Web.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin,Instructor")]
     public class CategoryController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

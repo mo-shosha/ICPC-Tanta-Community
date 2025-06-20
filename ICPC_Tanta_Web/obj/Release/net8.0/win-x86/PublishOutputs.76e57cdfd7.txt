@@ -64,8 +64,6 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Microsoft.Data.SqlClient.SNI.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Core.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Repository.dll
-E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Services.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Core.pdb
-E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Services.pdb
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\Repository.pdb
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\ICPC_Tanta_Web\obj\Release\net8.0\win-x86\PubTmp\Out\ICPC_Tanta_Web.deps.json

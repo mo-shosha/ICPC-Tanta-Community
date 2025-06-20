@@ -2,6 +2,7 @@
 using Core.DTO.InfoDTO;
 using Core.Entities;
 using Core.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +34,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPost]
         public async Task<IActionResult> AddInfo([FromForm] CreateInfoDto createInfoDto)
         {
@@ -55,6 +57,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPut]
         public async Task<IActionResult> UpdateInfo([FromForm] UpdateInfoDto updateInfoDto)
         {

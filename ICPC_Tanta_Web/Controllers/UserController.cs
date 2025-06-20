@@ -3,6 +3,7 @@ using Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Core.DTO;
+using Microsoft.AspNetCore.Authorization;
 namespace ICPC_Tanta_Web.Controllers
 {
     [Route("api/[controller]")]
@@ -16,6 +17,7 @@ namespace ICPC_Tanta_Web.Controllers
             _userServices = userServices;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("instructors")]
         public async Task<ActionResult<IEnumerable<Userinfo>>> GetAllInstructors()
         {
@@ -30,7 +32,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpGet("users")]
         public async Task<ActionResult<IEnumerable<Userinfo>>> GetAllUsers()
         {

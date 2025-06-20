@@ -1,4 +1,5 @@
 ﻿using Core.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ICPC_Tanta_Web.Controllers
@@ -14,6 +15,7 @@ namespace ICPC_Tanta_Web.Controllers
             _socialMediaSyncService = socialMediaSyncService;
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPost("sync-training")]
         public async Task<IActionResult> SyncTrainingVideos()
         {

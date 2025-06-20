@@ -3,6 +3,7 @@ using Core.DTO;
 using Core.DTO.EventDTO;
 using Core.IServices;
 using ICPC_Tanta_Web.DTO.NewsDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,6 +56,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPost]
         public async Task<IActionResult> Add([FromForm] EventCreateDto createEventDto)
         {
@@ -69,6 +71,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id,[FromBody]EventUpdateDto updateEventDto)
         {
@@ -95,6 +98,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpDelete("{id}")]
         public async Task<IActionResult>Delete(int id)
         {

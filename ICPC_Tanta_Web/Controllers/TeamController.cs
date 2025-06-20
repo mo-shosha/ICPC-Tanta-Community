@@ -2,6 +2,7 @@
 using Core.DTO.TeamDTO;
 using Core.Entities;
 using Core.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,6 +53,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreateTeamDTO createTeamDTO)
         {
@@ -66,6 +68,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] UpdateTeamDto updateTeamDTO)
         {
@@ -87,6 +90,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

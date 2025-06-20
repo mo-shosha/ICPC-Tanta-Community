@@ -22,7 +22,7 @@ namespace ICPC_Tanta_Web.Controllers
             _roleService = roleService;
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("add")]
         public async Task<IActionResult> AddRole([FromBody] string roleName)
         {
@@ -42,7 +42,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("assign-role")]
         public async Task<IActionResult> AssignRoleToUser([FromQuery] string userId, [FromQuery] string roleName)
         {
@@ -63,7 +63,7 @@ namespace ICPC_Tanta_Web.Controllers
 
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteRole([FromQuery] string roleName)
         {
@@ -84,6 +84,7 @@ namespace ICPC_Tanta_Web.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllRoles()
         {

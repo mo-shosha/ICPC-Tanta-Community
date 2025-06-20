@@ -2,6 +2,7 @@
 using Core.DTO.LevelDTO;
 using Core.Entities;
 using Core.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetLevelById(int id)
         {
@@ -50,6 +52,8 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPost]
         public async Task<IActionResult> CreateLevel([FromForm] LevelCreateDto levelCreateDto)
         {
@@ -72,6 +76,8 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateLevel(int id, [FromForm] LevelUpdateDto levelUpdateDto)
         {
@@ -100,6 +106,8 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLevel(int id)
         {
@@ -118,13 +126,14 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+
         [HttpGet("content/{id}")]
         public async Task<IActionResult> GetLevelsWithContent(int id)
         {
             try
             {
                 var level = await _trainingLevelServices.GetLevelsWithContentAsync(id);
-                return Ok(ApiResponse<TrainingLevel>.SuccessResponse("Level content retrieved successfully.", level));
+                return Ok(ApiResponse<TrainingLevelWithWeeklyContent>.SuccessResponse("Level content retrieved successfully.", level));
             }
             catch (Exception ex)
             {
@@ -133,13 +142,14 @@ namespace ICPC_Tanta_Web.Controllers
 
         }
 
+
         [HttpGet("content/{id}/{year}")]
         public async Task<IActionResult> GetLevelWithContentByYear(int id,string year)
         {
             try
             {
                 var level = await _trainingLevelServices.GetLevelWithContentByYearAsync(id, year);
-                return Ok(ApiResponse<TrainingLevel>.SuccessResponse("Level content for specified year retrieved successfully.", level));
+                return Ok(ApiResponse<TrainingLevelWithWeeklyContent>.SuccessResponse("Level content for specified year retrieved successfully.", level));
             }
             catch (Exception ex)
             {

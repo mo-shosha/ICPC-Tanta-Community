@@ -101,6 +101,37 @@ namespace ICPC_Tanta_Web.Services
             }
         }
 
+        public async Task ResendEmailConfirmationAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                throw new Exception("User not found.");
+
+            if (await _userManager.IsEmailConfirmedAsync(user))
+                throw new Exception("Email is already confirmed.");
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var confirmationLink = $"https://icpc-tanta.runasp.net/api/Auth/ConfirmEmail?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+            await _emailService.SendEmailAsync(
+                user.Email,
+                "Confirm Your Email",
+                $@"
+                    <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px;'>
+                        <h2 style='color: #007bff;'>Confirm Your Email Address</h2>
+                        <p>Hello {user.FullName},</p>
+                        <p>You requested to resend the confirmation email. Please confirm your email address to activate your account.</p>
+                        <p style='text-align: center;'>
+                            <a href='{confirmationLink}' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold;'>
+                                Confirm Email
+                            </a>
+                        </p>
+                        <p>If you did not request this, please ignore the email.</p>
+                        <p>Thanks,<br/>The Team</p>
+                    </div>"
+            );
+        }
+
         public async Task<UserDto> LoginAsync(LoginDto model)
         {
             try
@@ -116,16 +147,24 @@ namespace ICPC_Tanta_Web.Services
                 var accessToken = await _tokenServices.CreateTokenAsync(user, _userManager);
                 var newRefreshToken = _tokenServices.GenerateRefreshToken();
 
-                var activeRefreshToken = user.RefreshTokens.FirstOrDefault(t => t.IsActive);
-                if (activeRefreshToken == null)
-                {
-                    user.RefreshTokens.Add(newRefreshToken);
-                    activeRefreshToken = newRefreshToken;
-                }
+                //var activeRefreshToken = user.RefreshTokens.FirstOrDefault(t => t.IsActive);
+                //if (activeRefreshToken == null)
+                //{
+                //    user.RefreshTokens.Add(newRefreshToken);
+                //    activeRefreshToken = newRefreshToken;
+                //}
+
+                user.RefreshTokens.RemoveAll(t => !t.IsActive);
+
+                // إضافة التوكن الجديد
+                user.RefreshTokens.Add(newRefreshToken);
+
+                // حفظ التغييرات
+                await _userManager.UpdateAsync(user);
 
                 await _userManager.UpdateAsync(user);
 
-                SetRefreshTokenInCookie(activeRefreshToken.Token, activeRefreshToken.ExpiresOn);
+                SetRefreshTokenInCookie(newRefreshToken.Token, newRefreshToken.ExpiresOn);
 
                 var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
 
@@ -143,8 +182,8 @@ namespace ICPC_Tanta_Web.Services
                     TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
                     Roles = userRoles.ToList(),
                     Token = accessToken,
-                    RefreshToken = activeRefreshToken.Token,
-                    RefreshTokenExpiration = activeRefreshToken.ExpiresOn
+                    RefreshToken = newRefreshToken.Token,
+                    RefreshTokenExpiration = newRefreshToken.ExpiresOn
                 };
             }
             catch (UnauthorizedAccessException ex)
@@ -174,7 +213,6 @@ namespace ICPC_Tanta_Web.Services
             }
         }
 
-
         public async Task<UserDto> RefreshTokenAsync(string refreshToken)
         {
             try
@@ -190,6 +228,9 @@ namespace ICPC_Tanta_Web.Services
                 // إزالة التوكن القديم 
                 user.RefreshTokens.Remove(storedToken);
 
+                // cleanup expired tokens
+                user.RefreshTokens.RemoveAll(rt => !rt.IsActive && rt.ExpiresOn < DateTime.UtcNow.AddDays(-7));
+
                 // إنشاء التوكنات الجديدة
                 var newAccessToken = await _tokenServices.CreateTokenAsync(user, _userManager);
                 var newRefreshToken = _tokenServices.GenerateRefreshToken();
@@ -202,7 +243,7 @@ namespace ICPC_Tanta_Web.Services
                 // استرجاع بيانات Codeforces
                 var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
 
-                // استرجاع الأدوار الخاصة بالمستخدم
+                // استرجاع الأدوار ا        لخاصة بالمستخدم
                 var existingRoles = await _userManager.GetRolesAsync(user);
 
                 return new UserDto
@@ -238,6 +279,7 @@ namespace ICPC_Tanta_Web.Services
                 if (refreshToken == null || !refreshToken.IsActive)
                     return false;
 
+                refreshToken.RevokedOn = DateTime.UtcNow;
                 user.RefreshTokens.Remove(refreshToken);
                 await _userManager.UpdateAsync(user);
 
@@ -298,7 +340,7 @@ namespace ICPC_Tanta_Web.Services
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
                 return null;
-
+            var userRoles = await _userManager.GetRolesAsync(user);
             var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
 
             return new UserDto
@@ -310,8 +352,9 @@ namespace ICPC_Tanta_Web.Services
                 Rank = codeforcesUserInfo?.Rank ?? "Unknown",
                 TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
                 Handle = codeforcesUserInfo.Handle,
-                Id=user.Id,
-                PhoneNumber=user.PhoneNumber
+                Id = user.Id,
+                PhoneNumber = user.PhoneNumber,
+                Roles = userRoles.ToList()
             };
 
         }
@@ -337,12 +380,12 @@ namespace ICPC_Tanta_Web.Services
                 if (user == null)
                     return IdentityResult.Failed(new IdentityError { Description = "User not found" });
 
-                var resultoldpassword = await _signInManager.CheckPasswordSignInAsync(user,oldPassword, false);
-
-                //if (!resultoldpassword.Succeeded)
-                    //throw new UnauthorizedAccessException("OldPassword isn`t correct");
+                var isOldPasswordCorrect = await _userManager.CheckPasswordAsync(user, oldPassword);
+                if (!isOldPasswordCorrect)
+                    return IdentityResult.Failed(new IdentityError { Description = "Old password is incorrect" });
 
                 var passwordCheck = await _userManager.CheckPasswordAsync(user, newPassword);
+
                 if (passwordCheck)
                     return IdentityResult.Failed(new IdentityError { Description = "New password cannot be the same as the old password" });
 

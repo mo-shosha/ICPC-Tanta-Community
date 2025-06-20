@@ -24,14 +24,13 @@ namespace ICPC_Tanta_Web.Controllers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        // Register
         [HttpPost("Register")]
-        public async Task<ActionResult<UserDto>> Register(RegisterDto model)
+        public async Task<ActionResult<string>> Register(RegisterDto model)
         {
             try
             {
                 var result = await _authService.RegisterAsync(model);
-                return Ok(ApiResponse<UserDto>.SuccessResponse(result));
+                return Ok(ApiResponse<string>.SuccessResponse(result));
             }
             catch (Exception ex)
             {
@@ -40,7 +39,6 @@ namespace ICPC_Tanta_Web.Controllers
         }
         
 
-        // Login
         [HttpPost("Login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto model)
         {
@@ -55,7 +53,6 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
-        // Logout
         [Authorize]
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
@@ -90,6 +87,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost("revoketoken")]
         public async Task<IActionResult> RevokeToken([FromBody] RevokeToken model)
         {
@@ -136,6 +134,21 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [HttpPost("resend-confirmation")]
+        public async Task<IActionResult> ResendConfirmationEmail([FromBody] ResendEmailConfirmationDto model)
+        {
+            try
+            {
+                await _authService.ResendEmailConfirmationAsync(model.Email);
+                return Ok(ApiResponse<string>.SuccessResponse("Confirmation email has been resent."));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse<string>.ErrorResponse(ex.Message));
+            }
+        }
+
+
         [Authorize]
         [HttpGet("me")]
         public async Task<IActionResult> GetCurrentUser()
@@ -154,7 +167,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
-
+        [Authorize]
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto model)
         {
@@ -174,8 +187,6 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
-
-
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto model)
         {
@@ -184,7 +195,7 @@ namespace ICPC_Tanta_Web.Controllers
                 var result = await _authService.ForgotPasswordAsync(model.Email);
                 if (result.Succeeded)
                 {
-                    return Ok(ApiResponse<UserDto>.SuccessResponse("Password reset link sent to your email."));
+                    return Ok(ApiResponse<string>.SuccessResponse("Password reset link sent to your email."));
                 }
                 return BadRequest(ApiResponse<string>.ErrorResponse("Error occurred while sending the reset link."));
             }
@@ -202,7 +213,7 @@ namespace ICPC_Tanta_Web.Controllers
                 var result = await _authService.ResetPasswordAsync(model.Email, model.Token, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    return Ok(ApiResponse<UserDto>.SuccessResponse("Password has been reset successfully."));
+                    return Ok(ApiResponse<string>.SuccessResponse("Password has been reset successfully."));
                 }
                 return BadRequest(ApiResponse<string>.ErrorResponse("Error occurred while resetting the password."));
             }
@@ -212,6 +223,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("update-profile")]
         public async Task<IActionResult> UpdateProfile([FromBody] ChangInfoDto model)
         {

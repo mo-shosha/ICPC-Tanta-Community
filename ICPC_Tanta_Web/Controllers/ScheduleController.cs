@@ -1,6 +1,7 @@
 ﻿using Core.DTO;
 using Core.DTO.ScheduleDto;
 using Core.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -57,7 +58,9 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+
         // Create a new schedule
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPost]
         public async Task<ActionResult> CreateAsync([FromBody] ScheduleCreateDto createScheduleDto)
         {
@@ -74,6 +77,7 @@ namespace ICPC_Tanta_Web.Controllers
 
 
         // Update an existing schedule
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateAsync(int id, [FromBody] ScheduleUpdateDto updateScheduleDto)
         {
@@ -91,6 +95,7 @@ namespace ICPC_Tanta_Web.Controllers
 
 
         // Delete a schedule
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(int id)
         {

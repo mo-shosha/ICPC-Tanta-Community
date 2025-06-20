@@ -4,6 +4,7 @@ using Core.DTO.TeamDTO;
 using Core.Entities;
 using Core.IServices;
 using ICPC_Tanta_Web.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace ICPC_Tanta_Web.Controllers
             _memeberServices = memeberServices;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreatMemberDto memberDto)
         {
@@ -69,6 +71,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromForm] memberUpdateDto memberUpdate,int id)
         {
@@ -95,6 +98,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult>Delete(int id)
         {

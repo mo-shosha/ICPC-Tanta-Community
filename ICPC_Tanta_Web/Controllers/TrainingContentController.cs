@@ -2,6 +2,7 @@
 using Core.DTO.ContentDTO;
 using Core.Entities;
 using Core.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace ICPC_Tanta_Web.Controllers
             _trainingContentServices = trainingContentServices;
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ContentCreateDto contentCreateDto)
         {
@@ -34,6 +36,7 @@ namespace ICPC_Tanta_Web.Controllers
                 return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetContentById(int id)
@@ -65,6 +68,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateContent(int id, [FromBody] ContentUpdateDto contentUpdateDto)
         {
@@ -83,6 +87,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Instructor")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteContent(int id)
         {
