@@ -6,6 +6,7 @@ wwwroot\uploads\428d7cf9-9de3-4925-96de-84e1af97a261_images.jpg
 wwwroot\uploads\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg
 wwwroot\uploads\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png
 wwwroot\uploads\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg
+wwwroot\uploads\6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.jpg
 wwwroot\uploads\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg
 wwwroot\uploads\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg
 wwwroot\uploads\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png

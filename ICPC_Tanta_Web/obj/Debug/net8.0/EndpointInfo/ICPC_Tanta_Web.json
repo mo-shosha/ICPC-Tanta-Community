@@ -35,17 +35,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDto"
+                  "type": "string"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDto"
+                  "type": "string"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDto"
+                  "type": "string"
                 }
               }
             }
@@ -177,6 +177,37 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/resend-confirmation": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendEmailConfirmationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendEmailConfirmationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendEmailConfirmationDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1519,6 +1550,7 @@
             "multipart/form-data": {
               "schema": {
                 "required": [
+                  "Description",
                   "TeamName"
                 ],
                 "type": "object",
@@ -1598,6 +1630,7 @@
             "multipart/form-data": {
               "schema": {
                 "required": [
+                  "Description",
                   "Id",
                   "TeamName"
                 ],
@@ -2160,6 +2193,28 @@
         }
       }
     },
+    "/api/User/user/{id}/toggle-block": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/User/users/with-rating": {
       "get": {
         "tags": [
@@ -2572,6 +2627,16 @@
         },
         "additionalProperties": false
       },
+      "ResendEmailConfirmationDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResetPasswordDto": {
         "required": [
           "email",
@@ -2726,13 +2791,6 @@
           "logoURL": {
             "type": "string",
             "nullable": true
-          },
-          "members": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Member"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2834,6 +2892,9 @@
           "phoneNumber": {
             "type": "string",
             "nullable": true
+          },
+          "isLocked": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

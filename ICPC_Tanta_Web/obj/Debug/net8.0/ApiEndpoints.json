@@ -124,7 +124,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Core.DTO.AccountDTO.UserDto",
+        "Type": "System.String",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -133,6 +133,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
+    "Method": "ResendConfirmationEmail",
+    "RelativePath": "api/Auth/resend-confirmation",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Core.DTO.AccountDTO.ResendEmailConfirmationDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.AuthController",
@@ -1329,6 +1345,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.UserController",
+    "Method": "ToggleBlock",
+    "RelativePath": "api/User/user/{id}/toggle-block",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.UserController",

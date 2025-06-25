@@ -28,6 +28,7 @@ namespace Repository.Data
         public DbSet<Achievements> achievements { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<ContentCategory> contentCategories { get; set; }
+        public DbSet<StickyNotes> StickyNotes { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

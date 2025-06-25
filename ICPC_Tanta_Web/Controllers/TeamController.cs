@@ -125,7 +125,7 @@ namespace ICPC_Tanta_Web.Controllers
                 if (teamWithMembers == null)
                     return NotFound(ApiResponse<string>.ErrorResponse($"Team with ID {id} was not found."));
 
-                return Ok(ApiResponse<Team>.SuccessResponse("Team with members retrieved successfully.", teamWithMembers));
+                return Ok(ApiResponse<TeamWithMemberDto>.SuccessResponse("Team with members retrieved successfully.", teamWithMembers));
             }
             catch (Exception ex)
             {
@@ -146,7 +146,7 @@ namespace ICPC_Tanta_Web.Controllers
                 if (team == null)
                     return NotFound(ApiResponse<string>.ErrorResponse("Team not found."));
 
-                return Ok(ApiResponse<Team>.SuccessResponse("Team for the specified year retrieved successfully.", team));
+                return Ok(ApiResponse<TeamWithMemberDto>.SuccessResponse("Team for the specified year retrieved successfully.", team));
             }
             catch (Exception ex)
             {

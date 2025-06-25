@@ -9,6 +9,7 @@ namespace Core.IServices
 {
     public interface IUserServices
     {
+        Task<string> ToggleBlockAsync(string UserId);
         Task<IEnumerable<Userinfo>> GetAllUsers();
         Task<IEnumerable<UserRatingDto>> GetAllUsersWithRating();
         Task<IEnumerable<UserRatingDto>> GetAllInstructorWithRating();

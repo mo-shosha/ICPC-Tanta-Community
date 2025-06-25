@@ -140,9 +140,14 @@ namespace ICPC_Tanta_Web.Services
                 if (user == null || !await _userManager.IsEmailConfirmedAsync(user))
                     throw new UnauthorizedAccessException("Invalid credentials. Please check your email and password.");
 
+                if (await _userManager.IsLockedOutAsync(user))
+                    throw new UnauthorizedAccessException("Your account is blocked. Please contact support.");
+
                 var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
                 if (!result.Succeeded)
                     throw new UnauthorizedAccessException("Invalid credentials. Please check your email and password.");
+
+               
 
                 var accessToken = await _tokenServices.CreateTokenAsync(user, _userManager);
                 var newRefreshToken = _tokenServices.GenerateRefreshToken();
@@ -160,8 +165,6 @@ namespace ICPC_Tanta_Web.Services
                 user.RefreshTokens.Add(newRefreshToken);
 
                 // حفظ التغييرات
-                await _userManager.UpdateAsync(user);
-
                 await _userManager.UpdateAsync(user);
 
                 SetRefreshTokenInCookie(newRefreshToken.Token, newRefreshToken.ExpiresOn);

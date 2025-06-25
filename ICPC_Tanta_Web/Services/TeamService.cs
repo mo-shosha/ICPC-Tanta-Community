@@ -1,4 +1,5 @@
-﻿using Core.DTO.TeamDTO;
+﻿using Core.DTO.memberDTO;
+using Core.DTO.TeamDTO;
 using Core.Entities;
 using Core.IRepositories;
 using Core.IServices;
@@ -58,13 +59,13 @@ namespace ICPC_Tanta_Web.Services
                 Id = team.Id,
                 TeamName = team.TeamName,
                 Description = team.Description,
-                LogoURL = team.LogoURL
+                LogoURL = team.LogoURL ?? "default.jpg"
             });
 
             return teamDTOs;
         }
 
-        public async Task<Team> GetAllByMember(int id)
+        public async Task<TeamWithMemberDto> GetAllByMember(int id)
         {
             var teams = await _unitOfWork.TeamRepository.AllTeamWithMember();
 
@@ -75,24 +76,25 @@ namespace ICPC_Tanta_Web.Services
                 return null;  
             }
 
-            return new Team
+            return new TeamWithMemberDto
             {
                 Id = selectedTeam.Id,
                 TeamName = selectedTeam.TeamName,
                 Description = selectedTeam.Description,
-                LogoURL = selectedTeam.LogoURL,
-                Members = selectedTeam.Members?.Select(m => new Member
+                LogoURL = selectedTeam.LogoURL ?? "default.jpg",
+                Members = selectedTeam.Members?.Select(m => new memberDto
                 {
-                    Id = m.Id,
+
                     FullName = m.FullName,
                     LinkedInUrl = m.LinkedInUrl,
                     FacebookUrl = m.FacebookUrl,
                     Role = m.Role,
+                    ImgUrl = m.ImgUrl
                 }).ToList()
             };
         }
 
-        public async Task<Team> GetAllByMemberByYear(int teamId, string year)
+        public async Task<TeamWithMemberDto> GetAllByMemberByYear(int teamId, string year)
         {
             var team = await _unitOfWork.TeamRepository.AllTeamWithMember();
             var selectedTeam = team.FirstOrDefault(t => t.Id == teamId);
@@ -101,22 +103,21 @@ namespace ICPC_Tanta_Web.Services
                 return null;
             }
 
-            return new Team
+            return new TeamWithMemberDto
             {
                 Id = selectedTeam.Id,
                 TeamName = selectedTeam.TeamName,
                 Description = selectedTeam.Description,
-                LogoURL = selectedTeam.LogoURL,
+                LogoURL = selectedTeam.LogoURL ?? "default.jpg",
                 Members = selectedTeam.Members?
                     .Where(m => m.YearJoin == year)  
-                    .Select(m => new Member
+                    .Select(m => new memberDto
                     {
-                        Id = m.Id,
                         FullName = m.FullName,
                         LinkedInUrl = m.LinkedInUrl,
                         FacebookUrl = m.FacebookUrl,
                         Role = m.Role,
-                        YearJoin = m.YearJoin
+                        ImgUrl=m.ImgUrl
                     }).ToList()
             };
         }
@@ -134,7 +135,7 @@ namespace ICPC_Tanta_Web.Services
                 Id = team.Id,
                 TeamName = team.TeamName,
                 Description = team.Description,
-                LogoURL = team.LogoURL
+                LogoURL = team.LogoURL ?? "default.jpg"
             };
         }
 

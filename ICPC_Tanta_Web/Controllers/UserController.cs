@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Core.DTO;
 using Microsoft.AspNetCore.Authorization;
+using ICPC_Tanta_Web.Services;
 namespace ICPC_Tanta_Web.Controllers
 {
     [Route("api/[controller]")]
@@ -40,6 +41,25 @@ namespace ICPC_Tanta_Web.Controllers
             {
                 var users = await _userServices.GetAllUsers();
                 return Ok(ApiResponse<IEnumerable<Userinfo>>.SuccessResponse("Users retrieved successfully.", users));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPatch("user/{id}/toggle-block")]
+        public async Task<IActionResult> ToggleBlock(string id)
+        {
+            try
+            {
+                var result = await _userServices.ToggleBlockAsync(id);
+
+                if (result == "User not found.")
+                    return NotFound(ApiResponse<string>.ErrorResponse(result));
+
+                return Ok(ApiResponse<string>.SuccessResponse(result));
             }
             catch (Exception ex)
             {

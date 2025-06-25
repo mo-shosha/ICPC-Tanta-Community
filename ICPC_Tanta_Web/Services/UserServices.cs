@@ -67,18 +67,26 @@ namespace ICPC_Tanta_Web.Services
 
         public async Task<IEnumerable<Userinfo>> GetAllUsers()
         {
-            var users = await _userManager.Users
-                .Select(user => new Userinfo
+            var users = await _userManager.Users.ToListAsync();
+
+            var result = new List<Userinfo>();
+
+            foreach (var user in users)
+            {
+                var isLocked = await _userManager.IsLockedOutAsync(user);
+
+                result.Add(new Userinfo
                 {
                     Id = user.Id,
                     Name = user.FullName,
                     Email = user.Email,
                     Handle = user.CodeForcesHandel,
-                    PhoneNumber = user.PhoneNumber
-                })
-                .ToListAsync();
+                    PhoneNumber = user.PhoneNumber,
+                    IsLocked = isLocked
+                });
+            }
 
-            return users;
+            return result;
         }
 
         public async Task<IEnumerable<UserRatingDto>> GetAllUsersWithRating()
@@ -117,5 +125,26 @@ namespace ICPC_Tanta_Web.Services
             return userRanking;
         }
 
+        public async Task<string> ToggleBlockAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+             
+            if (user == null)
+                return "User not found.";
+
+            var isLockedOut = await _userManager.IsLockedOutAsync(user);
+            if (isLockedOut)
+            {
+                await _userManager.SetLockoutEndDateAsync(user, null);
+                return "User unblocked successfully.";
+            }
+            else
+            {
+                await _userManager.SetLockoutEnabledAsync(user, true);
+                await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow.AddYears(100));
+                return "User blocked successfully.";
+            }
+
+        }
     }
 }

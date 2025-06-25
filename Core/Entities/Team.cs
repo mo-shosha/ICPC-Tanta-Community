@@ -16,7 +16,7 @@ namespace Core.Entities
 
         public string Description { get; set; }  
 
-        public string LogoURL { get; set; } 
+        public string? LogoURL { get; set; } 
 
         public List<Member> Members { get; set; }
     }

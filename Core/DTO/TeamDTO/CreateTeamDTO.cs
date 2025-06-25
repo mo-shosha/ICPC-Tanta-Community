@@ -12,7 +12,9 @@ namespace Core.DTO.TeamDTO
     {
         [Required]
         public string TeamName { get; set; }
+        [Required]
         public string Description { get; set; }
+
         public IFormFile? LogoImg { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/Zde/o6Z2iTDst5Qn1YQHzP6C4FDwVIbiM+oQD6h9+U=",
+  "Hash": "79Bm1XacR/zr9Ku0EsGWnfaTHImQhll9cA31Ze4CF90=",
   "Source": "ICPC_Tanta_Web",
   "BasePath": "_content/ICPC_Tanta_Web",
   "Mode": "Default",
@@ -183,6 +183,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg"
+    },
+    {
+      "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.jpg",
+      "SourceId": "ICPC_Tanta_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\",
+      "BasePath": "_content/ICPC_Tanta_Web",
+      "RelativePath": "uploads/6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "51ke2jkuqo",
+      "Integrity": "6YrK+/z/XZF90ZHfatLBw9kmRL1+JecWfumKXQn7uco=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.jpg"
     },
     {
       "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg",
@@ -965,6 +986,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-ku1ixtXHJpNptCJM3zxZFveqQrnqmZa2HGfVwCaxpsg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.51ke2jkuqo.jpg",
+      "AssetFile": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "22586"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6YrK+/z/XZF90ZHfatLBw9kmRL1+JecWfumKXQn7uco=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 25 Jun 2025 10:52:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "51ke2jkuqo"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6YrK+/z/XZF90ZHfatLBw9kmRL1+JecWfumKXQn7uco="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.jpg",
+      "AssetFile": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "22586"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6YrK+/z/XZF90ZHfatLBw9kmRL1+JecWfumKXQn7uco=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 25 Jun 2025 10:52:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6YrK+/z/XZF90ZHfatLBw9kmRL1+JecWfumKXQn7uco="
         }
       ]
     },

@@ -16,9 +16,9 @@ namespace Core.IServices
         Task AddAsync(CreateTeamDTO createNewsDto);
         Task UpdateAsync(UpdateTeamDto updateNewsDto);
         Task DeleteAsync(int id);
-        Task<Team> GetAllByMember(int id);
+        Task<TeamWithMemberDto> GetAllByMember(int id);
 
-        Task<Team> GetAllByMemberByYear(int teamId, string year);
+        Task<TeamWithMemberDto> GetAllByMemberByYear(int teamId, string year);
 
     }
 }
