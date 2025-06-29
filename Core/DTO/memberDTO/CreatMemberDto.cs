@@ -14,15 +14,15 @@ namespace Core.DTO.memberDTO
         public string FullName { get; set; }
         [Required]
         public string Role { get; set; }  // Role of the member (Head, Member)
-        [Required]
-        public string FacebookUrl { get; set; }
-        [Required]
-        public string LinkedInUrl { get; set; }
+        public string? FacebookUrl { get; set; }
+        public string? LinkedInUrl { get; set; }
+
         [Required]
         public string YearJoin { get; set; }
-        //[Required]//if girl not to share img
+
         public IFormFile? MemberImg { get; set; }
 
+        [Required]
         public int TeamId {  get; set; }
     }
 }

@@ -797,10 +797,9 @@
             "multipart/form-data": {
               "schema": {
                 "required": [
-                  "FacebookUrl",
                   "FullName",
-                  "LinkedInUrl",
                   "Role",
+                  "TeamId",
                   "YearJoin"
                 ],
                 "type": "object",
@@ -958,8 +957,11 @@
             "multipart/form-data": {
               "schema": {
                 "required": [
+                  "FullName",
                   "Id",
-                  "Role"
+                  "Role",
+                  "TeamId",
+                  "YearJoin"
                 ],
                 "type": "object",
                 "properties": {
@@ -970,9 +972,25 @@
                   "Role": {
                     "type": "string"
                   },
-                  "Img": {
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "FacebookUrl": {
+                    "type": "string"
+                  },
+                  "LinkedInUrl": {
+                    "type": "string"
+                  },
+                  "YearJoin": {
+                    "type": "string"
+                  },
+                  "MemberImg": {
                     "type": "string",
                     "format": "binary"
+                  },
+                  "TeamId": {
+                    "type": "integer",
+                    "format": "int32"
                   }
                 }
               },
@@ -983,7 +1001,22 @@
                 "Role": {
                   "style": "form"
                 },
-                "Img": {
+                "FullName": {
+                  "style": "form"
+                },
+                "FacebookUrl": {
+                  "style": "form"
+                },
+                "LinkedInUrl": {
+                  "style": "form"
+                },
+                "YearJoin": {
+                  "style": "form"
+                },
+                "MemberImg": {
+                  "style": "form"
+                },
+                "TeamId": {
                   "style": "form"
                 }
               }
@@ -1277,6 +1310,34 @@
       }
     },
     "/api/Role/assign-role": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/remove-role": {
       "post": {
         "tags": [
           "Role"
@@ -2168,7 +2229,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Userinfo"
+                    "$ref": "#/components/schemas/CustemUserInfo"
                   }
                 }
               },
@@ -2176,7 +2237,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Userinfo"
+                    "$ref": "#/components/schemas/CustemUserInfo"
                   }
                 }
               },
@@ -2184,7 +2245,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Userinfo"
+                    "$ref": "#/components/schemas/CustemUserInfo"
                   }
                 }
               }
@@ -2327,6 +2388,21 @@
   },
   "components": {
     "schemas": {
+      "AnotherLinkDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CategoryCreateDto": {
         "required": [
           "categoryName"
@@ -2379,8 +2455,6 @@
       },
       "ContentCreateDto": {
         "required": [
-          "categoryId",
-          "contentUrl",
           "levelId",
           "title"
         ],
@@ -2391,22 +2465,43 @@
             "minLength": 3,
             "type": "string"
           },
-          "contentUrl": {
-            "maxLength": 100,
-            "minLength": 3,
-            "type": "string"
-          },
-          "auther": {
-            "type": "string",
-            "nullable": true
-          },
           "levelId": {
             "type": "integer",
             "format": "int32"
           },
-          "categoryId": {
+          "weekNumber": {
             "type": "integer",
             "format": "int32"
+          },
+          "explanationLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "explanationBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "upsolveLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "upsolveBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "sheetLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "anotherLinks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnotherLinkDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2427,10 +2522,82 @@
             "type": "string",
             "nullable": true
           },
-          "contentUrl": {
-            "maxLength": 100,
-            "minLength": 3,
+          "weekNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "explanationLink": {
             "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "explanationBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "upsolveLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "upsolveBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "sheetLink": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "anotherLinks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnotherLinkDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustemUserInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "handle": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "isLocked": {
+            "type": "boolean"
+          },
+          "rank": {
+            "type": "string",
+            "nullable": true
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },
@@ -2511,9 +2678,7 @@
       },
       "Member": {
         "required": [
-          "facebookUrl",
           "fullName",
-          "linkedInUrl",
           "role",
           "yearJoin"
         ],
@@ -2532,12 +2697,12 @@
             "type": "string"
           },
           "facebookUrl": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "linkedInUrl": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "yearJoin": {
             "minLength": 1,
@@ -2902,6 +3067,10 @@
       "memberDto": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "fullName": {
             "type": "string",
             "nullable": true

@@ -11,8 +11,8 @@ namespace Core.IServices
 {
     public interface ITrainingContentServices
     {
-        Task<IEnumerable<TrainingContent>> GetAllContentAsync();
-        Task<TrainingContent> GetContentAsyncById(int id);
+        Task<IEnumerable<ContentReadDto>> GetAllContentAsync();
+        Task<ContentReadDto> GetContentAsyncById(int id);
         Task CreateContentAsync(ContentCreateDto contentCreateDto);
         Task UpdateContentAsync(ContentUpdateDto contentUpdateDto);
         Task DeleteContentAsync(int id);

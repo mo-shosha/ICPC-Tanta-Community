@@ -25,10 +25,12 @@ namespace Repository.Data
         public DbSet<Member> members { get; set; }
         public DbSet<TrainingLevel> trainingLevels { get; set; }
         public DbSet<TrainingContent> trainingContents {  get; set; }
+        public DbSet<AnotherLink> anotherLinks { get; set; }
         public DbSet<Achievements> achievements { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<ContentCategory> contentCategories { get; set; }
         public DbSet<StickyNotes> StickyNotes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

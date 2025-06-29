@@ -13,10 +13,24 @@ namespace Core.DTO.ContentDTO
         [Required]
         public int Id { get; set; }
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Content Title must be between 3 and 50 characters.")]
-        [SafeText]
         public string Title { get; set; }
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "Content Content must be between 3 and 100 characters.")]
-        [SafeText]
-        public string ContentUrl { get; set; }
+
+        public int WeekNumber { get; set; }
+
+        // Explain
+        [Url(ErrorMessage = "Invalid URL format.")]
+        public string? ExplanationLink { get; set; }
+        public string? ExplanationBy { get; set; }
+
+        // Upsolve
+        [Url(ErrorMessage = "Invalid URL format.")]
+        public string? UpsolveLink { get; set; }
+        public string? UpsolveBy { get; set; }
+
+        // Sheet
+        [Url(ErrorMessage = "Invalid URL format.")]
+        public string? SheetLink { get; set; }
+
+        public List<AnotherLinkDto> AnotherLinks { get; set; } = new();
     }
 }

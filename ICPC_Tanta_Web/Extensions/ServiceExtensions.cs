@@ -29,7 +29,8 @@ namespace ICPC_Tanta_Web.Extensions
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddScoped<ISocialMediaSyncService, SocialMediaSyncService>();
+            //services.AddScoped<ISocialMediaSyncService, SocialMediaSyncService>();
+
             // YouTubeSetting 
             services.Configure<YouTubeSettings>(
                     configuration.GetSection("YouTube"));

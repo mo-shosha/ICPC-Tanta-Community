@@ -14,6 +14,17 @@ namespace Core.DTO.memberDTO
         public int Id { get; set; }
         [Required]
         public string Role { get; set; }
-        public IFormFile? Img { get; set; }
+        [Required]
+        public string FullName { get; set; }
+        public string? FacebookUrl { get; set; }
+        public string? LinkedInUrl { get; set; }
+
+        [Required]
+        public string YearJoin { get; set; }
+
+        public IFormFile? MemberImg { get; set; }
+
+        [Required]
+        public int TeamId { get; set; }
     }
 }

@@ -26,7 +26,8 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 string author = User.Identity?.Name ?? "ICPC Tanta";
-                contentCreateDto.Auther ??= author;
+                //contentCreateDto.Auther ??= author;
+                
 
                 await _trainingContentServices.CreateContentAsync(contentCreateDto);
                 return Ok(ApiResponse<string>.SuccessResponse("Content created successfully."));
@@ -45,7 +46,7 @@ namespace ICPC_Tanta_Web.Controllers
             {
                 var content = await _trainingContentServices.GetContentAsyncById(id);
                 return content != null
-                    ? Ok(ApiResponse<TrainingContent>.SuccessResponse("Content retrieve successfully", content))
+                    ? Ok(ApiResponse<ContentReadDto>.SuccessResponse("Content retrieve successfully", content))
                     : NotFound(ApiResponse<string>.ErrorResponse("Content not found."));
             }
             catch (Exception ex)
@@ -60,7 +61,7 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var contents = await _trainingContentServices.GetAllContentAsync();
-                return Ok(ApiResponse<IEnumerable<TrainingContent>>.SuccessResponse("Content retrieve successfully", contents));
+                return Ok(ApiResponse<IEnumerable<ContentReadDto>>.SuccessResponse("Content retrieve successfully", contents));
             }
             catch (Exception ex)
             {

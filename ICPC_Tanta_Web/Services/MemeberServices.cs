@@ -44,10 +44,11 @@ namespace ICPC_Tanta_Web.Services
             var member = _unitOfWork.MemberRepository.GetAll();
             var memberdto = member.Select(m => new memberDto
             {
+                Id = m.Id,
                 FullName = m.FullName,
                 Role = m.Role,
-                FacebookUrl = m.FacebookUrl,
-                LinkedInUrl = m.LinkedInUrl,
+                FacebookUrl = m.FacebookUrl??null,
+                LinkedInUrl = m.LinkedInUrl??null,
                 ImgUrl = m.ImgUrl ??null
             });
             return memberdto;
@@ -59,10 +60,11 @@ namespace ICPC_Tanta_Web.Services
             if (member == null) throw new KeyNotFoundException("member not found");
             var memberdto = new memberDto
             {
+                Id=member.Id,
                 FullName = member.FullName,
                 Role = member.Role,
-                FacebookUrl = member.FacebookUrl,
-                LinkedInUrl = member.LinkedInUrl,
+                FacebookUrl = member.FacebookUrl ?? null,
+                LinkedInUrl = member.LinkedInUrl ?? null,
                 ImgUrl = member.ImgUrl ?? null
             };
             return memberdto;
@@ -73,14 +75,14 @@ namespace ICPC_Tanta_Web.Services
             var member = await _unitOfWork.MemberRepository.GetByIdAsync(memberUpdate.Id);
             if (member == null) throw new KeyNotFoundException("Member not found");
             member.Role = memberUpdate.Role;
-            if (memberUpdate.Img != null)
+            if (memberUpdate.MemberImg != null)
             {
                 if (!string.IsNullOrEmpty(member.ImgUrl))
                 {
                     _fileProcessingService.DeleteFile(member.ImgUrl);
                 }
 
-                member.ImgUrl = await _fileProcessingService.SaveFileAsync(memberUpdate.Img);
+                member.ImgUrl = await _fileProcessingService.SaveFileAsync(memberUpdate.MemberImg);
             }
             _unitOfWork.MemberRepository.Update(member);
             await _unitOfWork.SaveChangesAsync();

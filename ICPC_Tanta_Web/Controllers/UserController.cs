@@ -33,14 +33,14 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet("users")]
-        public async Task<ActionResult<IEnumerable<Userinfo>>> GetAllUsers()
+        public async Task<ActionResult<IEnumerable<CustemUserInfo>>> GetAllUsers()
         {
             try
             {
                 var users = await _userServices.GetAllUsers();
-                return Ok(ApiResponse<IEnumerable<Userinfo>>.SuccessResponse("Users retrieved successfully.", users));
+                return Ok(ApiResponse<IEnumerable<CustemUserInfo>>.SuccessResponse("Users retrieved successfully.", users));
             }
             catch (Exception ex)
             {
@@ -119,6 +119,6 @@ namespace ICPC_Tanta_Web.Controllers
                 return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
         }
-   
+        
     }
 }

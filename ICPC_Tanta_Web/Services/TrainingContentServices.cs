@@ -35,20 +35,30 @@ namespace ICPC_Tanta_Web.Services
                 }
 
 
-                var category = await _unitOfWork.ContentCategoryRepository.GetByIdAsync(contentCreateDto.CategoryId);
-                if (category == null)
-                {
-                    throw new KeyNotFoundException($"Content category with ID {contentCreateDto.CategoryId} not found.");
-                }
+                //var category = await _unitOfWork.ContentCategoryRepository.GetByIdAsync(contentCreateDto.CategoryId);
+                //if (category == null)
+                //{
+                //    throw new KeyNotFoundException($"Content category with ID {contentCreateDto.CategoryId} not found.");
+                //}
+                var anotherLinks = contentCreateDto.AnotherLinks?
+                    .Select(dto => new AnotherLink
+                    {
+                        Title = dto.Title,
+                        Url = dto.Url
+                    }).ToList();
 
                 var newContent = new TrainingContent()
                 {
                     Title = contentCreateDto.Title,
-                    CreatedAt = DateTime.Now,
-                    ContentUrl = contentCreateDto.ContentUrl,
-                    Auther = contentCreateDto.Auther,
+                    WeekNumber=contentCreateDto.WeekNumber,
+                    ExplanationLink = contentCreateDto.ExplanationLink,
+                    ExplanationBy=contentCreateDto.ExplanationBy,
+                    UpsolveLink=contentCreateDto.UpsolveLink,
+                    UpsolveBy=contentCreateDto.UpsolveBy,
+                    SheetLink=contentCreateDto.SheetLink,
+                    AnotherLinks=anotherLinks,
                     TrainingLevelId = contentCreateDto.LevelId,
-                    ContentCategoryId = contentCreateDto.CategoryId
+                    CreatedAt=DateTime.Now
                 };
 
                 await _unitOfWork.TrainingContentRepository.AddAsync(newContent);
@@ -80,11 +90,11 @@ namespace ICPC_Tanta_Web.Services
             }
         }
 
-        public async Task<IEnumerable<TrainingContent>> GetAllContentAsync()
+        public async Task<IEnumerable<ContentReadDto>> GetAllContentAsync()
         {
             try
             {
-                var contents = await _unitOfWork.TrainingContentRepository.GetAllAsync();
+                var contents = await _unitOfWork.TrainingContentRepository.GetContentWithLinksAsync();
                 return contents;
             }
             catch (Exception ex)
@@ -93,11 +103,11 @@ namespace ICPC_Tanta_Web.Services
             }
         }
 
-        public async Task<TrainingContent> GetContentAsyncById(int id)
+        public async Task<ContentReadDto> GetContentAsyncById(int id)
         {
             try
             {
-                var content = await _unitOfWork.TrainingContentRepository.GetByIdAsync(id);
+                var content = await _unitOfWork.TrainingContentRepository.GetContentWithLinksByIdAsync(id);
                 if (content == null)
                 {
                     throw new KeyNotFoundException("Content not found.");
@@ -115,16 +125,33 @@ namespace ICPC_Tanta_Web.Services
         {
             try
             {
-                var existingContent = await _unitOfWork.TrainingContentRepository.GetByIdAsync(contentUpdateDto.Id);
+                var existingContent = await _unitOfWork.TrainingContentRepository
+                    .GetEntityWithLinksByIdAsync(contentUpdateDto.Id); 
+
                 if (existingContent == null)
                 {
                     throw new KeyNotFoundException("Content not found.");
                 }
 
-                // Update properties if they are not null
-                existingContent.ContentUrl = contentUpdateDto.ContentUrl ?? existingContent.ContentUrl;
-                existingContent.Title = contentUpdateDto.Title ?? existingContent.Title;
-                existingContent.Auther = existingContent.Auther;
+                existingContent.Title = contentUpdateDto.Title;
+                existingContent.WeekNumber = contentUpdateDto.WeekNumber;
+                existingContent.ExplanationLink = contentUpdateDto.ExplanationLink;
+                existingContent.ExplanationBy = contentUpdateDto.ExplanationBy;
+                existingContent.UpsolveLink = contentUpdateDto.UpsolveLink;
+                existingContent.UpsolveBy = contentUpdateDto.UpsolveBy;
+                existingContent.SheetLink = contentUpdateDto.SheetLink;
+
+                if (contentUpdateDto.AnotherLinks != null)
+                {
+                    existingContent.AnotherLinks?.Clear();
+
+                    existingContent.AnotherLinks = contentUpdateDto.AnotherLinks
+                        .Select(dto => new AnotherLink
+                        {
+                            Title = dto.Title,
+                            Url = dto.Url
+                        }).ToList();
+                }
 
                 _unitOfWork.TrainingContentRepository.Update(existingContent);
                 await _unitOfWork.SaveChangesAsync();
@@ -134,5 +161,8 @@ namespace ICPC_Tanta_Web.Services
                 throw new Exception("An error occurred while updating the content.", ex);
             }
         }
+
+
+
     }
 }

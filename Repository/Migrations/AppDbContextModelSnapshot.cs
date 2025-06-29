@@ -50,6 +50,32 @@ namespace Repository.Migrations
                     b.ToTable("achievements");
                 });
 
+            modelBuilder.Entity("Core.Entities.AnotherLink", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TrainingContentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TrainingContentId");
+
+                    b.ToTable("anotherLinks");
+                });
+
             modelBuilder.Entity("Core.Entities.ChatMessage", b =>
                 {
                     b.Property<int>("Id")
@@ -213,7 +239,6 @@ namespace Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("FacebookUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
@@ -224,7 +249,6 @@ namespace Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LinkedInUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
@@ -363,25 +387,35 @@ namespace Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Auther")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("ContentCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ContentUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("ExplanationBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExplanationLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SheetLink")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TrainingLevelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpsolveBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpsolveLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WeekNumber")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -586,6 +620,17 @@ namespace Repository.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Core.Entities.AnotherLink", b =>
+                {
+                    b.HasOne("Core.Entities.TrainingContent", "TrainingContent")
+                        .WithMany("AnotherLinks")
+                        .HasForeignKey("TrainingContentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TrainingContent");
+                });
+
             modelBuilder.Entity("Core.Entities.Identity.ApplicationUser", b =>
                 {
                     b.OwnsMany("Core.Entities.RefreshToken", "RefreshTokens", b1 =>
@@ -647,7 +692,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Core.Entities.TrainingContent", b =>
                 {
-                    b.HasOne("Core.Entities.ContentCategory", "ContentCategory")
+                    b.HasOne("Core.Entities.ContentCategory", null)
                         .WithMany("TrainingContents")
                         .HasForeignKey("ContentCategoryId");
 
@@ -656,8 +701,6 @@ namespace Repository.Migrations
                         .HasForeignKey("TrainingLevelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("ContentCategory");
 
                     b.Navigation("TrainingLevel");
                 });
@@ -726,6 +769,11 @@ namespace Repository.Migrations
             modelBuilder.Entity("Core.Entities.Team", b =>
                 {
                     b.Navigation("Members");
+                });
+
+            modelBuilder.Entity("Core.Entities.TrainingContent", b =>
+                {
+                    b.Navigation("AnotherLinks");
                 });
 
             modelBuilder.Entity("Core.Entities.TrainingLevel", b =>

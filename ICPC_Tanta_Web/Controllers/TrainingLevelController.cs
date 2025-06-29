@@ -133,7 +133,7 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var level = await _trainingLevelServices.GetLevelsWithContentAsync(id);
-                return Ok(ApiResponse<TrainingLevelWithWeeklyContent>.SuccessResponse("Level content retrieved successfully.", level));
+                return Ok(ApiResponse<TrainingLevelReadDto>.SuccessResponse("Level content retrieved successfully.", level));
             }
             catch (Exception ex)
             {
@@ -149,7 +149,7 @@ namespace ICPC_Tanta_Web.Controllers
             try
             {
                 var level = await _trainingLevelServices.GetLevelWithContentByYearAsync(id, year);
-                return Ok(ApiResponse<TrainingLevelWithWeeklyContent>.SuccessResponse("Level content for specified year retrieved successfully.", level));
+                return Ok(ApiResponse<TrainingLevelReadDto>.SuccessResponse("Level content for specified year retrieved successfully.", level));
             }
             catch (Exception ex)
             {

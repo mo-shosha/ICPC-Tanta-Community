@@ -12,16 +12,29 @@ namespace Core.Entities
         public int Id { get; set; }   
 
         [Required]
-        public string Title { get; set; }   
+        public string Title { get; set; }
 
-        public string Auther { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string ContentUrl { get; set; }   
+        public int WeekNumber { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        // شرح
+        public string? ExplanationLink { get; set; }
+        public string? ExplanationBy { get; set; }
+
+        // أبسولف
+        public string? UpsolveLink { get; set; }
+        public string? UpsolveBy { get; set; }
+
+        // الشيت
+        public string? SheetLink { get; set; }
+
+        public ICollection<AnotherLink> AnotherLinks { get; set; } = new List<AnotherLink>();
+
+
         public int TrainingLevelId { get; set; }
 
         public TrainingLevel TrainingLevel { get; set; }
 
-        public int? ContentCategoryId { get; set; }
-        public ContentCategory ContentCategory { get; set; }
+        //public int? ContentCategoryId { get; set; }
+        //public ContentCategory ContentCategory { get; set; }
     }
 }

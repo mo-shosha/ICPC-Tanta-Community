@@ -1,4 +1,5 @@
-﻿using Core.DTO.LevelDTO;
+﻿using Core.DTO.ContentDTO;
+using Core.DTO.LevelDTO;
 using Core.Entities;
 using Core.IRepositories;
 using Core.IServices;
@@ -138,7 +139,7 @@ namespace ICPC_Tanta_Web.Services
         }
 
 
-        public async Task<TrainingLevelWithWeeklyContent> GetLevelsWithContentAsync(int id)
+        public async Task<TrainingLevelReadDto> GetLevelsWithContentAsync(int id)
         {
             try
             {
@@ -148,15 +149,32 @@ namespace ICPC_Tanta_Web.Services
                 if (selectedLevel == null)
                     return null;
 
-                var grouped = GroupContentsByWeek(selectedLevel.Contents);
+                var content = selectedLevel.Contents.ToList();
 
-                return new TrainingLevelWithWeeklyContent
+                return new TrainingLevelReadDto
                 {
                     Id = selectedLevel.Id,
                     Name = selectedLevel.Name,
                     Description = selectedLevel.Description,
                     LevelImg = selectedLevel.LevelImg,
-                    WeeklyContents = grouped
+                    Contents = selectedLevel.Contents
+                    .OrderBy(c => c.WeekNumber)  
+                    .Select(c => new ContentReadDto
+                    {
+                        Id = c.Id,
+                        Title = c.Title,
+                        WeekNumber = c.WeekNumber,
+                        ExplanationLink = c.ExplanationLink,
+                        ExplanationBy = c.ExplanationBy,
+                        UpsolveLink = c.UpsolveLink,
+                        UpsolveBy = c.UpsolveBy,
+                        SheetLink = c.SheetLink,
+                        AnotherLinks = c.AnotherLinks?.Select(al => new AnotherLinkDto
+                        {
+                            Title = al.Title,
+                            Url = al.Url
+                        }).ToList()
+                    }).ToList()
                 };
             }
             catch (Exception ex)
@@ -166,7 +184,7 @@ namespace ICPC_Tanta_Web.Services
         }
 
 
-        public async Task<TrainingLevelWithWeeklyContent> GetLevelWithContentByYearAsync(int id, string year)
+        public async Task<TrainingLevelReadDto> GetLevelWithContentByYearAsync(int id, string year)
         {
             try
             {
@@ -176,15 +194,31 @@ namespace ICPC_Tanta_Web.Services
                 if (selectedLevel == null)
                     return null;
 
-                var grouped = GroupContentsByWeek(selectedLevel.Contents);
 
-                return new TrainingLevelWithWeeklyContent
+                return new TrainingLevelReadDto
                 {
                     Id = selectedLevel.Id,
                     Name = selectedLevel.Name,
                     Description = selectedLevel.Description,
                     LevelImg = selectedLevel.LevelImg,
-                    WeeklyContents = grouped
+                    Contents = selectedLevel.Contents
+                    .OrderBy(c => c.WeekNumber)
+                    .Select(c => new ContentReadDto
+                    {
+                        Id = c.Id,
+                        Title = c.Title,
+                        WeekNumber = c.WeekNumber,
+                        ExplanationLink = c.ExplanationLink,
+                        ExplanationBy = c.ExplanationBy,
+                        UpsolveLink = c.UpsolveLink,
+                        UpsolveBy = c.UpsolveBy,
+                        SheetLink = c.SheetLink,
+                        AnotherLinks = c.AnotherLinks?.Select(al => new AnotherLinkDto
+                        {
+                            Title = al.Title,
+                            Url = al.Url
+                        }).ToList()
+                    }).ToList()
                 };
             }
             catch (Exception ex)
@@ -193,58 +227,58 @@ namespace ICPC_Tanta_Web.Services
             }
         }
 
-        private List<WeeklyGroupedContent> GroupContentsByWeek(IEnumerable<TrainingContent> contents)
-        {
-            string GetType(TrainingContent c)
-            {
-                var name = c.ContentCategory?.CategoryName?.ToLower() ?? "";
-                if (name.Contains("explanation")) return "explanation";
-                if (name.Contains("sheet")) return "sheet";
-                if (name.Contains("upsolve")) return "upsolve";
-                return "unknown";
-            }
+        //private List<WeeklyGroupedContent> GroupContentsByWeek(IEnumerable<TrainingContent> contents)
+        //{
+        //    string GetType(TrainingContent c)
+        //    {
+        //        var name = c.ContentCategory?.CategoryName?.ToLower() ?? "";
+        //        if (name.Contains("explanation")) return "explanation";
+        //        if (name.Contains("sheet")) return "sheet";
+        //        if (name.Contains("upsolve")) return "upsolve";
+        //        return "unknown";
+        //    }
 
-            int ExtractWeek(string title)
-            {
-                var match = Regex.Match(title.ToLower(), @"week\s*(\d+)");
-                return match.Success ? int.Parse(match.Groups[1].Value) : -1;
-            }
+        //    int ExtractWeek(string title)
+        //    {
+        //        var match = Regex.Match(title.ToLower(), @"week\s*(\d+)");
+        //        return match.Success ? int.Parse(match.Groups[1].Value) : -1;
+        //    }
 
-            return contents
-                .GroupBy(c => ExtractWeek(c.Title))
-                .Where(g => g.Key != -1)
-                .Select(g => new WeeklyGroupedContent
-                {
-                    WeekNumber = g.Key,
-                    Explanation = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "explanation")),
-                    Sheet = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "sheet")),
-                    Upsolve = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "upsolve"))
-                })
-                .OrderBy(w => w.WeekNumber)
-                .ToList();
-        }
+        //    return contents
+        //        .GroupBy(c => ExtractWeek(c.Title))
+        //        .Where(g => g.Key != -1)
+        //        .Select(g => new WeeklyGroupedContent
+        //        {
+        //            WeekNumber = g.Key,
+        //            Explanation = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "explanation")),
+        //            Sheet = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "sheet")),
+        //            Upsolve = ProjectContentWithoutLevel(g.FirstOrDefault(c => GetType(c) == "upsolve"))
+        //        })
+        //        .OrderBy(w => w.WeekNumber)
+        //        .ToList();
+        //}
 
-        private TrainingContent ProjectContentWithoutLevel(TrainingContent c)
-        {
-            if (c == null) return null;
+        //private TrainingContent ProjectContentWithoutLevel(TrainingContent c)
+        //{
+        //    if (c == null) return null;
 
-            return new TrainingContent
-            {
-                Id = c.Id,
-                Title = c.Title,
-                ContentUrl = c.ContentUrl,
-                Auther = c.Auther,
-                CreatedAt = c.CreatedAt,
-                ContentCategoryId = c.ContentCategoryId,
-                ContentCategory = c.ContentCategory != null
-                    ? new ContentCategory
-                    {
-                        Id = c.ContentCategory.Id,
-                        CategoryName = c.ContentCategory.CategoryName
-                    }
-                    : null,
-            };
-        }
+        //    return new TrainingContent
+        //    {
+        //        Id = c.Id,
+        //        Title = c.Title,
+        //        ContentUrl = c.ContentUrl,
+        //        Auther = c.Auther,
+        //        CreatedAt = c.CreatedAt,
+        //        ContentCategoryId = c.ContentCategoryId,
+        //        ContentCategory = c.ContentCategory != null
+        //            ? new ContentCategory
+        //            {
+        //                Id = c.ContentCategory.Id,
+        //                CategoryName = c.ContentCategory.CategoryName
+        //            }
+        //            : null,
+        //    };
+        //}
 
 
     }

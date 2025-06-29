@@ -15,4 +15,10 @@ namespace Core.DTO.AccountDTO
         public string PhoneNumber { get; set; }
         public bool IsLocked { get; set; }
     }
+    public class CustemUserInfo: Userinfo
+    {
+        public string Rank { get; set; }
+        public int Rating { get; set; }
+        public List<string>? Roles { get; set; }
+    }
 }

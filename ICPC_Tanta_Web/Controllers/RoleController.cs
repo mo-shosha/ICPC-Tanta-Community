@@ -63,6 +63,26 @@ namespace ICPC_Tanta_Web.Controllers
 
         }
 
+        [Authorize(Roles ="Admin")]
+        [HttpPost("remove-role")]
+        public async Task<IActionResult> RemoveRoleFromUser([FromQuery] string userId, [FromQuery] string roleName)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(roleName))
+                return BadRequest(ApiResponse<string>.ErrorResponse("User ID and Role name cannot be empty."));
+
+            try
+            {
+                var result = await _roleService.RemoveRoleFromUserAsync(userId, roleName);
+                return result.Succeeded
+                    ? Ok(ApiResponse<string>.SuccessResponse($"Role '{roleName}' removed from user '{userId}' successfully."))
+                    : BadRequest(ApiResponse<string>.ErrorResponse("Failed to Remove role."));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
+            }
+        }
+
         [Authorize(Roles = "Admin")]
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteRole([FromQuery] string roleName)

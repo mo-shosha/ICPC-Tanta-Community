@@ -41,7 +41,44 @@ namespace ICPC_Tanta_Web.Services
 
             return await _userManager.AddToRoleAsync(user, roleName);
         }
-     
+
+
+        public async Task<IdentityResult> RemoveRoleFromUserAsync(string userId, string roleName, string defaultRole = "User")
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return IdentityResult.Failed(new IdentityError { Description = "User not found." });
+
+            var roleExists = await _roleManager.RoleExistsAsync(roleName);
+            if (!roleExists)
+                return IdentityResult.Failed(new IdentityError { Description = "Role does not exist." });
+
+            var isInRole = await _userManager.IsInRoleAsync(user, roleName);
+            if (!isInRole)
+                return IdentityResult.Failed(new IdentityError { Description = "User is not in the specified role." });
+
+            // Remove the role
+            var result = await _userManager.RemoveFromRoleAsync(user, roleName);
+            if (!result.Succeeded)
+                return result;
+
+            // Check if user has any roles left
+            var remainingRoles = await _userManager.GetRolesAsync(user);
+            if (!remainingRoles.Any())
+            {
+                var defaultRoleExists = await _roleManager.RoleExistsAsync(defaultRole);
+                if (!defaultRoleExists)
+                {
+                    // Create default role if it doesn't exist
+                    await _roleManager.CreateAsync(new IdentityRole(defaultRole));
+                }
+
+                // Add default role
+                return await _userManager.AddToRoleAsync(user, defaultRole);
+            }
+
+            return IdentityResult.Success;
+        }
 
         public async Task<IdentityResult> DeleteRoleAsync(string roleName)
         {

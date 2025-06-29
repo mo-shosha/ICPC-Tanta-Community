@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.DTO.ContentDTO;
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,10 @@ namespace Core.IRepositories
 {
     public interface ITrainingContentRepository:IBaseRepository<TrainingContent>
     {
+
+        Task<TrainingContent> GetEntityWithLinksByIdAsync(int id);
+
+        Task<ContentReadDto> GetContentWithLinksByIdAsync(int id);
+        Task<IEnumerable<ContentReadDto>> GetContentWithLinksAsync();
     }
 }

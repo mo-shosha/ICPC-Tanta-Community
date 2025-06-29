@@ -84,7 +84,7 @@ namespace ICPC_Tanta_Web.Services
                 LogoURL = selectedTeam.LogoURL ?? "default.jpg",
                 Members = selectedTeam.Members?.Select(m => new memberDto
                 {
-
+                    Id=m.Id,
                     FullName = m.FullName,
                     LinkedInUrl = m.LinkedInUrl,
                     FacebookUrl = m.FacebookUrl,
@@ -113,6 +113,7 @@ namespace ICPC_Tanta_Web.Services
                     .Where(m => m.YearJoin == year)  
                     .Select(m => new memberDto
                     {
+                        Id = m.Id,
                         FullName = m.FullName,
                         LinkedInUrl = m.LinkedInUrl,
                         FacebookUrl = m.FacebookUrl,

@@ -65,24 +65,29 @@ namespace ICPC_Tanta_Web.Services
             return SelectedInstructors.OrderByDescending(u => u.Rating).ToList();
         }
 
-        public async Task<IEnumerable<Userinfo>> GetAllUsers()
+        public async Task<IEnumerable<CustemUserInfo>> GetAllUsers()
         {
             var users = await _userManager.Users.ToListAsync();
 
-            var result = new List<Userinfo>();
+            var result = new List<CustemUserInfo>();
 
             foreach (var user in users)
             {
                 var isLocked = await _userManager.IsLockedOutAsync(user);
-
-                result.Add(new Userinfo
+                var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
+                var roles = await _userManager.GetRolesAsync(user);
+                result.Add(new CustemUserInfo
                 {
                     Id = user.Id,
                     Name = user.FullName,
                     Email = user.Email,
                     Handle = user.CodeForcesHandel,
                     PhoneNumber = user.PhoneNumber,
-                    IsLocked = isLocked
+                    IsLocked = isLocked,
+                    Rank= codeforcesUserInfo.Rank,
+                    Rating=codeforcesUserInfo.Rating,
+                    Roles=roles.ToList()
+
                 });
             }
 

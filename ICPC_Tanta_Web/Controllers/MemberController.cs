@@ -35,6 +35,7 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
         
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<memberDto>>> GetAll()
         {

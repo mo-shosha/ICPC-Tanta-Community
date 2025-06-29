@@ -589,8 +589,33 @@
         "IsRequired": false
       },
       {
-        "Name": "Img",
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FacebookUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "LinkedInUrl",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "YearJoin",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MemberImg",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "TeamId",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
@@ -812,6 +837,27 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.RoleController",
+    "Method": "RemoveRoleFromUser",
+    "RelativePath": "api/Role/remove-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
       {
         "Name": "roleName",
         "Type": "System.String",
@@ -1388,7 +1434,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Core.DTO.AccountDTO.Userinfo, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Core.DTO.AccountDTO.CustemUserInfo, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
