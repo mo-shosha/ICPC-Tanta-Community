@@ -1565,6 +1565,49 @@
         }
       }
     },
+    "/api/StickyNote/add-sticky": {
+      "post": {
+        "tags": [
+          "StickyNote"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StickyNoteCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StickyNoteCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StickyNoteCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/StickyNote": {
+      "get": {
+        "tags": [
+          "StickyNote"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Team": {
       "get": {
         "tags": [
@@ -2902,6 +2945,20 @@
           "eventId": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StickyNoteCreateDto": {
+        "required": [
+          "content"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "minLength": 3,
+            "pattern": "^(?!.*(?:http|https|www\\.)).*$",
+            "type": "string"
           }
         },
         "additionalProperties": false

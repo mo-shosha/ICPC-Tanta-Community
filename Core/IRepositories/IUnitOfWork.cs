@@ -19,6 +19,7 @@ namespace Core.IRepositories
         IContentCategoryRepository ContentCategoryRepository { get; }
         IChatRepository ChatRepository { get; }
         IInfoRepository infoRepository { get; }
+        IStickyNoteRepository stickyNoteRepository { get; }
         Task<int> SaveChangesAsync();
     }
 }

@@ -972,6 +972,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.StickyNoteController",
+    "Method": "GetAll",
+    "RelativePath": "api/StickyNote",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.StickyNoteController",
+    "Method": "Create",
+    "RelativePath": "api/StickyNote/add-sticky",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "stickyNoteCreateDto",
+        "Type": "Core.DTO.StickyNoteCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.TeamController",
     "Method": "GetAll",
     "RelativePath": "api/Team",

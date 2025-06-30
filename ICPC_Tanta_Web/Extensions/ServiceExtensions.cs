@@ -3,7 +3,6 @@ using Core.helper;
 using Core.IRepositories;
 using Core.IServices;
 using ICPC_Tanta_Web.Services;
-using ICPC_Tanta_Web.Services.BackServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -35,7 +34,7 @@ namespace ICPC_Tanta_Web.Extensions
             services.Configure<YouTubeSettings>(
                     configuration.GetSection("YouTube"));
             services.AddScoped<YoutubeService>();
-            services.AddHostedService<YoutubeSyncBackgroundService>();
+            //services.AddHostedService<YoutubeSyncBackgroundService>();
 
 
 
