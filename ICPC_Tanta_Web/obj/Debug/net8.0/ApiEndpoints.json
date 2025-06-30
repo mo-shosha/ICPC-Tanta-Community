@@ -783,6 +783,63 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.QAndAController",
+    "Method": "CreateQuestion",
+    "RelativePath": "api/QAndA",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Core.DTO.QAndADTO.QAndACreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.QAndAController",
+    "Method": "GetAll",
+    "RelativePath": "api/QAndA",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.QAndAController",
+    "Method": "AnswerQuestion",
+    "RelativePath": "api/QAndA/{id}/answer",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Core.DTO.QAndADTO.QAndACreateAnsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.QAndAController",
+    "Method": "GetAnsweredOnly",
+    "RelativePath": "api/QAndA/answered",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.RoleController",
     "Method": "AddRole",
     "RelativePath": "api/Role/add",

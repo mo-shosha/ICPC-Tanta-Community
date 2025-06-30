@@ -20,6 +20,7 @@ namespace Core.IRepositories
         IChatRepository ChatRepository { get; }
         IInfoRepository infoRepository { get; }
         IStickyNoteRepository stickyNoteRepository { get; }
+        IQAndARepository qAndARepository { get; }
         Task<int> SaveChangesAsync();
     }
 }

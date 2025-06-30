@@ -22,6 +22,7 @@ namespace Repository.Repositories
         private IInfoRepository _infoRepository;
         private IContentCategoryRepository _categoryRepository;
         private IStickyNoteRepository _stickyNoteRepository;
+        private IQAndARepository _qAndARepository;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -45,6 +46,8 @@ namespace Repository.Repositories
         public IContentCategoryRepository ContentCategoryRepository => _categoryRepository = new ContentCategoryRepository(_context);
 
         public IStickyNoteRepository stickyNoteRepository => _stickyNoteRepository = new StickyNoteRepository(_context);
+
+        public IQAndARepository qAndARepository => _qAndARepository = new QAndARepository(_context);
 
         public async Task<int> SaveChangesAsync()
         {
