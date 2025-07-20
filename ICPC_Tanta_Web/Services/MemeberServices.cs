@@ -75,6 +75,12 @@ namespace ICPC_Tanta_Web.Services
             var member = await _unitOfWork.MemberRepository.GetByIdAsync(memberUpdate.Id);
             if (member == null) throw new KeyNotFoundException("Member not found");
             member.Role = memberUpdate.Role;
+            member.FullName = memberUpdate.FullName;
+            member.FacebookUrl = memberUpdate.FacebookUrl;
+            member.LinkedInUrl = memberUpdate.LinkedInUrl;
+            member.YearJoin = memberUpdate.YearJoin;
+            member.TeamId = memberUpdate.TeamId;
+
             if (memberUpdate.MemberImg != null)
             {
                 if (!string.IsNullOrEmpty(member.ImgUrl))

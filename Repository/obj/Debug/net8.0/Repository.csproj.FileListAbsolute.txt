@@ -9,10 +9,10 @@ E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Reposi
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.AssemblyInfoInputs.cache
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.AssemblyInfo.cs
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.csproj.CoreCompileInputs.cache
+E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.sourcelink.json
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.csproj.Up2Date
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\refint\Repository.dll
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.pdb
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.genruntimeconfig.cache
 E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\ref\Repository.dll
-E:\projects in back\ICPC_Tanta\ICPC_Tanta_Web\Repository\obj\Debug\net8.0\Repository.sourcelink.json

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ICPC_Tanta_Web.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class RoleController : ControllerBase
@@ -22,7 +22,6 @@ namespace ICPC_Tanta_Web.Controllers
             _roleService = roleService;
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPost("add")]
         public async Task<IActionResult> AddRole([FromBody] string roleName)
         {
@@ -42,28 +41,25 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost("assign-role")]
-        public async Task<IActionResult> AssignRoleToUser([FromQuery] string userId, [FromQuery] string roleName)
+        [HttpPost("assign-roles")]
+        public async Task<IActionResult> AssignRolesToUser([FromQuery] string userId, [FromBody] List<string> roleNames)
         {
-            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(roleName))
-                return BadRequest(ApiResponse<string>.ErrorResponse("User ID and Role name cannot be empty."));
+            if (string.IsNullOrWhiteSpace(userId) || roleNames == null || !roleNames.Any())
+                return BadRequest(ApiResponse<string>.ErrorResponse("User ID and Role names cannot be empty."));
 
             try
             {
-                var result = await _roleService.AssignRoleToUserAsync(userId, roleName);
+                var result = await _roleService.AssignRolesToUserAsync(roleNames, userId);
                 return result.Succeeded
-                    ? Ok(ApiResponse<string>.SuccessResponse($"Role '{roleName}' assigned to user '{userId}' successfully."))
-                    : BadRequest(ApiResponse<string>.ErrorResponse("Failed to assign role."));
+                    ? Ok(ApiResponse<string>.SuccessResponse($"Roles assigned to user '{userId}' successfully."))
+                    : BadRequest(ApiResponse<string>.ErrorResponse("Failed to assign one or more roles."));
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ApiResponse<string>.ErrorResponse(ex.Message));
             }
-
         }
 
-        [Authorize(Roles ="Admin")]
         [HttpPost("remove-role")]
         public async Task<IActionResult> RemoveRoleFromUser([FromQuery] string userId, [FromQuery] string roleName)
         {
@@ -83,7 +79,6 @@ namespace ICPC_Tanta_Web.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteRole([FromQuery] string roleName)
         {
@@ -104,7 +99,6 @@ namespace ICPC_Tanta_Web.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllRoles()
         {
@@ -121,19 +115,6 @@ namespace ICPC_Tanta_Web.Controllers
 
 
 
-        //[HttpGet("users")]
-        //public async Task<IActionResult> GetAllUsers()
-        //{
-        //    try
-        //    {
-        //        var users = await _roleService.GetAllUser();
-        //        return Ok(ApiResponse<IEnumerable<Userinfo>>.SuccessResponse("Users retrieved successfully.", users));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred while retrieving users.", error = ex.Message });
-        //    }
-        //}
 
     }
 }

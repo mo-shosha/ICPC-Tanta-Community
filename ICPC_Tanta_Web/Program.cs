@@ -1,15 +1,3 @@
-using Core.Entities.Identity;
-using Core.IRepositories;
-using Core.IServices;
-using ICPC_Tanta_Web.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.IdentityModel.Tokens;
-using Repository.Data;
-using Repository.Repositories;
-using System.Text;
 using ICPC_Tanta_Web.Hubs;
 using ICPC_Tanta_Web.Extensions;
 
@@ -139,6 +127,8 @@ app.ConfigureStaticFiles();
 
 app.UseCors("AllowSpecificOrigin");
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 app.Use(async (context, next) =>
 {
     context.Response.ContentType = "application/json";
@@ -148,7 +138,7 @@ app.Use(async (context, next) =>
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapHub<ChatHub>("/chatHub");
+//app.MapHub<ChatHub>("/chatHub");
 app.MapControllers();
 
 app.Run();

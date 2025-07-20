@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using System.Net.Mail;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using Core.DTO;
 
 namespace ICPC_Tanta_Web.Services
 {
@@ -13,11 +14,11 @@ namespace ICPC_Tanta_Web.Services
         {
             _configuration = configuration;
         }
-        public async Task SendEmailAsync(string toEmail, string subject, string body)
+        public async Task SendEmailAsync(EmailMessageDto message)
         {
-            if (string.IsNullOrWhiteSpace(toEmail) || !new EmailAddressAttribute().IsValid(toEmail))
+            if (string.IsNullOrWhiteSpace(message.To) || !new EmailAddressAttribute().IsValid(message.To))
             {
-                throw new ArgumentException("Invalid email address.", nameof(toEmail));
+                throw new ArgumentException("Invalid email address.", nameof(message.To));
             }
             try
             {
@@ -38,12 +39,17 @@ namespace ICPC_Tanta_Web.Services
                 var mailMessage = new MailMessage
                 {
                     From = new MailAddress(email),
-                    Subject = subject,
-                    Body = body,
+                    Subject = message.Subject,
+                    Body = message.Body,
                     IsBodyHtml = true,
                 };
 
-                mailMessage.To.Add(toEmail);
+                mailMessage.To.Add(message.To);
+
+                if (!string.IsNullOrWhiteSpace(message.ReplyTo) && new EmailAddressAttribute().IsValid(message.ReplyTo))
+                {
+                    mailMessage.ReplyToList.Add(new MailAddress(message.ReplyTo));
+                }
 
                 // Send the email
                 await smtpClient.SendMailAsync(mailMessage);
@@ -53,6 +59,8 @@ namespace ICPC_Tanta_Web.Services
                 // Log the exception (you could use a logging library here)
                 throw new Exception("Failed to send email. See inner exception for details.", ex);
             }
+
+
         }
     }
 }

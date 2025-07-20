@@ -71,10 +71,7 @@ namespace ICPC_Tanta_Web.Services
 
                 _ = Task.Run(async () =>
                 {
-                    await _emailService.SendEmailAsync(
-                        newUser.Email,
-                        "Confirm Your Email",
-                        $@"
+                    var emailBody = $@"
                         <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px;'>
                             <h2 style='color: #007bff;'>Confirm Your Email Address</h2>
                             <p>Hello {newUser.FullName},</p>
@@ -88,9 +85,16 @@ namespace ICPC_Tanta_Web.Services
                             <p>Thank you,<br/>The Team</p>
                             <hr style='margin-top: 20px; border: none; border-top: 1px solid #ddd;'/>
                             <p style='font-size: 12px; color: #888;'>This email was sent to {newUser.Email}. If you have any questions, contact us at support@example.com.</p>
-                        </div>"
-                    );
+                        </div>";
+
+                    await _emailService.SendEmailAsync(new EmailMessageDto
+                    {
+                        To = newUser.Email,
+                        Subject = "Confirm Your Email",
+                        Body = emailBody
+                    });
                 });
+
 
                 return "User registered successfully. Please confirm your email to activate your account and try login agin.";
             
@@ -113,23 +117,27 @@ namespace ICPC_Tanta_Web.Services
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var confirmationLink = $"https://icpc-tanta.runasp.net/api/Auth/ConfirmEmail?userId={user.Id}&token={Uri.EscapeDataString(token)}";
 
-            await _emailService.SendEmailAsync(
-                user.Email,
-                "Confirm Your Email",
-                $@"
-                    <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px;'>
-                        <h2 style='color: #007bff;'>Confirm Your Email Address</h2>
-                        <p>Hello {user.FullName},</p>
-                        <p>You requested to resend the confirmation email. Please confirm your email address to activate your account.</p>
-                        <p style='text-align: center;'>
-                            <a href='{confirmationLink}' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold;'>
-                                Confirm Email
-                            </a>
-                        </p>
-                        <p>If you did not request this, please ignore the email.</p>
-                        <p>Thanks,<br/>The Team</p>
-                    </div>"
-            );
+            var emailBody = $@"
+                <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px;'>
+                    <h2 style='color: #007bff;'>Confirm Your Email Address</h2>
+                    <p>Hello {user.FullName},</p>
+                    <p>You requested to resend the confirmation email. Please confirm your email address to activate your account.</p>
+                    <p style='text-align: center;'>
+                        <a href='{confirmationLink}' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold;'>
+                            Confirm Email
+                        </a>
+                    </p>
+                    <p>If you did not request this, please ignore the email.</p>
+                    <p>Thanks,<br/>The Team</p>
+                </div>";
+
+            await _emailService.SendEmailAsync(new EmailMessageDto
+            {
+                To = user.Email,
+                Subject = "Confirm Your Email",
+                Body = emailBody
+            });
+
         }
 
         public async Task<UserDto> LoginAsync(LoginDto model)
@@ -420,10 +428,7 @@ namespace ICPC_Tanta_Web.Services
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var resetLink = $"https://icpc-tanta.runasp.net/api/Auth/ResetPassword?userId={user.Id}&token={Uri.EscapeDataString(token)}";
 
-                await _emailService.SendEmailAsync(
-                    user.Email,
-                    "Reset Your Password",
-                    $@"
+                var emailBody = $@"
                     <div style='font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px;'>
                         <h2 style='color: #007bff;'>Reset Your Password</h2>
                         <p>Hello {user.FullName},</p>
@@ -435,8 +440,14 @@ namespace ICPC_Tanta_Web.Services
                         </p>
                         <p>If you did not request a password reset, please ignore this email.</p>
                         <p>Thank you,<br/>The Team</p>
-                    </div>"
-                );
+                    </div>";
+
+                await _emailService.SendEmailAsync(new EmailMessageDto
+                {
+                    To = user.Email,
+                    Subject = "Reset Your Password",
+                    Body = emailBody
+                });
 
                 return IdentityResult.Success;
             }

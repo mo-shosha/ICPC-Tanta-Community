@@ -29,17 +29,33 @@ namespace ICPC_Tanta_Web.Services
             return await _roleManager.CreateAsync(role);
         }
 
-        public async Task<IdentityResult> AssignRoleToUserAsync(string userId, string roleName)
+
+        public async Task<IdentityResult> AssignRolesToUserAsync(List<string> roleNames, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
-                return IdentityResult.Failed(new IdentityError { Description = "User not found" });
+                return IdentityResult.Failed(new IdentityError { Description = "User not found." });
 
-            var roleExists = await _roleManager.RoleExistsAsync(roleName);
-            if (!roleExists)
-                return IdentityResult.Failed(new IdentityError { Description = "Role does not exist" });
+            var existingRoles = await _userManager.GetRolesAsync(user);
+            foreach (var roleName in existingRoles)
+            {
+                await _userManager.RemoveFromRoleAsync(user, roleName);
+            }
 
-            return await _userManager.AddToRoleAsync(user, roleName);
+            foreach (var roleName in roleNames)
+            {
+                if (!await _roleManager.RoleExistsAsync(roleName))
+                    return IdentityResult.Failed(new IdentityError { Description = $"Role '{roleName}' does not exist." });
+
+                if (!await _userManager.IsInRoleAsync(user, roleName))
+                {
+                    var result = await _userManager.AddToRoleAsync(user, roleName);
+                    if (!result.Succeeded)
+                        return result;
+                }
+            }
+
+            return IdentityResult.Success;
         }
 
 

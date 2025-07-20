@@ -13,13 +13,14 @@ namespace Core.DTO.LevelDTO
     {
         [Required(ErrorMessage = "Level name is required.")]
         [StringLength(10, MinimumLength = 3, ErrorMessage = "Level name must be between 3 and 10 characters.")]
-        [SafeText]
+        //[SafeText]
         public string LevelName { get; set; }
         [Required(ErrorMessage = "Level Description is required.")]
-        [SafeText]
+        //[SafeText]
         public string Description { get; set; }
 
         [Required]
+        [IsImage]
         public IFormFile Image { get; set; }
 
     }

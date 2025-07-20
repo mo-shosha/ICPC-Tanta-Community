@@ -42,6 +42,7 @@ namespace ICPC_Tanta_Web.Extensions
 
 
             // تسجيل الـ Services و Repositories
+            services.AddMemoryCache();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IFileProcessingService, FileProcessingService>();
             services.AddScoped<INewsService, NewsService>();

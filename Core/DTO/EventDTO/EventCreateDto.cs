@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Validation;
 
 namespace Core.DTO.EventDTO
 {
@@ -24,6 +22,7 @@ namespace Core.DTO.EventDTO
 
         public string TicketUrl { get; set; }
 
+        [IsImage]
         public IFormFile Image { get; set; }
     }
 }

@@ -8,11 +8,13 @@ namespace ICPC_Tanta_Web.DTO.NewsDTO
     {
         public int Id { get; set; }
 
-        [SafeText]
+        //[SafeText]
         public string? Title { get; set; }
 
-        [SafeText]
+        //[SafeText]
         public string? Description { get; set; }
+        [IsImage]
+
         public IFormFile? Image { get; set; }
     }
 }

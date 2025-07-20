@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ICPC_Tanta_Web.Controllers
@@ -20,7 +21,7 @@ namespace ICPC_Tanta_Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("add-sticky")]
         public async Task<IActionResult> Create([FromBody] StickyNoteCreateDto stickyNoteCreateDto)
         {
@@ -29,12 +30,13 @@ namespace ICPC_Tanta_Web.Controllers
 
             try
             {
-                var userName = User.Identity?.Name ?? "Anonymous";
+                var fullName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.GivenName)?.Value ?? "Anonymous";
+
 
                 var sticky = new StickyNotes
                 {
                     Content = stickyNoteCreateDto.Content,
-                    AuthorName = userName
+                    AuthorName = fullName
                 };
 
                 await _unitOfWork.stickyNoteRepository.AddAsync(sticky);

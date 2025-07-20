@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Core.IServices
 {
     public interface IEmailService
     {
-        public Task SendEmailAsync(string toEmail, string subject, string body);
+        Task SendEmailAsync(EmailMessageDto message);
     }
 }

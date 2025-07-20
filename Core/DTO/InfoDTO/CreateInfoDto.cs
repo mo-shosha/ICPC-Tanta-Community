@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Core.Validation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,6 +21,7 @@ namespace Core.DTO.InfoDTO
         public string LinkedInUrl { get; set; }
 
         [Required]
+        [IsImage]
         public IFormFile Image { get; set; }
     }
     

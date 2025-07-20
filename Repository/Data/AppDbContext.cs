@@ -41,6 +41,10 @@ namespace Repository.Data
              .HasForeignKey(s => s.EventId)
              .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<TrainingContent>()
+            .Property(t => t.CreatedAt)
+            .HasDefaultValueSql("GETDATE()");
+
             //builder.Entity<News>()
             //   .HasOne(n => n.ApplicationUser)  // News has one ApplicationUser
             //   .WithMany(u => u.NewsArticles)  // ApplicationUser can have many News articles

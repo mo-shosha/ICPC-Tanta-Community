@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Core.Validation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,7 @@ namespace Core.DTO.TeamDTO
         [Required]
         public string Description { get; set; }
 
+        [IsImage]
         public IFormFile? LogoImg { get; set; }
     }
 }

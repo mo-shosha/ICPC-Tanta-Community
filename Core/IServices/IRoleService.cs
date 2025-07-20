@@ -14,7 +14,8 @@ namespace Core.IServices
         Task<IdentityResult> AddRoleAsync(string roleName);
         Task<IdentityResult> DeleteRoleAsync(string roleName);
         IEnumerable<IdentityRole> GetAllRoles();
-        Task<IdentityResult> AssignRoleToUserAsync(string userId, string roleName);
+        //Task<IdentityResult> AssignRoleToUserAsync(string userId, string roleName);
+        Task<IdentityResult> AssignRolesToUserAsync(List<string> roleNames, string userId);
         Task<IdentityResult> RemoveRoleFromUserAsync(string userId, string roleName, string defaultRole = "User");
         Task<IEnumerable<Userinfo>> GetAllUser();
     }

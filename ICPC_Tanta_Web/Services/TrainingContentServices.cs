@@ -58,7 +58,7 @@ namespace ICPC_Tanta_Web.Services
                     SheetLink=contentCreateDto.SheetLink,
                     AnotherLinks=anotherLinks,
                     TrainingLevelId = contentCreateDto.LevelId,
-                    CreatedAt=DateTime.Now
+                    //CreatedAt=DateTime.Now
                 };
 
                 await _unitOfWork.TrainingContentRepository.AddAsync(newContent);

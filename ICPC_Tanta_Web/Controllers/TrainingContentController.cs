@@ -28,7 +28,6 @@ namespace ICPC_Tanta_Web.Controllers
                 string author = User.Identity?.Name ?? "ICPC Tanta";
                 //contentCreateDto.Auther ??= author;
                 
-
                 await _trainingContentServices.CreateContentAsync(contentCreateDto);
                 return Ok(ApiResponse<string>.SuccessResponse("Content created successfully."));
             }

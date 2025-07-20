@@ -169,6 +169,7 @@ namespace ICPC_Tanta_Web.Services
                         UpsolveLink = c.UpsolveLink,
                         UpsolveBy = c.UpsolveBy,
                         SheetLink = c.SheetLink,
+                        CreatedAt = c.CreatedAt,
                         AnotherLinks = c.AnotherLinks?.Select(al => new AnotherLinkDto
                         {
                             Title = al.Title,
@@ -213,6 +214,7 @@ namespace ICPC_Tanta_Web.Services
                         UpsolveLink = c.UpsolveLink,
                         UpsolveBy = c.UpsolveBy,
                         SheetLink = c.SheetLink,
+                        CreatedAt = c.CreatedAt,
                         AnotherLinks = c.AnotherLinks?.Select(al => new AnotherLinkDto
                         {
                             Title = al.Title,

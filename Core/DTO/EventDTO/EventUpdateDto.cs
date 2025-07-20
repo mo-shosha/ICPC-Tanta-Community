@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Core.Validation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,6 +27,7 @@ namespace Core.DTO.EventDTO
 
         public string TicketUrl { get; set; }
 
+        [IsImage]
         public IFormFile Image { get; set; }
     }
 }

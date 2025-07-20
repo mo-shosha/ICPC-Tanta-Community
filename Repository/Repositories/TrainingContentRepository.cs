@@ -38,6 +38,7 @@ namespace Repository.Repositories
                     UpsolveLink = tc.UpsolveLink,
                     UpsolveBy = tc.UpsolveBy,
                     SheetLink = tc.SheetLink,
+                    CreatedAt = tc.CreatedAt,
                     AnotherLinks = tc.AnotherLinks.Select(link => new AnotherLinkDto
                     {
                         Title = link.Title,
@@ -61,6 +62,7 @@ namespace Repository.Repositories
                     UpsolveLink = tc.UpsolveLink,
                     UpsolveBy = tc.UpsolveBy,
                     SheetLink = tc.SheetLink,
+                    CreatedAt = tc.CreatedAt,
                     AnotherLinks = tc.AnotherLinks.Select(link => new AnotherLinkDto
                     {
                         Title = link.Title,

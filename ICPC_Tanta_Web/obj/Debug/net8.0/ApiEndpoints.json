@@ -278,6 +278,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.ContactController",
+    "Method": "ContactUs",
+    "RelativePath": "api/Contact",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Core.DTO.ContactUsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.EventController",
     "Method": "GetAll",
     "RelativePath": "api/Event",
@@ -800,16 +816,6 @@
   },
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.QAndAController",
-    "Method": "GetAll",
-    "RelativePath": "api/QAndA",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ICPC_Tanta_Web.Controllers.QAndAController",
     "Method": "AnswerQuestion",
     "RelativePath": "api/QAndA/{id}/answer",
     "HttpMethod": "PATCH",
@@ -840,6 +846,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ICPC_Tanta_Web.Controllers.QAndAController",
+    "Method": "GetQuestions",
+    "RelativePath": "api/QAndA/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "filter",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ICPC_Tanta_Web.Controllers.RoleController",
     "Method": "AddRole",
     "RelativePath": "api/Role/add",
@@ -867,8 +889,8 @@
   },
   {
     "ContainingType": "ICPC_Tanta_Web.Controllers.RoleController",
-    "Method": "AssignRoleToUser",
-    "RelativePath": "api/Role/assign-role",
+    "Method": "AssignRolesToUser",
+    "RelativePath": "api/Role/assign-roles",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -879,9 +901,9 @@
         "IsRequired": false
       },
       {
-        "Name": "roleName",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "roleNames",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
