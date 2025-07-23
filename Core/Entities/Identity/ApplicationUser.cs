@@ -12,8 +12,12 @@ namespace Core.Entities.Identity
     {
         [Required]
         public string CodeForcesHandel {  get; set; }
+        public string Rank { get; set; }
+        public int Rating { get; set; }
+        public string TitlePhoto { get; set; }
 
         public string FullName {  get; set; }
+
 
         public List<RefreshToken>? RefreshTokens { get; set; }
 

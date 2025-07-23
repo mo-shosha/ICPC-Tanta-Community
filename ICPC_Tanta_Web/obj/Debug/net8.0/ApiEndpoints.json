@@ -457,11 +457,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "FacebookUrl",
         "Type": "System.String",
         "IsRequired": false

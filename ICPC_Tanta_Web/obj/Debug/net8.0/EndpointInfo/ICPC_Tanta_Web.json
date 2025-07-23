@@ -755,15 +755,8 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "Id"
-                ],
                 "type": "object",
                 "properties": {
-                  "Id": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
                   "FacebookUrl": {
                     "type": "string"
                   },
@@ -786,9 +779,6 @@
                 }
               },
               "encoding": {
-                "Id": {
-                  "style": "form"
-                },
                 "FacebookUrl": {
                   "style": "form"
                 },

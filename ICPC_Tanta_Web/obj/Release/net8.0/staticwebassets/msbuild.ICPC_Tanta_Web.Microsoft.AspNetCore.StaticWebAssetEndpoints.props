@@ -72,6 +72,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-\u002BKZEnnqanYAuWEqrNFjlohAxYgXqczpCei2g86Sm0ac="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"5420"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022\u002BKZEnnqanYAuWEqrNFjlohAxYgXqczpCei2g86Sm0ac=\u0022"},{"Name":"Last-Modified","Value":"Wed, 29 Jan 2025 20:07:57 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ICPC_Tanta_Web/uploads/50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1820640"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 20 Jul 2025 09:54:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ICPC_Tanta_Web/uploads/50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.u64o8cju6s.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"u64o8cju6s"},{"Name":"integrity","Value":"sha256-NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ="},{"Name":"label","Value":"_content/ICPC_Tanta_Web/uploads/50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1820640"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 20 Jul 2025 09:54:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ICPC_Tanta_Web/uploads/5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).2nmkpvonl9.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
@@ -119,6 +131,18 @@
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-5yJjXE48/ZG6h5wc7IkqVkZfP7XcvumqEpfl\u002BFaYuG4="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"7534"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u00225yJjXE48/ZG6h5wc7IkqVkZfP7XcvumqEpfl\u002BFaYuG4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Feb 2025 09:21:03 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ICPC_Tanta_Web/uploads/73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"1820640"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 20 Jul 2025 09:58:05 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ICPC_Tanta_Web/uploads/73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.u64o8cju6s.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"u64o8cju6s"},{"Name":"integrity","Value":"sha256-NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ="},{"Name":"label","Value":"_content/ICPC_Tanta_Web/uploads/73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1820640"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 20 Jul 2025 09:58:05 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/ICPC_Tanta_Web/uploads/99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg'))</AssetFile>

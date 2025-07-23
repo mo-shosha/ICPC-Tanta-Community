@@ -4,10 +4,12 @@ wwwroot\uploads\24674aab-e52f-46ef-89ec-2f4d5d47ecda_images.jpg
 wwwroot\uploads\2f3ad460-6230-4b3d-801d-e0d0ef050737_arrival-5.png
 wwwroot\uploads\428d7cf9-9de3-4925-96de-84e1af97a261_images.jpg
 wwwroot\uploads\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg
+wwwroot\uploads\50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png
 wwwroot\uploads\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png
 wwwroot\uploads\656e4d2e-98b9-4d0a-8da4-35cec3c0e393_product-4.jpg
 wwwroot\uploads\6807b7a4-74c2-4743-9f81-633ea5bb8189_arrival-1.jpg
 wwwroot\uploads\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg
+wwwroot\uploads\73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png
 wwwroot\uploads\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg
 wwwroot\uploads\afe4fab6-3140-41a5-8e0b-73a2d962169b_arrival-5.png
 wwwroot\uploads\bf90b1f8-2afc-4e8a-8a47-65e1f3df7a2c_images.jpg

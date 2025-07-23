@@ -51,11 +51,12 @@ namespace ICPC_Tanta_Web.Controllers
         }
 
         [HttpGet]
+
         public async Task<IActionResult> GetAll()
         {
             try
             {
-                var stickies = await _unitOfWork.stickyNoteRepository.GetAllAsync();
+                var stickies = await _unitOfWork.stickyNoteRepository.GetLastAsync();
 
                 if (stickies == null || !stickies.Any())
                 {

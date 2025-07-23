@@ -1,23 +1,23 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System.Net;
-using Microsoft.Extensions.Caching.Memory;
 using System.Text.Json;
 using Core.DTO;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
+
 namespace ICPC_Tanta_Web.Extensions
 {
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IHostEnvironment _environment;
         private readonly IMemoryCache _memoryCache;
         private readonly TimeSpan _rateLimitWindow = TimeSpan.FromSeconds(30);
-        //private const int _requestLimit = 8;
+        private const int GuestLimit = 10;
+        private const int AuthenticatedLimit = 30;
 
-        public ExceptionMiddleware(RequestDelegate next, IHostEnvironment environment, IMemoryCache memoryCache)
+        public ExceptionMiddleware(RequestDelegate next, IMemoryCache memoryCache)
         {
             _next = next;
-            _environment = environment;
             _memoryCache = memoryCache;
         }
 
@@ -25,73 +25,99 @@ namespace ICPC_Tanta_Web.Extensions
         {
             try
             {
-                ApplySecurity(context);
-
+                ApplySecurityHeaders(context);
                 if (HttpMethods.IsPost(context.Request.Method) ||
                     HttpMethods.IsPut(context.Request.Method) ||
                     HttpMethods.IsPatch(context.Request.Method))
                 {
                     if (!IsRequestAllowed(context))
                     {
-                        context.Response.Clear();
-                        context.Response.StatusCode = (int)HttpStatusCode.TooManyRequests;
-                        context.Response.ContentType = "application/json";
-
-                        var response = ApiResponse<string>.ErrorResponse("Too many requests, please try again later");
-                        var jsonResponse = JsonSerializer.Serialize(response);
-
-                        await context.Response.WriteAsync(jsonResponse);
+                        await RejectRequest(context, 429, "Too many requests, please try again later");
                         return;
                     }
-                }
 
+                    
+                    if (context.Request.ContentType?.Contains("application/json") == true)
+                    {
+                        context.Request.EnableBuffering();
+                        using var reader = new StreamReader(context.Request.Body, leaveOpen: true);
+                        var body = await reader.ReadToEndAsync();
+                        context.Request.Body.Position = 0;
+
+                        if (Regex.IsMatch(body, @"<[^>]+>"))
+                        {
+                            await RejectRequest(context, 400, "HTML tags are not allowed in JSON body.");
+                            return;
+                        }
+                    }
+                    else if (context.Request.ContentType?.Contains("multipart/form-data") == true)
+                    {
+                        var form = await context.Request.ReadFormAsync();
+                        foreach (var field in form)
+                        {
+                            if (Regex.IsMatch(field.Value, @"<[^>]+>"))
+                            {
+                                await RejectRequest(context, 400, $"HTML tags are not allowed in field '{field.Key}'.");
+                                return;
+                            }
+                        }
+                        
+                    }
+                }
                 await _next(context);
             }
             catch (Exception ex)
             {
-                context.Response.Clear();
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                context.Response.ContentType = "application/json";
-
-                var response = ApiResponse<string>.ErrorResponse(ex.Message);
-                var jsonResponse = JsonSerializer.Serialize(response);
-
-                await context.Response.WriteAsync(jsonResponse);
+                await RejectRequest(context, 500, ex.Message);
             }
+        }
+
+        private async Task RejectRequest(HttpContext context, int statusCode, string message)
+        {
+            context.Response.Clear();
+            context.Response.StatusCode = statusCode;
+            context.Response.ContentType = "application/json";
+
+            var response = ApiResponse<string>.ErrorResponse(message);
+            var jsonResponse = JsonSerializer.Serialize(response);
+
+            await context.Response.WriteAsync(jsonResponse);
         }
 
         private bool IsRequestAllowed(HttpContext context)
         {
-            string identifier;
+            string keyPrefix;
+            string cacheKey;
 
             if (context.User.Identity?.IsAuthenticated == true)
             {
-                identifier = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "unknown-user";
+                var userId = context.User.FindFirst("nameid")?.Value ?? "unknown";
+                keyPrefix = "user:";
+                cacheKey = $"{keyPrefix}{userId}";
             }
             else
             {
-                identifier = context.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip";
+                var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+                keyPrefix = "ip:";
+                cacheKey = $"{keyPrefix}{ipAddress}";
             }
 
-            var cacheKey = $"Rate:{identifier}";
             var now = DateTime.UtcNow;
-
-            var cacheEntry = _memoryCache.GetOrCreate(cacheKey, entry =>
+            if (_memoryCache.TryGetValue(cacheKey, out (DateTime timestamp, int count) entry))
             {
-                entry.AbsoluteExpirationRelativeToNow = _rateLimitWindow;
-                return (Timestamp: now, Count: 1);
-            });
-
-            var (timestamp, count) = cacheEntry;
-
-            int limit = context.User.Identity?.IsAuthenticated == true ? 30 : 10; //  30 للمسجل، 10 للزائر
-
-            if (now - timestamp < _rateLimitWindow)
-            {
-                if (count >= limit)
-                    return false;
-
-                _memoryCache.Set(cacheKey, (timestamp, count + 1), _rateLimitWindow);
+                if (now - entry.timestamp < _rateLimitWindow)
+                {
+                    int limit = keyPrefix == "user:" ? AuthenticatedLimit : GuestLimit;
+                    if (entry.count >= limit)
+                    {
+                        return false;
+                    }
+                    _memoryCache.Set(cacheKey, (entry.timestamp, entry.count + 1), _rateLimitWindow);
+                }
+                else
+                {
+                    _memoryCache.Set(cacheKey, (now, 1), _rateLimitWindow);
+                }
             }
             else
             {
@@ -101,28 +127,18 @@ namespace ICPC_Tanta_Web.Extensions
             return true;
         }
 
-        private void ApplySecurity(HttpContext context)
+        private void ApplySecurityHeaders(HttpContext context)
         {
             context.Response.Headers["X-Content-Type-Options"] = "nosniff";
-
             context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
-
             context.Response.Headers["X-Frame-Options"] = "DENY";
-            
             context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'";
-
             context.Response.Headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload";
-
             context.Response.Headers["Referrer-Policy"] = "same-origin";
-
             context.Response.Headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()";
-
             context.Response.Headers["Cross-Origin-Opener-Policy"] = "same-origin";
-
             context.Response.Headers["Cross-Origin-Resource-Policy"] = "same-origin";
-
             context.Response.Headers["Cross-Origin-Embedder-Policy"] = "require-corp";
-            
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NYYDy+h9QkhXKEfyTq6Os0iRJwau4jUbk9ArduzdCKA=",
+  "Hash": "eOScCDAe9BaWVVKRP/N+AtNfU6Crz6Rbjc62rmyo22w=",
   "Source": "ICPC_Tanta_Web",
   "BasePath": "_content/ICPC_Tanta_Web",
   "Mode": "Default",
@@ -143,6 +143,27 @@
       "OriginalItemSpec": "wwwroot\\uploads\\4a8a9c78-b579-4a4c-bbc5-c74e20208f44_images.jpg"
     },
     {
+      "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png",
+      "SourceId": "ICPC_Tanta_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\",
+      "BasePath": "_content/ICPC_Tanta_Web",
+      "RelativePath": "uploads/50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "u64o8cju6s",
+      "Integrity": "NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png"
+    },
+    {
       "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png",
       "SourceId": "ICPC_Tanta_Web",
       "SourceType": "Discovered",
@@ -225,6 +246,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\71ed68b2-2b22-4431-bc23-e53c077be30e_th.jpeg"
+    },
+    {
+      "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png",
+      "SourceId": "ICPC_Tanta_Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\",
+      "BasePath": "_content/ICPC_Tanta_Web",
+      "RelativePath": "uploads/73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "u64o8cju6s",
+      "Integrity": "NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png"
     },
     {
       "Identity": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\99189131-06e0-4c3a-923a-1def24623a95_home-slider-1.jpg",
@@ -826,6 +868,88 @@
       ]
     },
     {
+      "Route": "uploads/50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png",
+      "AssetFile": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1820640"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Jul 2025 09:54:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.u64o8cju6s.png",
+      "AssetFile": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1820640"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Jul 2025 09:54:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "u64o8cju6s"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/50ada66b-6fab-4606-a8ce-8b4f20d657f7_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ="
+        }
+      ]
+    },
+    {
       "Route": "uploads/5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).2nmkpvonl9.png",
       "AssetFile": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\5c68d85e-b34b-4cd0-bd1f-c82dea5b207b_logoo (1).png",
       "Selectors": [],
@@ -1150,6 +1274,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-5yJjXE48/ZG6h5wc7IkqVkZfP7XcvumqEpfl+FaYuG4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png",
+      "AssetFile": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1820640"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Jul 2025 09:58:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.u64o8cju6s.png",
+      "AssetFile": "E:\\projects in back\\ICPC_Tanta\\ICPC_Tanta_Web\\ICPC_Tanta_Web\\wwwroot\\uploads\\73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1820640"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 20 Jul 2025 09:58:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "u64o8cju6s"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/73defe1f-d2f9-4169-b7da-dc66accca4b2_68747470733a2f2f766974656a732e6465762f65636f73797374656d2d76697465342e706e67.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NpONti630LEdFkrKObDghTkNO8oCSfFnTXZWj7KCzMQ="
         }
       ]
     },

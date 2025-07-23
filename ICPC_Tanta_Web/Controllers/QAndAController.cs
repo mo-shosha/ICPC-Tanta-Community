@@ -124,10 +124,10 @@ namespace ICPC_Tanta_Web.Controllers
         {
             try
             {
-                var questions = await _unitOfWork.qAndARepository.GetAllAsync();
+                var questions = await _unitOfWork.qAndARepository.GetLastAsync();
 
                 var answered = questions
-                    .Where(q => !string.IsNullOrWhiteSpace(q.Answer))
+                    //.Where(q => !string.IsNullOrWhiteSpace(q.Answer))
                     .Select(q => new QAndAReadDto
                     {
                         Question = q.Question,

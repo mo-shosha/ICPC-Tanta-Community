@@ -9,5 +9,6 @@ namespace Core.IRepositories
 {
     public interface IStickyNoteRepository:IBaseRepository<StickyNotes>
     {
+        Task<IEnumerable<StickyNotes>> GetLastAsync();
     }
 }

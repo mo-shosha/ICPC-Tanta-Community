@@ -3,6 +3,7 @@ using Core.helper;
 using Core.IRepositories;
 using Core.IServices;
 using ICPC_Tanta_Web.Services;
+using ICPC_Tanta_Web.Services.BackServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -60,6 +61,11 @@ namespace ICPC_Tanta_Web.Extensions
             services.AddScoped<ICodeforcesService, CodeforcesService>();
             services.AddScoped<IInfoService, InfoService>();
             services.AddHttpClient<ICodeforcesService, CodeforcesService>();
+            services.AddScoped<UpdateUserCodeForcesData>();
+
+
+            services.AddHostedService<CodeforcesUpdaterHostedService>();
+
 
             services.AddSignalR();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

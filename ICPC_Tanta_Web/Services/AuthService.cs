@@ -56,6 +56,10 @@ namespace ICPC_Tanta_Web.Services
                     UserName = model.Email.Split('@')[0],
                     CodeForcesHandel = model.CodeForcesHandel,
                     PhoneNumber = model.PhoneNumber,
+                    Rating = codeforcesUserInfo.Rating,
+                    Rank = codeforcesUserInfo.Rank,
+                    TitlePhoto = codeforcesUserInfo.TitlePhoto ?? "default-avatar.png"
+
                 };
 
                
@@ -177,7 +181,7 @@ namespace ICPC_Tanta_Web.Services
 
                 SetRefreshTokenInCookie(newRefreshToken.Token, newRefreshToken.ExpiresOn);
 
-                var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
+                //var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
 
                 var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -188,9 +192,9 @@ namespace ICPC_Tanta_Web.Services
                     Email = user.Email,
                     PhoneNumber = user.PhoneNumber ?? "Unknown",
                     Handle = user.CodeForcesHandel ?? "Unknown",
-                    Rating = codeforcesUserInfo?.Rating ?? 0,
-                    Rank = codeforcesUserInfo?.Rank ?? "Unknown",
-                    TitlePhoto = codeforcesUserInfo?.TitlePhoto ?? "default-avatar.png",
+                    Rating = user?.Rating ?? 0,
+                    Rank = user?.Rank ?? "Unknown",
+                    TitlePhoto = user?.TitlePhoto ?? "default-avatar.png",
                     Roles = userRoles.ToList(),
                     Token = accessToken,
                     RefreshToken = newRefreshToken.Token,

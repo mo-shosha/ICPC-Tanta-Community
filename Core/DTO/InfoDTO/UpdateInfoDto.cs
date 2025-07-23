@@ -11,8 +11,7 @@ namespace Core.DTO.InfoDTO
 {
     public class UpdateInfoDto
     {
-        [Required]
-        public int Id { get; set; }
+        
         public string? FacebookUrl { get; set; }
         public string? YoutubeUrl { get; set; }
         public string? TwitterUrl { get; set; }

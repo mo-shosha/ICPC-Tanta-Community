@@ -9,11 +9,11 @@ namespace ICPC_Tanta_Web.Services
     public class UserServices : IUserServices
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ICodeforcesService _codeforcesService;
+        //private readonly ICodeforcesService _codeforcesService;
         public UserServices(UserManager<ApplicationUser> userManager, ICodeforcesService codeforcesService)
         {
             _userManager = userManager;
-            _codeforcesService = codeforcesService;
+           // _codeforcesService = codeforcesService;
         }
 
         public async Task<IEnumerable<Userinfo>> GetAllInstructors()
@@ -47,7 +47,7 @@ namespace ICPC_Tanta_Web.Services
 
             foreach (var user in users)
             {
-                var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
+                //var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
                 var roles = await _userManager.GetRolesAsync(user);
 
                 if (roles.Contains("Instructor"))
@@ -56,8 +56,9 @@ namespace ICPC_Tanta_Web.Services
                     {
                         Id = user.Id,
                         Name = user.FullName,
-                        Rating = codeforcesUserInfo.Rating,
-                        ImgURL = codeforcesUserInfo.TitlePhoto,
+                        Rating = user.Rating,
+                        ImgURL = user.TitlePhoto,
+
                     });
                 }
             }
@@ -74,7 +75,7 @@ namespace ICPC_Tanta_Web.Services
             foreach (var user in users)
             {
                 var isLocked = await _userManager.IsLockedOutAsync(user);
-                var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
+                //var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
                 var roles = await _userManager.GetRolesAsync(user);
                 result.Add(new CustemUserInfo
                 {
@@ -84,8 +85,8 @@ namespace ICPC_Tanta_Web.Services
                     Handle = user.CodeForcesHandel,
                     PhoneNumber = user.PhoneNumber,
                     IsLocked = isLocked,
-                    Rank= codeforcesUserInfo.Rank,
-                    Rating=codeforcesUserInfo.Rating,
+                    Rank= user.Rank,
+                    Rating=user.Rating,
                     Roles=roles.ToList()
 
                 });
@@ -101,7 +102,6 @@ namespace ICPC_Tanta_Web.Services
 
             foreach (var user in users)
             {
-                var codeforcesUserInfo = await _codeforcesService.GetUserInfoAsync(user.CodeForcesHandel);
                 var roles = await _userManager.GetRolesAsync(user);
                 
                 if (roles.Contains("User")&&roles.Count()==1)
@@ -110,13 +110,16 @@ namespace ICPC_Tanta_Web.Services
                     {
                         Id=user.Id,
                         Name = user.FullName,
-                        Rating=codeforcesUserInfo.Rating,
-                        ImgURL=codeforcesUserInfo.TitlePhoto,
+                        Rating=user.Rating,
+                        ImgURL=user.TitlePhoto,
                     });
                 }
             }
 
             return SelectedUsers.OrderByDescending(u => u.Rating).ToList();
+
+
+
         }
 
         public int GetUserRanking(string userId, IEnumerable<UserRatingDto> sortedUsers)
@@ -153,3 +156,22 @@ namespace ICPC_Tanta_Web.Services
         }
     }
 }
+
+
+//var usersWithOnlyUserRole = await (
+//                from user in _context.Users
+//                join userRole in _context.UserRoles on user.Id equals userRole.UserId
+//                join role in _context.Roles on userRole.RoleId equals role.Id
+//                group role.Name by new { user.Id, user.UserName, user.Email, user.Rating, user.TitlePhoto } into g
+//                where g.Count() == 1 && g.First() == "User"
+//                orderby g.Key.Rating descending
+//                select new UserRatingDto
+//                {
+//                    Id = g.Key.Id,
+//                    Name = g.Key.UserName,
+//                    Rating = g.Key.Rating,
+//                    ImgURL = g.Key.TitlePhoto
+//                }
+//            ).ToListAsync();
+
+//return usersWithOnlyUserRole;
